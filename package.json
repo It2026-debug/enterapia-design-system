@@ -1,0 +1,9 @@
+{
+  "name": "enterapia-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Design tokens for the Enterapia design system, exported from Figma.",
+  "files": [
+    "tokens"
+  ]
+}
