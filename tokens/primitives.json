@@ -37,18 +37,23 @@
       "heading": "Roboto"
     },
     "fontSize": {
+      "caption": "12px",
       "body14": "16px",
       "body16": "16px",
       "body18": "20px",
       "heading24": "24px"
     },
     "lineHeight": {
+      "caption": "18px",
       "body18": "20px",
       "body20": "20px",
       "body22": "24px",
       "heading24": "32px"
     },
     "fontWeight": {
+      "caption": "400",
+      "label": "500",
+      "body": "300",
       "heading": "700"
     }
   }
