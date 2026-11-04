@@ -11,17 +11,20 @@
     "test": "node --test \"test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\"",
     "start": "node mcp/server.mjs",
     "import:fig": "node scripts/import-fig.mjs",
-    "lint": "eslint . && stylelint \"components/**/*.css\" \"site/*.css\""
+    "lint": "eslint . && stylelint \"components/**/*.css\" \"site/*.css\"",
+    "a11y": "node scripts/a11y.mjs"
   },
   "engines": {
     "node": ">=22"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.14.0",
     "fflate": "^0.8.3",
     "globals": "^16.5.0",
     "kiwi-schema": "^0.5.0",
+    "playwright-core": "^1.64.1",
     "stylelint": "^16.26.1"
   },
   "overrides": {

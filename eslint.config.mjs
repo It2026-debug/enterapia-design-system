@@ -15,6 +15,11 @@ export default [
     },
   },
   {
+    // Functions passed to page.evaluate() run in the browser.
+    files: ["scripts/lib/a11y.mjs"],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+  },
+  {
     files: ["site/site.js"],
     languageOptions: { ecmaVersion: 2024, sourceType: "script", globals: { ...globals.browser } },
     rules: {
