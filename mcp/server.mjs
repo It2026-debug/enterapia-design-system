@@ -12,6 +12,7 @@ const MAX_BODY_BYTES = 256 * 1024;
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 
 const RULES = [
+  "Include tokens.css and components.css. Use the markup returned by get_component and its ds-* classes instead of writing your own styles.",
   "Use semantic tokens (layer: semantic) in components. Primitive tokens exist only to build the semantic layer.",
   "Reference tokens through their CSS variables, for example var(--color-text-feedback-error). Do not copy hex values.",
   "Do not hardcode light or dark colors: semantic color variables switch with the theme (data-theme on <html>, or the system preference).",
@@ -53,6 +54,29 @@ export function searchTokens(registry, query, limit) {
     .map(({ token }) => brief(token));
 }
 
+const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
+export function findComponent(registry, name) {
+  const wanted = normalize(name);
+  const components = registry.components ?? [];
+  return (
+    components.find((c) => normalize(c.slug) === wanted || normalize(c.name) === wanted || normalize(c.title) === wanted) ??
+    components.find((c) => normalize(c.title).includes(wanted) || normalize(c.name).includes(wanted))
+  );
+}
+
+const componentBrief = (c) => ({
+  slug: c.slug,
+  number: c.number,
+  name: c.name,
+  title: c.title,
+  group: c.group,
+  category: c.category,
+  implemented: c.implemented,
+  variantCount: c.variantCount,
+  parts: c.parts.map((part) => ({ name: part.name, properties: Object.fromEntries(Object.entries(part.properties).map(([axis, p]) => [axis, p.values])) })),
+});
+
 export function buildMcpServer(registry) {
   const server = new McpServer({ name: registry.name, version: registry.version });
   const byName = new Map(registry.tokens.map((t) => [t.name, t]));
@@ -70,7 +94,7 @@ export function buildMcpServer(registry) {
         version: registry.version,
         description: registry.description,
         scope: registry.scope,
-        counts: registry.counts,
+        counts: { ...registry.counts, components: (registry.components ?? []).length },
         themes: { modes: registry.modes, default: registry.defaultMode, note: "Tokens with a darkValue (or a modes field) differ in dark; the CSS variable switches automatically." },
         categories: CATEGORIES,
         layers: { primitive: "Raw values with no meaning of their own.", semantic: "Role-based aliases that components should use." },
@@ -137,6 +161,78 @@ export function buildMcpServer(registry) {
       annotations: READ_ONLY,
     },
     async ({ layer }) => asText(renderCss({ tokens: registry.tokens.filter((t) => !layer || t.layer === layer) })),
+  );
+
+  server.registerTool(
+    "list_components",
+    {
+      title: "List components",
+      description: "Lists the UI components (as organized in Figma: Acción, Formulario, Contenedor, Feedback, Overlay, Base, Datos) with their properties and variant counts. Optionally filter by a word in the name or by category.",
+      inputSchema: {
+        query: z.string().optional().describe("Words to look for in the name or title, for example 'button' or 'formulario'."),
+        category: z.string().optional().describe("Category name, for example Formulario or Feedback."),
+      },
+      annotations: READ_ONLY,
+    },
+    async ({ query, category }) => {
+      const wantedQuery = query ? normalize(query) : null;
+      const wantedCategory = category ? normalize(category) : null;
+      const list = (registry.components ?? []).filter(
+        (c) =>
+          (!wantedQuery || normalize(`${c.name} ${c.title} ${c.category}`).includes(wantedQuery)) &&
+          (!wantedCategory || normalize(c.category) === wantedCategory),
+      );
+      return asText({ count: list.length, components: list.map(componentBrief) });
+    },
+  );
+
+  server.registerTool(
+    "get_component",
+    {
+      title: "Get one component",
+      description: "Returns a component: the design team's documentation (when to use it, do and don't), its properties and variants, accessibility notes, the HTML markup of a variant, and the CSS. Pass `properties` to get the markup of one specific variant, for example {\"Style\":\"Primary\",\"Size\":\"MD\",\"State\":\"Hover\"}. Set includeAllExamples to receive the markup of every variant.",
+      inputSchema: {
+        name: z.string().min(1).describe("Component name, title or slug, for example Button, Select or close-button."),
+        properties: z.record(z.string(), z.string()).optional().describe("Variant properties, for example {\"State\":\"Disabled\"}. Missing ones use the default."),
+        part: z.string().optional().describe("For components made of several pieces (such as Tabla), the piece name, for example 'Table Row'."),
+        includeAllExamples: z.boolean().default(false).describe("Return the markup of every variant."),
+      },
+      annotations: READ_ONLY,
+    },
+    async ({ name, properties, part: partName, includeAllExamples }) => {
+      const component = findComponent(registry, name);
+      if (!component) {
+        const names = (registry.components ?? []).map((c) => c.slug).join(", ");
+        return asError(`No component named "${name}". Available: ${names}.`);
+      }
+      const part = partName ? component.parts.find((p) => normalize(p.name) === normalize(partName)) : component.parts[0];
+      if (!part) return asError(`"${component.name}" has no part named "${partName}". Parts: ${component.parts.map((p) => p.name).join(", ")}.`);
+
+      let example = null;
+      if (component.implemented) {
+        const wanted = Object.entries(properties ?? {});
+        const base = part.examples[0];
+        example = part.examples.find((e) => wanted.length && wanted.every(([k, v]) => e.props[k] === v)) ?? (wanted.length ? null : base);
+        if (wanted.length && !example) {
+          const merged = { ...base.props, ...properties };
+          example = part.examples.find((e) => Object.entries(merged).every(([k, v]) => e.props[k] === v)) ?? null;
+        }
+        if (wanted.length && !example) {
+          return asError(`No variant of "${component.name}" (${part.name}) matches ${JSON.stringify(properties)}. Properties: ${JSON.stringify(Object.fromEntries(Object.entries(part.properties).map(([k, p]) => [k, p.values])))}.`);
+        }
+      }
+      return asText({
+        ...componentBrief(component),
+        documentation: component.documentation,
+        accessibility: component.accessibility,
+        selectedPart: part.name,
+        properties: part.properties,
+        example: example ? { name: example.name, props: example.props, html: example.html } : null,
+        ...(includeAllExamples ? { examples: part.examples } : { variantNames: part.examples.map((e) => e.name) }),
+        css: component.css,
+        usage: component.implemented ? "Include tokens.css and components.css, then use the html markup above." : "Not implemented in code yet; only the Figma specification exists.",
+      });
+    },
   );
 
   return server;

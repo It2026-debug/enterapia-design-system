@@ -1,0 +1,24 @@
+{
+  "source": "Card — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Tarjeta (Card)",
+  "summary": "Contenedor que agrupa información relacionada (título, descripción, a veces una acción) en un bloque visualmente separado.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsala para mostrar elementos de una lista o galería —productos, artículos, resultados— de forma fácil de escanear."
+    },
+    {
+      "title": "Variantes",
+      "text": "Estado: Default, Hover (al pasar el mouse, se eleva). Sombra: With Shadow (más énfasis) o No Shadow (para fondos ya diferenciados)."
+    }
+  ],
+  "do": [
+    "Usa \"With Shadow\" cuando la tarjeta está sobre un fondo plano.",
+    "Mantén el título corto y la descripción en máximo 2 líneas."
+  ],
+  "dont": [
+    "No sobrecargues la tarjeta con más de una acción principal.",
+    "No quites la sombra si el fondo no aporta contraste propio."
+  ]
+}

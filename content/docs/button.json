@@ -1,0 +1,1689 @@
+{
+  "source": "Button — Documentación (reemplazado)",
+  "format": "structured",
+  "sections": [
+    {
+      "id": "01-encabezado",
+      "number": "01",
+      "title": "Encabezado",
+      "intro": [],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "ACCIÓN · COMPONENTE",
+          "size": 12,
+          "style": "label/sm"
+        },
+        {
+          "type": "text",
+          "text": "Botón (Button)",
+          "size": 12,
+          "style": "heading/lg"
+        },
+        {
+          "type": "text",
+          "text": "Elemento interactivo que la persona usuaria toca o hace clic para ejecutar una acción: enviar un formulario, confirmar una compra, abrir una pantalla nueva.",
+          "size": 12,
+          "style": "body/lg"
+        },
+        {
+          "type": "group",
+          "name": "Cuándo usarlo",
+          "direction": "column",
+          "items": [
+            {
+              "type": "text",
+              "text": "Cuándo usarlo",
+              "size": 12,
+              "style": "label/md"
+            },
+            {
+              "type": "text",
+              "text": "Úsalo para la acción principal de una pantalla o tarjeta. Si hay varias acciones visibles, solo una debería ser Primary.",
+              "size": 12,
+              "style": "body/md"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "name": "Resumen",
+          "direction": "row",
+          "items": [
+            {
+              "type": "text",
+              "text": "4 variantes",
+              "size": 12,
+              "style": "label/sm"
+            },
+            {
+              "type": "text",
+              "text": "3 tamaños",
+              "size": 12,
+              "style": "label/sm"
+            },
+            {
+              "type": "text",
+              "text": "5 estados",
+              "size": 12,
+              "style": "label/sm"
+            },
+            {
+              "type": "text",
+              "text": "Componente: Button",
+              "size": 12,
+              "style": "label/sm"
+            },
+            {
+              "type": "text",
+              "text": "Sin ícono · sin estado Focus",
+              "size": 12,
+              "style": "label/sm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02-anatomia",
+      "number": "02",
+      "title": "Anatomía",
+      "intro": [
+        "Partes que componen el botón. Los números de la imagen corresponden a la tabla de la derecha."
+      ],
+      "blocks": [
+        {
+          "type": "group",
+          "name": "Anatomía",
+          "direction": "row",
+          "items": [
+            {
+              "type": "group",
+              "name": "Lienzo de anatomía",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "LG",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=LG, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Loading"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Loading",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "1",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "text",
+                  "text": "2",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "text",
+                  "text": "3",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "text",
+                  "text": "Default",
+                  "size": 12,
+                  "style": "caption/md"
+                },
+                {
+                  "type": "text",
+                  "text": "Loading",
+                  "size": 12,
+                  "style": "caption/md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Leyenda",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "group",
+                  "name": "Parte 1",
+                  "direction": "row",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "1",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "group",
+                      "name": "Texto",
+                      "direction": "column",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "Contenedor",
+                          "size": 12,
+                          "style": "label/md"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Superficie del botón. Define el color de fondo o el borde, el radio y el espacio interno.",
+                          "size": 12,
+                          "style": "body/sm"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Parte 2",
+                  "direction": "row",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "2",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "group",
+                      "name": "Texto",
+                      "direction": "column",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "Etiqueta",
+                          "size": 12,
+                          "style": "label/md"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Texto que describe la acción. Se edita con la propiedad Label.",
+                          "size": 12,
+                          "style": "body/sm"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Parte 3",
+                  "direction": "row",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "3",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "group",
+                      "name": "Texto",
+                      "direction": "column",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "Indicador de carga",
+                          "size": 12,
+                          "style": "label/md"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Círculo de 16 px que aparece a la izquierda de la etiqueta solo en el estado Loading.",
+                          "size": 12,
+                          "style": "body/sm"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "Hoy el Button no tiene ícono ni ranura para ícono. Solo existen estas tres partes.",
+                  "size": 12,
+                  "style": "body/sm"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03-variantes",
+      "number": "03",
+      "title": "Variantes",
+      "intro": [
+        "Propiedad Style. Estilo visual según el peso de la acción. Se muestran en tamaño MD, estado Default."
+      ],
+      "blocks": [
+        {
+          "type": "group",
+          "name": "Variantes",
+          "direction": "row",
+          "items": [
+            {
+              "type": "group",
+              "name": "Variante Primary",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "Primary",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "text",
+                  "text": "Acción principal, fondo de color.",
+                  "size": 12,
+                  "style": "body/sm"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Variante Secondary",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "Secondary",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "text",
+                  "text": "Acción secundaria, con borde.",
+                  "size": 12,
+                  "style": "body/sm"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Variante Ghost",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Ghost",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Ghost, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "Ghost",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "text",
+                  "text": "Acción de bajo énfasis, sin fondo.",
+                  "size": 12,
+                  "style": "body/sm"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Variante Destructive",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "Destructive",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "text",
+                  "text": "Acción irreversible o peligrosa, como eliminar, fondo rojo.",
+                  "size": 12,
+                  "style": "body/sm"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04-tamanos",
+      "number": "04",
+      "title": "Tamaños",
+      "intro": [
+        "Propiedad Size. El ancho se ajusta a la etiqueta; el alto es fijo por tamaño. Se muestran en Primary, estado Default."
+      ],
+      "blocks": [
+        {
+          "type": "group",
+          "name": "Tamaños",
+          "direction": "row",
+          "items": [
+            {
+              "type": "group",
+              "name": "Tamaño SM",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "SM",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=SM, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "SM",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "group",
+                  "name": "Especificación",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Alto 32 px",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Padding horizontal: spacing/md",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Estilo de texto: label/sm",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Radio: radius/md · Espacio interno: spacing/sm",
+                      "size": 12,
+                      "style": "body/sm"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Tamaño MD",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "MD",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "group",
+                  "name": "Especificación",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Alto 40 px",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Padding horizontal: spacing/lg",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Estilo de texto: label/md",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Radio: radius/md · Espacio interno: spacing/sm",
+                      "size": 12,
+                      "style": "body/sm"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Tamaño LG",
+              "direction": "column",
+              "items": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "LG",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=LG, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "LG",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "group",
+                  "name": "Especificación",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Alto 48 px",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Padding horizontal: spacing/xl",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Estilo de texto: label/lg",
+                      "size": 12,
+                      "style": "body/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Radio: radius/md · Espacio interno: spacing/sm",
+                      "size": 12,
+                      "style": "body/sm"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05-estados",
+      "number": "05",
+      "title": "Estados",
+      "intro": [
+        "Propiedad State, para cada variante de Style. Se muestran en tamaño MD."
+      ],
+      "blocks": [
+        {
+          "type": "group",
+          "name": "Matriz de estados",
+          "direction": "column",
+          "items": [
+            {
+              "type": "group",
+              "name": "Encabezado",
+              "direction": "row",
+              "items": [
+                {
+                  "type": "group",
+                  "name": "Columna Default",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Default",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Reposo",
+                      "size": 12,
+                      "style": "caption/md"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Columna Hover",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Hover",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Cursor encima",
+                      "size": 12,
+                      "style": "caption/md"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Columna Focus",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Focus",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Foco de teclado",
+                      "size": 12,
+                      "style": "caption/md"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Columna Active",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Active",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Mientras se presiona",
+                      "size": 12,
+                      "style": "caption/md"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Columna Disabled",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Disabled",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "No disponible",
+                      "size": 12,
+                      "style": "caption/md"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "name": "Columna Loading",
+                  "direction": "column",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "Loading",
+                      "size": 12,
+                      "style": "label/sm"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Acción en curso",
+                      "size": 12,
+                      "style": "caption/md"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Fila Primary",
+              "direction": "row",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "Primary",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Hover"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Hover",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "No existe",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Active"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Active",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Disabled"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Disabled",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Loading"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Loading",
+                  "texts": {},
+                  "flags": {}
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Fila Secondary",
+              "direction": "row",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "Secondary",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Hover"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Hover",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "No existe",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Active"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Active",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Disabled"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Disabled",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Loading"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Loading",
+                  "texts": {},
+                  "flags": {}
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Fila Ghost",
+              "direction": "row",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "Ghost",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Ghost",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Ghost, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Ghost",
+                    "Size": "MD",
+                    "State": "Hover"
+                  },
+                  "master": "Style=Ghost, Size=MD, State=Hover",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "No existe",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Ghost",
+                    "Size": "MD",
+                    "State": "Active"
+                  },
+                  "master": "Style=Ghost, Size=MD, State=Active",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Ghost",
+                    "Size": "MD",
+                    "State": "Disabled"
+                  },
+                  "master": "Style=Ghost, Size=MD, State=Disabled",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Ghost",
+                    "Size": "MD",
+                    "State": "Loading"
+                  },
+                  "master": "Style=Ghost, Size=MD, State=Loading",
+                  "texts": {},
+                  "flags": {}
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "name": "Fila Destructive",
+              "direction": "row",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "Destructive",
+                  "size": 12,
+                  "style": "label/md"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Hover"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Hover",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "text",
+                  "text": "No existe",
+                  "size": 12,
+                  "style": "label/sm"
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Active"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Active",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Disabled"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Disabled",
+                  "texts": {},
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Loading"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Loading",
+                  "texts": {},
+                  "flags": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Falta el estado Focus. El componente no tiene una variante Focus, así que no se puede mostrar. Ya existen los tokens para construirlo: el estilo focus/ring y el color color/border/focus. Queda como hallazgo para la fase de mejoras del componente.",
+          "size": 12,
+          "style": "body/sm"
+        }
+      ]
+    },
+    {
+      "id": "06-propiedades",
+      "number": "06",
+      "title": "Propiedades",
+      "intro": [
+        "Propiedades reales del componente Button, leídas del set. En Figma, el valor por defecto de una propiedad de variante es el de la primera variante del set."
+      ],
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "Propiedad",
+            "Tipo de valor",
+            "Opciones",
+            "Valor por defecto"
+          ],
+          "rows": [
+            [
+              "Style",
+              "Variante",
+              "Primary · Secondary · Ghost · Destructive",
+              "Primary"
+            ],
+            [
+              "Size",
+              "Variante",
+              "SM · MD · LG",
+              "SM"
+            ],
+            [
+              "State",
+              "Variante",
+              "Default · Hover · Active · Disabled · Loading",
+              "Default"
+            ],
+            [
+              "Label",
+              "Texto",
+              "Cualquier texto. Verbo corto que describa la acción.",
+              "Button"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07-uso-do-s-y-don-ts",
+      "number": "07",
+      "title": "Uso — Do's y Don'ts",
+      "intro": [
+        "Ejemplos hechos con instancias reales del Button."
+      ],
+      "blocks": [
+        {
+          "type": "pair",
+          "items": [
+            {
+              "type": "usage",
+              "kind": "do",
+              "previews": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {
+                    "Button": "Guardar"
+                  },
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Secondary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Secondary, Size=MD, State=Default",
+                  "texts": {
+                    "Button": "Cancelar"
+                  },
+                  "flags": {}
+                }
+              ],
+              "text": "Un solo botón Primary por pantalla o sección. La otra acción va en Secondary."
+            },
+            {
+              "type": "usage",
+              "kind": "dont",
+              "previews": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {
+                    "Button": "Guardar"
+                  },
+                  "flags": {}
+                },
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {
+                    "Button": "Cancelar"
+                  },
+                  "flags": {}
+                }
+              ],
+              "text": "No uses más de un botón Primary en la misma vista: no se sabe cuál es la acción principal."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "type": "usage",
+              "kind": "do",
+              "previews": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                }
+              ],
+              "text": "Usa Destructive solo para acciones que eliminan o revierten algo de forma permanente, y que la etiqueta lo diga."
+            },
+            {
+              "type": "usage",
+              "kind": "dont",
+              "previews": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Destructive",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Destructive, Size=MD, State=Default",
+                  "texts": {},
+                  "flags": {}
+                }
+              ],
+              "text": "El rojo advierte de un riesgo. Si la acción es segura, usa Primary; de lo contrario el color engaña."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "type": "usage",
+              "kind": "do",
+              "previews": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {
+                    "Button": "Guardar cambios"
+                  },
+                  "flags": {}
+                }
+              ],
+              "text": "La etiqueta dice qué pasa al presionar, en pocas palabras."
+            },
+            {
+              "type": "usage",
+              "kind": "dont",
+              "previews": [
+                {
+                  "type": "preview",
+                  "component": "Button",
+                  "props": {
+                    "Style": "Primary",
+                    "Size": "MD",
+                    "State": "Default"
+                  },
+                  "master": "Style=Primary, Size=MD, State=Default",
+                  "texts": {
+                    "Button": "Haz clic aquí para enviar el formulario ahora"
+                  },
+                  "flags": {}
+                }
+              ],
+              "text": "Una etiqueta larga o genérica ensucia la interfaz y no comunica la acción."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "No cambies el color del botón fuera de las variantes definidas: elige otro valor de la propiedad Style.",
+          "size": 12,
+          "style": "body/sm"
+        }
+      ]
+    },
+    {
+      "id": "08-tokens-utilizados",
+      "number": "08",
+      "title": "Tokens utilizados",
+      "intro": [
+        "Variables de Foundations que consume el Button, generadas leyendo los enlaces reales de las 60 variantes. \"Aplica en\" indica en qué valores de Style, Size y State se usa cada token."
+      ],
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "Token",
+            "Parte",
+            "Propiedad",
+            "Aplica en"
+          ],
+          "rows": [
+            [
+              "color/background/interactive/destructive/active",
+              "Contenedor",
+              "Relleno",
+              "Style: Destructive · State: Active"
+            ],
+            [
+              "color/background/interactive/destructive/default",
+              "Contenedor",
+              "Relleno",
+              "Style: Destructive · State: Default, Loading"
+            ],
+            [
+              "color/background/interactive/destructive/hover",
+              "Contenedor",
+              "Relleno",
+              "Style: Destructive · State: Hover"
+            ],
+            [
+              "color/background/interactive/disabled",
+              "Contenedor",
+              "Relleno",
+              "Style: Primary, Destructive · State: Disabled"
+            ],
+            [
+              "color/background/interactive/ghost/active",
+              "Contenedor",
+              "Relleno",
+              "Style: Ghost · State: Active"
+            ],
+            [
+              "color/background/interactive/ghost/hover",
+              "Contenedor",
+              "Relleno",
+              "Style: Ghost · State: Hover"
+            ],
+            [
+              "color/background/interactive/primary/active",
+              "Contenedor",
+              "Relleno",
+              "Style: Primary · State: Active"
+            ],
+            [
+              "color/background/interactive/primary/default",
+              "Contenedor",
+              "Relleno",
+              "Style: Primary · State: Default, Loading"
+            ],
+            [
+              "color/background/interactive/primary/hover",
+              "Contenedor",
+              "Relleno",
+              "Style: Primary · State: Hover"
+            ],
+            [
+              "color/border/interactive/active",
+              "Contenedor",
+              "Color de borde",
+              "Style: Secondary · State: Active"
+            ],
+            [
+              "color/border/interactive/default",
+              "Contenedor",
+              "Color de borde",
+              "Style: Secondary · State: Default, Loading"
+            ],
+            [
+              "color/border/interactive/hover",
+              "Contenedor",
+              "Color de borde",
+              "Style: Secondary · State: Hover"
+            ],
+            [
+              "color/border/strong",
+              "Contenedor",
+              "Color de borde",
+              "Style: Secondary · State: Disabled"
+            ],
+            [
+              "color/icon/interactive/default",
+              "Indicador de carga",
+              "Color del indicador",
+              "Style: Secondary, Ghost · State: Loading"
+            ],
+            [
+              "color/icon/on-interactive/default",
+              "Indicador de carga",
+              "Color del indicador",
+              "Style: Primary, Destructive · State: Loading"
+            ],
+            [
+              "color/text/disabled",
+              "Etiqueta",
+              "Color de texto",
+              "Style: Secondary, Ghost · State: Disabled"
+            ],
+            [
+              "color/text/interactive/active",
+              "Etiqueta",
+              "Color de texto",
+              "Style: Secondary, Ghost · State: Active"
+            ],
+            [
+              "color/text/interactive/default",
+              "Etiqueta",
+              "Color de texto",
+              "Style: Secondary, Ghost · State: Default, Loading"
+            ],
+            [
+              "color/text/interactive/hover",
+              "Etiqueta",
+              "Color de texto",
+              "Style: Secondary, Ghost · State: Hover"
+            ],
+            [
+              "color/text/on-interactive/default",
+              "Etiqueta",
+              "Color de texto",
+              "Style: Primary, Destructive · State: Default, Hover, Active, Loading"
+            ],
+            [
+              "color/text/on-interactive/disabled",
+              "Etiqueta",
+              "Color de texto",
+              "Style: Primary, Destructive · State: Disabled"
+            ],
+            [
+              "spacing/lg",
+              "Contenedor",
+              "Padding horizontal",
+              "Size: MD"
+            ],
+            [
+              "spacing/md",
+              "Contenedor",
+              "Padding horizontal",
+              "Size: SM"
+            ],
+            [
+              "spacing/sm",
+              "Contenedor",
+              "Espacio entre elementos",
+              "Todas las variantes"
+            ],
+            [
+              "spacing/xl",
+              "Contenedor",
+              "Padding horizontal",
+              "Size: LG"
+            ],
+            [
+              "radius/md",
+              "Contenedor",
+              "Radio de esquina",
+              "Todas las variantes"
+            ],
+            [
+              "border-width/thin",
+              "Contenedor",
+              "Grosor de borde",
+              "Style: Secondary"
+            ],
+            [
+              "label/lg",
+              "Etiqueta",
+              "Estilo de texto",
+              "Size: LG"
+            ],
+            [
+              "label/md",
+              "Etiqueta",
+              "Estilo de texto",
+              "Size: MD"
+            ],
+            [
+              "label/sm",
+              "Etiqueta",
+              "Estilo de texto",
+              "Size: SM"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "text": "30 enlaces distintos, todos a la colección Semantic. Ningún valor está escrito a mano.",
+          "size": 12,
+          "style": "label/md"
+        }
+      ]
+    },
+    {
+      "id": "09-accesibilidad",
+      "number": "09",
+      "title": "Accesibilidad",
+      "intro": [
+        "Contraste calculado con los valores actuales de los tokens (WCAG 2.1 AA: 4.5:1 para texto y 3:1 para bordes de controles)."
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Contraste",
+          "size": 12,
+          "style": "label/lg"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Combinación",
+            "Mínimo",
+            "Light",
+            "Dark"
+          ],
+          "rows": [
+            [
+              "Primary · Default",
+              "4.5:1",
+              "4.62:1  ✓",
+              "4.62:1  ✓"
+            ],
+            [
+              "Primary · Hover",
+              "4.5:1",
+              "6.31:1  ✓",
+              "6.31:1  ✓"
+            ],
+            [
+              "Primary · Active",
+              "4.5:1",
+              "8.25:1  ✓",
+              "8.25:1  ✓"
+            ],
+            [
+              "Destructive · Default",
+              "4.5:1",
+              "5.15:1  ✓",
+              "5.15:1  ✓"
+            ],
+            [
+              "Destructive · Hover",
+              "4.5:1",
+              "6.86:1  ✓",
+              "6.86:1  ✓"
+            ],
+            [
+              "Destructive · Active",
+              "4.5:1",
+              "9.40:1  ✓",
+              "9.40:1  ✓"
+            ],
+            [
+              "Secondary y Ghost · Default (texto)",
+              "4.5:1",
+              "6.31:1  ✓",
+              "8.49:1  ✓"
+            ],
+            [
+              "Secondary · Hover (texto)",
+              "4.5:1",
+              "8.25:1  ✓",
+              "11.10:1  ✓"
+            ],
+            [
+              "Secondary · Active (texto)",
+              "4.5:1",
+              "11.29:1  ✓",
+              "12.92:1  ✓"
+            ],
+            [
+              "Ghost · Hover (texto sobre fondo)",
+              "4.5:1",
+              "7.67:1  ✓",
+              "8.17:1  ✓"
+            ],
+            [
+              "Ghost · Active (texto sobre fondo)",
+              "4.5:1",
+              "9.51:1  ✓",
+              "6.95:1  ✓"
+            ],
+            [
+              "Secondary · borde en reposo",
+              "3:1",
+              "4.62:1  ✓",
+              "6.29:1  ✓"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Los estados Disabled no se evalúan: WCAG exime los controles no disponibles.",
+          "size": 12,
+          "style": "caption/md"
+        },
+        {
+          "type": "text",
+          "text": "Área táctil",
+          "size": 12,
+          "style": "label/lg"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Tamaño",
+            "Alto",
+            "Ancho mínimo",
+            "Evaluación"
+          ],
+          "rows": [
+            [
+              "SM",
+              "32 px",
+              "66 px",
+              "✓ Cumple el mínimo AA de WCAG 2.5.8 (24 × 24 px). ✗ Por debajo de los 44 × 44 px recomendados."
+            ],
+            [
+              "MD",
+              "40 px",
+              "80 px",
+              "✓ Cumple el mínimo AA. ✗ Por debajo de los 44 px recomendados."
+            ],
+            [
+              "LG",
+              "48 px",
+              "108 px",
+              "✓ Cumple el mínimo AA y los 44 px recomendados."
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Foco visible",
+          "size": 12,
+          "style": "label/lg"
+        },
+        {
+          "type": "text",
+          "text": "El componente no tiene estado Focus, así que hoy no hay indicador visible al navegar con teclado (WCAG 2.4.7). Para construirlo ya existen el estilo focus/ring y el color color/border/focus.",
+          "size": 12,
+          "style": "body/sm"
+        },
+        {
+          "type": "text",
+          "text": "Teclado y rol",
+          "size": 12,
+          "style": "label/lg"
+        },
+        {
+          "type": "group",
+          "name": "Teclado y rol",
+          "direction": "column",
+          "items": [
+            {
+              "type": "text",
+              "text": "•  Rol: button.",
+              "size": 12,
+              "style": "body/md"
+            },
+            {
+              "type": "text",
+              "text": "•  Tab mueve el foco hasta el botón; Enter o Espacio lo activan.",
+              "size": 12,
+              "style": "body/md"
+            },
+            {
+              "type": "text",
+              "text": "•  Disabled: no recibe foco ni responde.",
+              "size": 12,
+              "style": "body/md"
+            },
+            {
+              "type": "text",
+              "text": "•  Loading: debe comunicar que la acción está en curso (por ejemplo con aria-busy), no solo con el indicador visual.",
+              "size": 12,
+              "style": "body/md"
+            },
+            {
+              "type": "text",
+              "text": "Fuente: patrón Button de WAI-ARIA. Validar con desarrollo antes de implementar.",
+              "size": 12,
+              "style": "caption/md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

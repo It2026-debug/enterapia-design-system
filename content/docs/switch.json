@@ -1,0 +1,24 @@
+{
+  "source": "Switch — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Interruptor (Switch)",
+  "summary": "Control deslizante que activa o desactiva una opción de inmediato, sin necesidad de un botón de confirmar aparte.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo para ajustes que se aplican al instante, como \"Modo oscuro\" o \"Notificaciones activas\". Si el cambio necesita que la persona confirme con un botón \"Guardar\", usa Checkbox en su lugar."
+    },
+    {
+      "title": "Variantes",
+      "text": "Checked: Off (apagado, pista gris) u On (encendido, pista azul). Estado: Default, Hover, Disabled."
+    }
+  ],
+  "do": [
+    "Aplica el cambio de inmediato al mover el Switch — no lo combines con un botón \"Guardar\" aparte.",
+    "Acompáñalo siempre de una etiqueta que diga claramente qué se está activando."
+  ],
+  "dont": [
+    "No lo uses para elegir entre más de dos opciones — para eso están Radio o Select.",
+    "No lo uses cuando la acción requiera confirmación explícita antes de aplicarse."
+  ]
+}

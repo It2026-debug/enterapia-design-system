@@ -1,0 +1,13 @@
+/* Select Menu: the list of options shown when a select is open. */
+.ds-select-menu {
+  box-sizing: border-box;
+  width: 280px;
+  max-width: 100%;
+  padding: var(--spacing-xs);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-background-default);
+  box-shadow: var(--elevation-raised-hover);
+}
+.ds-select-menu__options { display: flex; flex-direction: column; gap: var(--spacing-2xs); }
+.ds-select-menu .ds-select-option { width: 100%; }

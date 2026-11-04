@@ -1,0 +1,25 @@
+/* Card: a container that groups related content. */
+.ds-card {
+  --_border: var(--color-border-default);
+  --_shadow: 0 0 0 0 transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  box-sizing: border-box;
+  width: 320px;
+  max-width: 100%;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  background: var(--color-background-default);
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--_border), var(--_shadow);
+}
+.ds-card--shadow { --_shadow: var(--elevation-raised); }
+.ds-card:is(:hover, [data-state="hover"]) { --_border: var(--color-border-strong); }
+.ds-card--shadow:is(:hover, [data-state="hover"]) { --_shadow: var(--elevation-raised-hover); }
+.ds-card:is(:focus-visible, [data-state="focus"]) {
+  --_border: var(--color-border-focus);
+  --_shadow: var(--focus-ring);
+  outline: none;
+}
+.ds-card__title { margin: 0; font: var(--text-heading-sm); color: var(--color-text-heading-primary); }
+.ds-card__description { margin: 0; font: var(--text-body-md); color: var(--color-text-body-secondary); }

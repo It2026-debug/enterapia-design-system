@@ -1,0 +1,23 @@
+/* Close Button: a 32 px square icon button for dismissing something. */
+.ds-close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-icon-primary);
+  cursor: pointer;
+}
+.ds-close-button .ds-icon { color: inherit; }
+.ds-close-button:is(:hover, [data-state="hover"]):not(:disabled) { background: var(--color-background-subtle); }
+.ds-close-button:is(:focus-visible, [data-state="focus"]) {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--border-width-medium) var(--color-border-focus), var(--focus-ring);
+}
+.ds-close-button:disabled { color: var(--color-icon-disabled); cursor: not-allowed; }

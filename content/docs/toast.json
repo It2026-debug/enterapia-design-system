@@ -1,0 +1,24 @@
+{
+  "source": "Toast — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Notificación flotante (Toast)",
+  "summary": "Mensaje breve que aparece flotando sobre la pantalla (generalmente en una esquina) y desaparece solo después de unos segundos, sin que la persona tenga que hacer nada.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo para confirmar acciones rápidas que no necesitan que la persona se quede leyendo (por ejemplo, \"Enlace copiado\"). Si el mensaje es importante y debe permanecer visible hasta que se atienda, usa Alert en su lugar."
+    },
+    {
+      "title": "Variantes",
+      "text": "Type: Success, Error, Warning, Info — mismo significado de color que Alert y Badge, pero en formato de tarjeta flotante compacta con sombra."
+    }
+  ],
+  "do": [
+    "Mantenlo en pantalla el tiempo suficiente para leerlo (generalmente 3-5 segundos).",
+    "Usa un mensaje de una sola línea, corto y directo."
+  ],
+  "dont": [
+    "No pongas ahí información crítica que la persona deba conservar o releer.",
+    "No muestres varios Toast a la vez — apílalos o reemplaza el anterior."
+  ]
+}

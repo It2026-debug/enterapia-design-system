@@ -1,0 +1,22 @@
+/* Chart: a card with a title, a plot area and a legend. Series colors are the chart tokens. */
+.ds-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  box-sizing: border-box;
+  width: 320px;
+  max-width: 100%;
+  height: 230px;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  background: var(--color-background-default);
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--color-border-default);
+}
+.ds-chart__title { margin: 0; font: var(--text-label-sm); color: var(--color-text-heading-primary); }
+.ds-chart__area { flex: none; width: 288px; max-width: 100%; height: 140px; }
+.ds-chart__area--bars { display: flex; align-items: flex-end; gap: var(--spacing-lg); }
+.ds-chart__bar { flex: none; border-radius: var(--radius-sm); }
+.ds-chart__area svg { display: block; width: 100%; height: 100%; }
+.ds-chart__legend { display: flex; flex-wrap: wrap; gap: var(--spacing-lg); margin: 0; padding: 0; list-style: none; font: var(--text-caption-md); color: var(--color-text-body-secondary); }
+.ds-chart__legend li { display: flex; align-items: center; gap: 6px; }
+.ds-chart__dot { flex: none; width: 8px; height: 8px; border-radius: 50%; }

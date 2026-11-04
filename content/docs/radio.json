@@ -1,0 +1,24 @@
+{
+  "source": "Radio — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Radio (Radio button)",
+  "summary": "Botón circular que permite elegir una sola opción dentro de un grupo de opciones mutuamente excluyentes.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo cuando la persona debe elegir exactamente una opción entre varias visibles (por ejemplo, un método de envío). Si puede elegir varias, usa Checkbox en su lugar."
+    },
+    {
+      "title": "Variantes",
+      "text": "Checked: Unchecked (sin seleccionar), Checked (seleccionado, punto azul en el centro). Estado: Default, Hover, Disabled."
+    }
+  ],
+  "do": [
+    "Agrupa siempre los Radio de una misma pregunta, con un título que describa la pregunta.",
+    "Deja una opción seleccionada por defecto cuando tenga sentido (evita dejar el grupo vacío si se requiere una respuesta)."
+  ],
+  "dont": [
+    "No uses un solo Radio aislado — siempre debe haber al menos dos opciones.",
+    "No mezcles Radio y Checkbox dentro del mismo grupo de opciones."
+  ]
+}

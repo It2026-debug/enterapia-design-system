@@ -1,0 +1,26 @@
+{
+  "source": "Modal — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Ventana modal (Modal)",
+  "summary": "Ventana que aparece encima de todo lo demás y oscurece el fondo, obligando a la persona a resolver algo (confirmar, cancelar, completar un dato) antes de seguir usando el resto de la pantalla.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo para decisiones importantes que interrumpen el flujo a propósito: confirmar una eliminación, completar un paso obligatorio. Como el fondo se bloquea, úsalo con moderación — interrumpe a la persona."
+    },
+    {
+      "title": "Anatomía",
+      "text": "Fondo oscuro semitransparente (bloquea el resto de la pantalla) + tarjeta central con título, texto de apoyo y dos acciones: un botón Secondary para cancelar y un botón de confirmación. Variant Type: Default (confirmación segura o reversible, botón Primary) y Destructive (acción permanente o peligrosa como eliminar, botón Destructive rojo) — el texto del botón debe coincidir (\"Guardar\" vs \"Eliminar\"), nunca un genérico \"Confirmar\"."
+    }
+  ],
+  "do": [
+    "Deja siempre una forma clara de cerrarlo sin confirmar (botón Cancelar, tecla Esc, o clic fuera).",
+    "Usa un título que diga exactamente qué se va a decidir.",
+    "Usa Type=Destructive solo cuando la acción sea irreversible o peligrosa, y que el texto del botón lo diga (\"Eliminar\", no \"Confirmar\")."
+  ],
+  "dont": [
+    "No abuses de los modales para contenido que podría vivir en la propia página.",
+    "No pongas un formulario largo dentro de un modal — considera una pantalla completa en su lugar.",
+    "No uses un botón Primary (azul) para confirmar una acción destructiva — el color debe advertir del riesgo."
+  ]
+}

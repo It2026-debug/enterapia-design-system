@@ -1,12 +1,14 @@
 {
-  "covers": "Design tokens from the Enterapia Figma file: primitive colors and sizes, semantic color (light and dark), spacing, border width, radius, typography (variables and text styles), elevation and focus.",
+  "covers": "Design tokens (primitive and semantic color in light and dark, spacing, border width, radius, typography, elevation and focus) and the 20 UI components of the Enterapia Figma file, implemented in code with every variant.",
   "doesNotCover": [
-    "Component code, variants and usage guidelines (planned for a later release).",
-    "Layout grids, opacity, icon size, breakpoints, motion and z-index (not defined in Figma yet)."
+    "Layout grids, opacity, icon size, breakpoints, motion and z-index (not defined in Figma yet).",
+    "The composed example screens (Desktop / Mobile) of the Figma file."
   ],
   "notes": [
     "Dark theme: set data-theme=\"dark\" on <html>, or leave it unset to follow the system preference. Tokens with a dark variant list both values.",
     "Text styles (text.*) are CSS font shorthands: weight, size/line-height and family. Letter spacing is 0 in every style and is not part of the shorthand.",
-    "Semantic tokens alias primitives, so a change to a primitive reaches every semantic token that uses it."
+    "Semantic tokens alias primitives, so a change to a primitive reaches every semantic token that uses it.",
+    "Component documentation is the text kept in the Figma file. Only Button has the newer documentation format; the other pages are the previous version.",
+    "In Figma, Table and Chart use the Inter font with loose sizes. The code uses the system's text styles (Roboto) instead."
   ]
 }

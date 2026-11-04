@@ -1,0 +1,24 @@
+{
+  "source": "Select — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Selector desplegable (Select / Dropdown)",
+  "summary": "Campo que muestra una lista de opciones al hacer clic, para que la persona elija una sin tener que escribirla.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo cuando hay muchas opciones predefinidas (más de 4-5) y quieres ahorrar espacio en pantalla. Con pocas opciones visibles, considera usar Radio en su lugar."
+    },
+    {
+      "title": "Variantes",
+      "text": "Estado: Default, Focus (al abrir el desplegable), Error (no se seleccionó una opción válida, muestra mensaje en rojo), Disabled (no editable)."
+    }
+  ],
+  "do": [
+    "Ordena las opciones de forma lógica (alfabético, por frecuencia de uso, o el orden natural del dato).",
+    "Incluye un texto de placeholder que indique qué se debe elegir, como \"Selecciona un país\"."
+  ],
+  "dont": [
+    "No lo uses para menos de 4 opciones — un grupo de Radio es más rápido de escanear y usar.",
+    "No escondas la opción ya seleccionada: siempre debe verse el valor actual en el campo."
+  ]
+}

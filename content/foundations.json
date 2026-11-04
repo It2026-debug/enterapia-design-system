@@ -1,0 +1,647 @@
+[
+  {
+    "number": 1,
+    "title": "Primitivas — Color",
+    "slug": "primitivas-color",
+    "figmaName": "1. Primitivas — Color",
+    "heading": "Primitivas — Color",
+    "intro": "Valores crudos de la paleta. Los diseñadores no los usan directamente: solo los tokens semánticos los aliasan. Están ocultos del publicado y de los pickers.",
+    "blocks": []
+  },
+  {
+    "number": 2,
+    "title": "Primitivas — Tamaño",
+    "slug": "primitivas-tamano",
+    "figmaName": "2. Primitivas — Tamaño",
+    "heading": "Primitivas — Tamaño",
+    "intro": "Escala única de valores en px que alimenta espaciado, radio, borde y tipografía. Los pasos 1, 2 y 3 son de borde; 10 a 56 completan la escala tipográfica; 720 es el ancho máximo de lectura.",
+    "blocks": []
+  },
+  {
+    "number": 3,
+    "title": "Semántica — Color",
+    "slug": "semantica-color",
+    "figmaName": "3. Semántica — Color",
+    "heading": "Semántica — Color",
+    "intro": "Único nivel que usan diseñadores y componentes. Se nombran por rol: color / base (background, text, border, icon) / concepto / estado. Cada token resuelve Light y Dark de forma explícita.",
+    "blocks": []
+  },
+  {
+    "number": 4,
+    "title": "Semántica — Espaciado, borde y radio",
+    "slug": "semantica-espaciado-borde-y-radio",
+    "figmaName": "4. Semántica — Espaciado, borde y radio",
+    "heading": "Semántica — Espaciado, borde y radio",
+    "intro": "Escalas t-shirt que aliasan la primitiva Size. Espaciado se aplica a padding y gap; radio a esquinas; grosor a bordes.",
+    "blocks": []
+  },
+  {
+    "number": 5,
+    "title": "Semántica — Tipografía",
+    "slug": "semantica-tipografia",
+    "figmaName": "5. Semántica — Tipografía",
+    "heading": "Semántica — Tipografía",
+    "intro": "Cada text style enlaza tamaño, interlineado, familia, peso e interletraje a tokens font/*. Nombre del estilo = rol / tamaño. Familia Roboto; encabezados en Bold, etiquetas en Medium, cuerpo y leyendas en Regular.",
+    "blocks": []
+  },
+  {
+    "number": 6,
+    "title": "Arquitectura y nomenclatura",
+    "slug": "arquitectura-y-nomenclatura",
+    "figmaName": "6. Arquitectura y nomenclatura",
+    "heading": "Arquitectura y nomenclatura",
+    "intro": "Referencia: Mews Design System. Tres capas de tokens; diseñadores y componentes solo usan la capa semántica.",
+    "blocks": [
+      {
+        "type": "group",
+        "name": "Arquitectura y nomenclatura",
+        "direction": "column",
+        "items": [
+          {
+            "type": "group",
+            "name": "Encabezado",
+            "direction": "column",
+            "items": [
+              {
+                "type": "text",
+                "text": "Arquitectura y nomenclatura",
+                "size": 12,
+                "style": "heading/sm"
+              },
+              {
+                "type": "text",
+                "text": "Referencia: Mews Design System. Tres capas de tokens; diseñadores y componentes solo usan la capa semántica.",
+                "size": 12,
+                "style": "body/md"
+              }
+            ]
+          },
+          {
+            "type": "group",
+            "name": "Capas",
+            "direction": "row",
+            "items": [
+              {
+                "type": "group",
+                "name": "1 · Primitivas",
+                "direction": "column",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "1 · Primitivas",
+                    "size": 12,
+                    "style": "label/lg"
+                  },
+                  {
+                    "type": "text",
+                    "text": "86 variables · colección Primitives",
+                    "size": 12,
+                    "style": "caption/md"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Valores crudos: paleta y escala Size. Ocultas del publicado y de los pickers. Solo las aliasa la capa semántica.",
+                    "size": 12,
+                    "style": "body/sm"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "name": "2 · Semánticas",
+                "direction": "column",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "2 · Semánticas",
+                    "size": 12,
+                    "style": "label/lg"
+                  },
+                  {
+                    "type": "text",
+                    "text": "120 variables · colección Semantic (Light / Dark)",
+                    "size": 12,
+                    "style": "caption/md"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Tokens por rol. Es la única capa que usan diseñadores y componentes. Cada token resuelve Light y Dark de forma explícita.",
+                    "size": 12,
+                    "style": "body/sm"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "name": "3 · Componente",
+                "direction": "column",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "3 · Componente",
+                    "size": 12,
+                    "style": "label/lg"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Aún no se usa",
+                    "size": 12,
+                    "style": "caption/md"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Solo cuando un componente lo justifique (por ejemplo, una altura propia). Hoy los componentes enlazan directamente a la capa semántica.",
+                    "size": 12,
+                    "style": "body/sm"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "group",
+            "name": "Gramática",
+            "direction": "column",
+            "items": [
+              {
+                "type": "text",
+                "text": "Gramática de nombres: namespace / base / modificadores",
+                "size": 12,
+                "style": "label/lg"
+              },
+              {
+                "type": "group",
+                "name": "Ejemplo",
+                "direction": "row",
+                "items": [
+                  {
+                    "type": "group",
+                    "name": "color",
+                    "direction": "column",
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "color",
+                        "size": 12,
+                        "style": "label/md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "Namespace (dominio)",
+                        "size": 12,
+                        "style": "caption/sm"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "/",
+                    "size": 12,
+                    "style": "label/lg"
+                  },
+                  {
+                    "type": "group",
+                    "name": "background",
+                    "direction": "column",
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "background",
+                        "size": 12,
+                        "style": "label/md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "Base (categoría)",
+                        "size": 12,
+                        "style": "caption/sm"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "/",
+                    "size": 12,
+                    "style": "label/lg"
+                  },
+                  {
+                    "type": "group",
+                    "name": "interactive / primary",
+                    "direction": "column",
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "interactive / primary",
+                        "size": 12,
+                        "style": "label/md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "Base (concepto)",
+                        "size": 12,
+                        "style": "caption/sm"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "/",
+                    "size": 12,
+                    "style": "label/lg"
+                  },
+                  {
+                    "type": "group",
+                    "name": "hover",
+                    "direction": "column",
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "hover",
+                        "size": 12,
+                        "style": "label/md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "Modificador (estado)",
+                        "size": 12,
+                        "style": "caption/sm"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "Ejemplo completo: color/background/interactive/primary/hover",
+                "size": 12,
+                "style": "body/sm"
+              }
+            ]
+          },
+          {
+            "type": "group",
+            "name": "Reglas",
+            "direction": "column",
+            "items": [
+              {
+                "type": "text",
+                "text": "Reglas",
+                "size": 12,
+                "style": "label/lg"
+              },
+              {
+                "type": "text",
+                "text": "•  Los tokens semánticos se nombran por rol, nunca por valor (color/text/body/secondary, no gray-500).",
+                "size": 12,
+                "style": "body/sm"
+              },
+              {
+                "type": "text",
+                "text": "•  Los componentes enlazan solo a Semantic: cero enlaces directos a Primitives.",
+                "size": 12,
+                "style": "body/sm"
+              },
+              {
+                "type": "text",
+                "text": "•  Todo texto usa un text style; ningún tamaño ni interlineado suelto.",
+                "size": 12,
+                "style": "body/sm"
+              },
+              {
+                "type": "text",
+                "text": "•  Espaciado, radio y grosor de borde salen de las escalas t-shirt (spacing/*, radius/*, border-width/*).",
+                "size": 12,
+                "style": "body/sm"
+              },
+              {
+                "type": "text",
+                "text": "•  Cada token de color resuelve Light y Dark; se valida contraste WCAG AA (ver Contraste).",
+                "size": 12,
+                "style": "body/sm"
+              },
+              {
+                "type": "text",
+                "text": "•  Estilos de elevación y foco: elevation/*, focus/ring, con color enlazado a token.",
+                "size": 12,
+                "style": "body/sm"
+              }
+            ]
+          },
+          {
+            "type": "group",
+            "name": "Pendiente",
+            "direction": "column",
+            "items": [
+              {
+                "type": "text",
+                "text": "Categorías pendientes de definir",
+                "size": 12,
+                "style": "label/lg"
+              },
+              {
+                "type": "text",
+                "text": "Opacidad · Tamaño de ícono · Breakpoints y grid · Motion (duración y easing) · Z-index. Requieren valores de producto; hoy no existen tokens ni se usan en componentes.",
+                "size": 12,
+                "style": "body/sm"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "title": "Elevación y foco",
+    "slug": "elevacion-y-foco",
+    "figmaName": "7. Elevación y foco",
+    "heading": "Elevación y foco",
+    "intro": "Los tres effect styles enlazan su color a color/shadow/* y color/focus/ring. En Dark la sombra pierde presencia: la jerarquía se apoya en la superficie (color/background/*).",
+    "blocks": []
+  },
+  {
+    "number": 8,
+    "title": "Contraste (WCAG)",
+    "slug": "contraste-wcag",
+    "figmaName": "8. Contraste (WCAG)",
+    "heading": "Contraste (WCAG 2.1 AA)",
+    "intro": "Ratios calculados a partir de los valores actuales de los tokens. Mínimo 4.5:1 para texto y 3:1 para íconos y bordes de controles. Instantánea al momento de construir esta página: si cambian los tokens, se recalcula.",
+    "blocks": [
+      {
+        "type": "group",
+        "name": "Contraste (WCAG)",
+        "direction": "column",
+        "items": [
+          {
+            "type": "group",
+            "name": "Encabezado",
+            "direction": "column",
+            "items": [
+              {
+                "type": "text",
+                "text": "Contraste (WCAG 2.1 AA)",
+                "size": 12,
+                "style": "heading/sm"
+              },
+              {
+                "type": "text",
+                "text": "Ratios calculados a partir de los valores actuales de los tokens. Mínimo 4.5:1 para texto y 3:1 para íconos y bordes de controles. Instantánea al momento de construir esta página: si cambian los tokens, se recalcula.",
+                "size": 12,
+                "style": "body/md"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "header": [
+              "Par (texto / fondo)",
+              "Uso",
+              "Mínimo",
+              "Light",
+              "Dark"
+            ],
+            "rows": [
+              [
+                "text/heading/primary  /  bg:default",
+                "Título sobre fondo",
+                "4.5:1",
+                "19.89:1  ✓",
+                "15.34:1  ✓"
+              ],
+              [
+                "text/body/primary  /  bg:default",
+                "Texto de cuerpo sobre fondo",
+                "4.5:1",
+                "15.34:1  ✓",
+                "13.22:1  ✓"
+              ],
+              [
+                "text/body/secondary  /  bg:default",
+                "Texto secundario sobre fondo",
+                "4.5:1",
+                "6.26:1  ✓",
+                "7.40:1  ✓"
+              ],
+              [
+                "text/body/secondary  /  bg:subtle",
+                "Texto secundario sobre fondo sutil",
+                "4.5:1",
+                "5.40:1  ✓",
+                "5.88:1  ✓"
+              ],
+              [
+                "text/placeholder  /  bg:default",
+                "Placeholder sobre fondo",
+                "4.5:1",
+                "6.26:1  ✓",
+                "7.40:1  ✓"
+              ],
+              [
+                "text/link/default  /  bg:default",
+                "Enlace",
+                "4.5:1",
+                "6.31:1  ✓",
+                "8.49:1  ✓"
+              ],
+              [
+                "text/interactive/default  /  bg:default",
+                "Texto interactivo (Secondary/Ghost)",
+                "4.5:1",
+                "6.31:1  ✓",
+                "8.49:1  ✓"
+              ],
+              [
+                "text/interactive/default  /  bg:interactive/ghost/hover",
+                "Texto interactivo sobre Ghost hover",
+                "4.5:1",
+                "5.87:1  ✓",
+                "6.25:1  ✓"
+              ],
+              [
+                "text/on-interactive/default  /  bg:interactive/primary/default",
+                "Botón Primary · default",
+                "4.5:1",
+                "4.62:1  ✓",
+                "4.62:1  ✓"
+              ],
+              [
+                "text/on-interactive/default  /  bg:interactive/primary/hover",
+                "Botón Primary · hover",
+                "4.5:1",
+                "6.31:1  ✓",
+                "6.31:1  ✓"
+              ],
+              [
+                "text/on-interactive/default  /  bg:interactive/primary/active",
+                "Botón Primary · active",
+                "4.5:1",
+                "8.25:1  ✓",
+                "8.25:1  ✓"
+              ],
+              [
+                "text/on-interactive/default  /  bg:interactive/destructive/default",
+                "Botón Destructive · default",
+                "4.5:1",
+                "5.15:1  ✓",
+                "5.15:1  ✓"
+              ],
+              [
+                "text/on-interactive/default  /  bg:interactive/destructive/hover",
+                "Botón Destructive · hover",
+                "4.5:1",
+                "6.86:1  ✓",
+                "6.86:1  ✓"
+              ],
+              [
+                "text/on-interactive/default  /  bg:interactive/destructive/active",
+                "Botón Destructive · active",
+                "4.5:1",
+                "9.40:1  ✓",
+                "9.40:1  ✓"
+              ],
+              [
+                "text/inverse  /  bg:inverse",
+                "Tooltip",
+                "4.5:1",
+                "19.89:1  ✓",
+                "18.72:1  ✓"
+              ],
+              [
+                "text/feedback/info  /  bg:feedback/info",
+                "Alert / Badge · info",
+                "4.5:1",
+                "5.32:1  ✓",
+                "9.51:1  ✓"
+              ],
+              [
+                "text/feedback/success  /  bg:feedback/success",
+                "Alert / Badge · success",
+                "4.5:1",
+                "5.34:1  ✓",
+                "7.01:1  ✓"
+              ],
+              [
+                "text/feedback/warning  /  bg:feedback/warning",
+                "Alert / Badge · warning",
+                "4.5:1",
+                "6.84:1  ✓",
+                "8.75:1  ✓"
+              ],
+              [
+                "text/feedback/error  /  bg:feedback/error",
+                "Alert / Badge · error",
+                "4.5:1",
+                "4.69:1  ✓",
+                "13.97:1  ✓"
+              ],
+              [
+                "border/input  /  bg:default",
+                "Borde de campos (no texto)",
+                "3:1",
+                "3.65:1  ✓",
+                "4.20:1  ✓"
+              ],
+              [
+                "border/interactive/default  /  bg:default",
+                "Borde interactivo (no texto)",
+                "3:1",
+                "4.62:1  ✓",
+                "6.29:1  ✓"
+              ],
+              [
+                "border/focus  /  bg:default",
+                "Borde de foco (no texto)",
+                "3:1",
+                "4.28:1  ✓",
+                "6.29:1  ✓"
+              ],
+              [
+                "icon/primary  /  bg:default",
+                "Ícono primario",
+                "3:1",
+                "19.89:1  ✓",
+                "15.34:1  ✓"
+              ],
+              [
+                "icon/feedback/info  /  bg:feedback/info",
+                "Ícono feedback · info",
+                "3:1",
+                "5.32:1  ✓",
+                "3.76:1  ✓"
+              ],
+              [
+                "icon/feedback/success  /  bg:feedback/success",
+                "Ícono feedback · success",
+                "3:1",
+                "5.34:1  ✓",
+                "4.17:1  ✓"
+              ],
+              [
+                "icon/feedback/warning  /  bg:feedback/warning",
+                "Ícono feedback · warning",
+                "3:1",
+                "6.84:1  ✓",
+                "4.22:1  ✓"
+              ],
+              [
+                "icon/feedback/error  /  bg:feedback/error",
+                "Ícono feedback · error",
+                "3:1",
+                "4.69:1  ✓",
+                "3.96:1  ✓"
+              ],
+              [
+                "color/chart/1 / bg:default",
+                "Serie 1 (azul) sobre fondo",
+                "3:1",
+                "4.28:1  ✓",
+                "6.29:1  ✓"
+              ],
+              [
+                "color/chart/2 / bg:default",
+                "Serie 2 (verde) sobre fondo",
+                "3:1",
+                "3.98:1  ✓",
+                "9.01:1  ✓"
+              ],
+              [
+                "color/chart/3 / bg:default",
+                "Serie 3 (morado) sobre fondo",
+                "3:1",
+                "5.70:1  ✓",
+                "5.64:1  ✓"
+              ],
+              [
+                "color/chart/4 / bg:default",
+                "Serie 4 (turquesa) sobre fondo",
+                "3:1",
+                "3.74:1  ✓",
+                "8.24:1  ✓"
+              ],
+              [
+                "color/chart/5 / bg:default",
+                "Serie 5 (magenta) sobre fondo",
+                "3:1",
+                "4.60:1  ✓",
+                "5.79:1  ✓"
+              ],
+              [
+                "color/chart/6 / bg:default",
+                "Serie 6 (naranja) sobre fondo",
+                "3:1",
+                "3.56:1  ✓",
+                "6.78:1  ✓"
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "text": "60 de 60 combinaciones cumplen.",
+            "size": 12,
+            "style": "label/md"
+          }
+        ]
+      }
+    ]
+  }
+]
