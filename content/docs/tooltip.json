@@ -1,0 +1,24 @@
+{
+  "source": "Tooltip — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Texto emergente (Tooltip)",
+  "summary": "Burbuja de texto corta que aparece al pasar el cursor (o mantener presionado en móvil) sobre un elemento, explicando qué es o qué hace.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo para aclarar un ícono sin texto, una abreviatura, o un botón cuya función no es obvia a simple vista. No debe contener información imprescindible para completar una tarea."
+    },
+    {
+      "title": "Anatomía",
+      "text": "Burbuja oscura con texto blanco, más una flecha (pointer) que señala hacia el elemento de referencia (Target) que la originó."
+    }
+  ],
+  "do": [
+    "Manténlo en una sola línea corta, idealmente menos de 8-10 palabras.",
+    "Muéstralo solo mientras dure el hover o el foco sobre el elemento."
+  ],
+  "dont": [
+    "No pongas información crítica solo en un Tooltip — en móvil no hay hover.",
+    "No lo uses sobre elementos que ya tienen texto visible explicando lo mismo."
+  ]
+}

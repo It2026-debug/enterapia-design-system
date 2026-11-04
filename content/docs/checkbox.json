@@ -1,0 +1,24 @@
+{
+  "source": "Checkbox — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Casilla de verificación (Checkbox)",
+  "summary": "Control que la persona usuaria marca o desmarca para activar o desactivar una opción, o para seleccionar varios elementos de una lista.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo cuando la persona puede elegir varias opciones a la vez (a diferencia de Radio, donde solo puede elegir una). El estado Indeterminate se usa cuando un checkbox \"padre\" representa una selección parcial de sus hijos."
+    },
+    {
+      "title": "Variantes",
+      "text": "Checked: Unchecked (sin marcar), Checked (marcado), Indeterminate (selección parcial, muestra un guion). Estado: Default, Hover, Disabled."
+    }
+  ],
+  "do": [
+    "Usa Indeterminate solo para representar selección parcial de un grupo, nunca como estado inicial de un checkbox individual.",
+    "Agrupa checkboxes relacionados visualmente (uno debajo del otro) con espaciado consistente."
+  ],
+  "dont": [
+    "No uses Checkbox cuando solo se puede elegir una opción — para eso está Radio.",
+    "No ocultes la etiqueta (Label): un checkbox sin texto no comunica qué se está activando."
+  ]
+}

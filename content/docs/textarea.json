@@ -1,0 +1,24 @@
+{
+  "source": "Textarea — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Área de texto (Textarea)",
+  "summary": "Campo de varias líneas para que la persona escriba textos más largos: un comentario, una descripción, un mensaje.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo cuando esperas más de una línea de texto (comentarios, notas, mensajes). Para datos cortos de una sola línea, usa Input en su lugar."
+    },
+    {
+      "title": "Variantes",
+      "text": "Estado: Default, Focus (mientras se escribe), Error (contenido inválido, muestra mensaje en rojo), Disabled (no editable)."
+    }
+  ],
+  "do": [
+    "Indica si hay un límite de caracteres cerca del campo.",
+    "Deja suficiente altura visible para 3-4 líneas de texto por defecto."
+  ],
+  "dont": [
+    "No lo uses para un solo dato corto como un nombre o un correo — usa Input.",
+    "No lo dejes sin etiqueta ni placeholder: la persona debe saber qué escribir."
+  ]
+}

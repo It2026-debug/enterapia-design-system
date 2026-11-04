@@ -1,0 +1,24 @@
+{
+  "source": "Input — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Campo de texto (Input)",
+  "summary": "Espacio donde la persona usuaria escribe información: su nombre, correo electrónico o un término de búsqueda.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsalo en formularios y filtros de búsqueda. Cambia al estado Error cuando el dato ingresado no es válido."
+    },
+    {
+      "title": "Variantes",
+      "text": "Estado: Default, Focus (mientras se escribe), Error (dato inválido, muestra mensaje de ayuda en rojo), Disabled (no editable). Con o sin etiqueta (Label) encima del campo."
+    }
+  ],
+  "do": [
+    "Muestra siempre una etiqueta cuando el campo no es obvio por contexto.",
+    "Escribe el mensaje de error de forma clara y accionable."
+  ],
+  "dont": [
+    "No dejes un campo en Error sin explicar por qué.",
+    "No uses el mismo campo para datos muy distintos entre sí."
+  ]
+}

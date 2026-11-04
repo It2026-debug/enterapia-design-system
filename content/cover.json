@@ -1,0 +1,20 @@
+{
+  "title": "Enterapia — Sistema de Diseño",
+  "description": "Este archivo reúne las piezas visuales (colores, tipografía, espaciados) y los componentes reutilizables (botones, campos, tarjetas...) que usamos para construir producto de forma consistente. Está pensado para que cualquier persona del equipo —diseñe o no— entienda qué existe, cómo se usa y por qué se ve así.",
+  "question": "¿Qué vas a encontrar aquí?",
+  "items": [
+    {
+      "title": "Foundations",
+      "text": "Los bloques base: paleta de colores, escala tipográfica, espaciados y bordes. Todo lo demás se construye a partir de esto."
+    },
+    {
+      "title": "Components",
+      "text": "Piezas de interfaz ya armadas y documentadas, organizadas por grupo: Button y Card, Formularios (Input, Checkbox, Radio, Select, Switch, Textarea) y Feedback (Badge, Alert, Toast, Modal, Tooltip) — cada una con ejemplos de cuándo usarla y qué evitar."
+    },
+    {
+      "title": "Desktop / Mobile",
+      "text": "Pantallas de ejemplo que muestran los componentes funcionando juntos en un producto real."
+    }
+  ],
+  "indexNote": "13 componentes · 1 documentado · 12 pendientes. Cada tarjeta enlaza a la página del componente (Ctrl/Cmd + clic en el enlace). Los pendientes conservan por ahora su documentación original en las secciones de abajo."
+}

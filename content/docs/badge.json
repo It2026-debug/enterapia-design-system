@@ -1,0 +1,24 @@
+{
+  "source": "Badge — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Insignia (Badge)",
+  "summary": "Etiqueta pequeña y de color que comunica el estado o categoría de un elemento: \"Pagado\", \"Pendiente\", \"Nuevo\".",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsala junto a un elemento (fila de tabla, tarjeta, título) para mostrar su estado de un vistazo."
+    },
+    {
+      "title": "Variantes",
+      "text": "Success (verde, algo se completó) · Error (rojo, algo falló) · Warning (naranja, requiere atención) · Info (azul, dato informativo) · Neutral (gris, sin carga de significado)."
+    }
+  ],
+  "do": [
+    "Usa el color según el significado del estado, no por preferencia visual.",
+    "Manténla con texto corto (1-2 palabras)."
+  ],
+  "dont": [
+    "No uses un Badge como si fuera un botón: no es interactivo.",
+    "No combines más de un Badge por elemento salvo que sea necesario."
+  ]
+}

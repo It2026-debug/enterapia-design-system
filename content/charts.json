@@ -1,0 +1,163 @@
+{
+  "Barras": {
+    "size": [
+      320,
+      230
+    ],
+    "title": "Citas agendadas por semana",
+    "area": [
+      288,
+      140
+    ],
+    "areaGap": 16,
+    "legend": [
+      {
+        "label": "Individual",
+        "color": "color.chart.1"
+      },
+      {
+        "label": "Pareja",
+        "color": "color.chart.2"
+      },
+      {
+        "label": "Grupal",
+        "color": "color.chart.3"
+      }
+    ],
+    "bars": [
+      {
+        "width": 32,
+        "height": 60,
+        "radius": 4,
+        "color": "color.chart.1"
+      },
+      {
+        "width": 32,
+        "height": 100,
+        "radius": 4,
+        "color": "color.chart.2"
+      },
+      {
+        "width": 32,
+        "height": 75,
+        "radius": 4,
+        "color": "color.chart.3"
+      },
+      {
+        "width": 32,
+        "height": 130,
+        "radius": 4,
+        "color": "color.chart.4"
+      },
+      {
+        "width": 32,
+        "height": 45,
+        "radius": 4,
+        "color": "color.chart.5"
+      }
+    ]
+  },
+  "Líneas": {
+    "size": [
+      320,
+      230
+    ],
+    "title": "Tendencia del estado de ánimo",
+    "area": [
+      288,
+      140
+    ],
+    "areaGap": 0,
+    "legend": [
+      {
+        "label": "Ansiedad",
+        "color": "color.chart.1"
+      },
+      {
+        "label": "Estado de ánimo",
+        "color": "color.chart.2"
+      }
+    ],
+    "lines": [
+      {
+        "d": "M0 80L60 60L120 70L180 20L240 35L288 0",
+        "offset": [
+          0,
+          0
+        ],
+        "strokeWidth": 2,
+        "color": "color.chart.1"
+      },
+      {
+        "d": "M0 30L60 20L120 10L180 25L240 0L288 5",
+        "offset": [
+          0,
+          0
+        ],
+        "strokeWidth": 2,
+        "color": "color.chart.2"
+      }
+    ]
+  },
+  "Dona": {
+    "size": [
+      320,
+      230
+    ],
+    "title": "Motivos de consulta",
+    "area": [
+      288,
+      140
+    ],
+    "areaGap": 0,
+    "legend": [
+      {
+        "label": "Ansiedad",
+        "color": "color.chart.1"
+      },
+      {
+        "label": "Depresión",
+        "color": "color.chart.2"
+      },
+      {
+        "label": "Estrés",
+        "color": "color.chart.3"
+      }
+    ],
+    "arcs": [
+      {
+        "size": 120,
+        "offset": [
+          84,
+          10
+        ],
+        "start": 0,
+        "end": 3.142,
+        "inner": 0.62,
+        "color": "color.chart.1"
+      },
+      {
+        "size": 120,
+        "offset": [
+          84,
+          10
+        ],
+        "start": 3.142,
+        "end": 5.027,
+        "inner": 0.62,
+        "color": "color.chart.2"
+      },
+      {
+        "size": 120,
+        "offset": [
+          84,
+          10
+        ],
+        "start": 5.027,
+        "end": 6.283,
+        "inner": 0.62,
+        "color": "color.chart.3"
+      }
+    ]
+  }
+}

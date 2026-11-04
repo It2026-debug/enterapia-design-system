@@ -1,0 +1,24 @@
+{
+  "source": "Alert — Documentation (reemplazado)",
+  "format": "simple",
+  "title": "Alerta (Alert / Banner)",
+  "summary": "Mensaje visible dentro de la página (no flotante) que comunica el resultado de una acción o algo que la persona debe saber antes de continuar.",
+  "sections": [
+    {
+      "title": "Cuándo usarlo",
+      "text": "Úsala para confirmar el resultado de una acción (guardado, error al enviar un formulario) o para advertir de algo importante en el contexto actual de la pantalla. Si el mensaje es breve y no bloquea el flujo, considera Toast en su lugar."
+    },
+    {
+      "title": "Variantes",
+      "text": "Type: Success (verde, algo se completó), Error (rojo, algo falló), Warning (naranja, requiere atención), Info (azul, dato informativo). Cada una incluye ícono, título, descripción y botón de cerrar."
+    }
+  ],
+  "do": [
+    "Usa un título corto y directo, y deja los detalles para la descripción.",
+    "Colócala cerca de lo que describe (arriba del formulario o sección afectada)."
+  ],
+  "dont": [
+    "No abuses de Error/Warning para mensajes que no son realmente urgentes.",
+    "No la uses para notificaciones que se auto-descartan solas — para eso está Toast."
+  ]
+}

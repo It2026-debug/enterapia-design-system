@@ -1,0 +1,2726 @@
+[
+  {
+    "number": "1.1",
+    "group": 1,
+    "category": "Acción",
+    "name": "Button",
+    "slug": "button",
+    "figmaSection": "1.1 Acción — Button",
+    "sets": [
+      "Button"
+    ],
+    "parts": [
+      {
+        "name": "Button",
+        "axes": {
+          "Style": [
+            "Primary",
+            "Secondary",
+            "Ghost",
+            "Destructive"
+          ],
+          "Size": [
+            "SM",
+            "MD",
+            "LG"
+          ],
+          "State": [
+            "Default",
+            "Hover",
+            "Active",
+            "Disabled",
+            "Loading"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Style=Primary, Size=SM, State=Default",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "SM",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=SM, State=Hover",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "SM",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=SM, State=Active",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "SM",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=SM, State=Disabled",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "SM",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=SM, State=Loading",
+            "size": [
+              90,
+              32
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "SM",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=MD, State=Default",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "MD",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=MD, State=Hover",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "MD",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=MD, State=Active",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "MD",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=MD, State=Disabled",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "MD",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=MD, State=Loading",
+            "size": [
+              104,
+              40
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "MD",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=LG, State=Default",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "LG",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=LG, State=Hover",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "LG",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=LG, State=Active",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "LG",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=LG, State=Disabled",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "LG",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Primary, Size=LG, State=Loading",
+            "size": [
+              132,
+              48
+            ],
+            "props": {
+              "Style": "Primary",
+              "Size": "LG",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=SM, State=Default",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "SM",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=SM, State=Hover",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "SM",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=SM, State=Active",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "SM",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=SM, State=Disabled",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "SM",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=SM, State=Loading",
+            "size": [
+              90,
+              32
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "SM",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=MD, State=Default",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "MD",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=MD, State=Hover",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "MD",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=MD, State=Active",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "MD",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=MD, State=Disabled",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "MD",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=MD, State=Loading",
+            "size": [
+              104,
+              40
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "MD",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=LG, State=Default",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "LG",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=LG, State=Hover",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "LG",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=LG, State=Active",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "LG",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=LG, State=Disabled",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "LG",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Secondary, Size=LG, State=Loading",
+            "size": [
+              132,
+              48
+            ],
+            "props": {
+              "Style": "Secondary",
+              "Size": "LG",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=SM, State=Default",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "SM",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=SM, State=Hover",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "SM",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=SM, State=Active",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "SM",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=SM, State=Disabled",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "SM",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=SM, State=Loading",
+            "size": [
+              90,
+              32
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "SM",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=MD, State=Default",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "MD",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=MD, State=Hover",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "MD",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=MD, State=Active",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "MD",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=MD, State=Disabled",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "MD",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=MD, State=Loading",
+            "size": [
+              104,
+              40
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "MD",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=LG, State=Default",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "LG",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=LG, State=Hover",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "LG",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=LG, State=Active",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "LG",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=LG, State=Disabled",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "LG",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Ghost, Size=LG, State=Loading",
+            "size": [
+              132,
+              48
+            ],
+            "props": {
+              "Style": "Ghost",
+              "Size": "LG",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=SM, State=Default",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "SM",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=SM, State=Hover",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "SM",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=SM, State=Active",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "SM",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=SM, State=Disabled",
+            "size": [
+              66,
+              32
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "SM",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=SM, State=Loading",
+            "size": [
+              90,
+              32
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "SM",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=MD, State=Default",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "MD",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=MD, State=Hover",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "MD",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=MD, State=Active",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "MD",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=MD, State=Disabled",
+            "size": [
+              80,
+              40
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "MD",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=MD, State=Loading",
+            "size": [
+              104,
+              40
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "MD",
+              "State": "Loading"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=LG, State=Default",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "LG",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=LG, State=Hover",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "LG",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=LG, State=Active",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "LG",
+              "State": "Active"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=LG, State=Disabled",
+            "size": [
+              108,
+              48
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "LG",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Style=Destructive, Size=LG, State=Loading",
+            "size": [
+              132,
+              48
+            ],
+            "props": {
+              "Style": "Destructive",
+              "Size": "LG",
+              "State": "Loading"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Botón (Button)"
+  },
+  {
+    "number": "2.1",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Input",
+    "slug": "input",
+    "figmaSection": "2.1 Formulario — Input",
+    "sets": [
+      "Input"
+    ],
+    "parts": [
+      {
+        "name": "Input",
+        "axes": {
+          "State": [
+            "Default",
+            "Focus",
+            "Error",
+            "Disabled"
+          ],
+          "Label": [
+            "With Label",
+            "Without Label"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default, Label=With Label",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Default",
+              "Label": "With Label"
+            }
+          },
+          {
+            "name": "State=Default, Label=Without Label",
+            "size": [
+              280,
+              40
+            ],
+            "props": {
+              "State": "Default",
+              "Label": "Without Label"
+            }
+          },
+          {
+            "name": "State=Focus, Label=With Label",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Focus",
+              "Label": "With Label"
+            }
+          },
+          {
+            "name": "State=Focus, Label=Without Label",
+            "size": [
+              280,
+              40
+            ],
+            "props": {
+              "State": "Focus",
+              "Label": "Without Label"
+            }
+          },
+          {
+            "name": "State=Error, Label=With Label",
+            "size": [
+              280,
+              86
+            ],
+            "props": {
+              "State": "Error",
+              "Label": "With Label"
+            }
+          },
+          {
+            "name": "State=Error, Label=Without Label",
+            "size": [
+              280,
+              62
+            ],
+            "props": {
+              "State": "Error",
+              "Label": "Without Label"
+            }
+          },
+          {
+            "name": "State=Disabled, Label=With Label",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Disabled",
+              "Label": "With Label"
+            }
+          },
+          {
+            "name": "State=Disabled, Label=Without Label",
+            "size": [
+              280,
+              40
+            ],
+            "props": {
+              "State": "Disabled",
+              "Label": "Without Label"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Campo de texto (Input)"
+  },
+  {
+    "number": "2.2",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Textarea",
+    "slug": "textarea",
+    "figmaSection": "2.2 Formulario — Textarea",
+    "sets": [
+      "Textarea"
+    ],
+    "parts": [
+      {
+        "name": "Textarea",
+        "axes": {
+          "State": [
+            "Default",
+            "Focus",
+            "Error",
+            "Disabled"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default",
+            "size": [
+              280,
+              120
+            ],
+            "props": {
+              "State": "Default"
+            }
+          },
+          {
+            "name": "State=Focus",
+            "size": [
+              280,
+              120
+            ],
+            "props": {
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "State=Error",
+            "size": [
+              280,
+              142
+            ],
+            "props": {
+              "State": "Error"
+            }
+          },
+          {
+            "name": "State=Disabled",
+            "size": [
+              280,
+              120
+            ],
+            "props": {
+              "State": "Disabled"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Área de texto (Textarea)"
+  },
+  {
+    "number": "2.3",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Select",
+    "slug": "select",
+    "figmaSection": "2.3 Formulario — Select",
+    "sets": [
+      "Select"
+    ],
+    "parts": [
+      {
+        "name": "Select",
+        "axes": {
+          "State": [
+            "Default",
+            "Focus",
+            "Error",
+            "Disabled",
+            "Open"
+          ],
+          "Value": [
+            "Placeholder",
+            "Selected"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default, Value=Placeholder",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Default",
+              "Value": "Placeholder"
+            }
+          },
+          {
+            "name": "State=Focus, Value=Placeholder",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Focus",
+              "Value": "Placeholder"
+            }
+          },
+          {
+            "name": "State=Error, Value=Placeholder",
+            "size": [
+              280,
+              86
+            ],
+            "props": {
+              "State": "Error",
+              "Value": "Placeholder"
+            }
+          },
+          {
+            "name": "State=Disabled, Value=Placeholder",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Disabled",
+              "Value": "Placeholder"
+            }
+          },
+          {
+            "name": "State=Default, Value=Selected",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Default",
+              "Value": "Selected"
+            }
+          },
+          {
+            "name": "State=Focus, Value=Selected",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Focus",
+              "Value": "Selected"
+            }
+          },
+          {
+            "name": "State=Error, Value=Selected",
+            "size": [
+              280,
+              86
+            ],
+            "props": {
+              "State": "Error",
+              "Value": "Selected"
+            }
+          },
+          {
+            "name": "State=Disabled, Value=Selected",
+            "size": [
+              280,
+              64
+            ],
+            "props": {
+              "State": "Disabled",
+              "Value": "Selected"
+            }
+          },
+          {
+            "name": "State=Open, Value=Placeholder",
+            "size": [
+              280,
+              244
+            ],
+            "props": {
+              "State": "Open",
+              "Value": "Placeholder"
+            }
+          },
+          {
+            "name": "State=Open, Value=Selected",
+            "size": [
+              280,
+              244
+            ],
+            "props": {
+              "State": "Open",
+              "Value": "Selected"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Selector desplegable (Select)"
+  },
+  {
+    "number": "2.4",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "figmaSection": "2.4 Formulario — Checkbox",
+    "sets": [
+      "Checkbox"
+    ],
+    "parts": [
+      {
+        "name": "Checkbox",
+        "axes": {
+          "Checked": [
+            "Unchecked",
+            "Checked",
+            "Indeterminate"
+          ],
+          "State": [
+            "Default",
+            "Hover",
+            "Disabled",
+            "Focus",
+            "Error"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Checked=Unchecked, State=Default",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Hover",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Disabled",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Default",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Hover",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Disabled",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=Indeterminate, State=Default",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Indeterminate",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=Indeterminate, State=Hover",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Indeterminate",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=Indeterminate, State=Disabled",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Indeterminate",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Focus",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Error",
+            "size": [
+              157,
+              42
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Error"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Focus",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Error",
+            "size": [
+              157,
+              42
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Error"
+            }
+          },
+          {
+            "name": "Checked=Indeterminate, State=Focus",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Indeterminate",
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "Checked=Indeterminate, State=Error",
+            "size": [
+              157,
+              42
+            ],
+            "props": {
+              "Checked": "Indeterminate",
+              "State": "Error"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Casilla de verificación (Checkbox)"
+  },
+  {
+    "number": "2.5",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Radio",
+    "slug": "radio",
+    "figmaSection": "2.5 Formulario — Radio",
+    "sets": [
+      "Radio"
+    ],
+    "parts": [
+      {
+        "name": "Radio",
+        "axes": {
+          "Checked": [
+            "Unchecked",
+            "Checked"
+          ],
+          "State": [
+            "Default",
+            "Hover",
+            "Disabled",
+            "Focus",
+            "Error"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Checked=Unchecked, State=Default",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Hover",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Disabled",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Default",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Hover",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Disabled",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Focus",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "Checked=Unchecked, State=Error",
+            "size": [
+              168,
+              42
+            ],
+            "props": {
+              "Checked": "Unchecked",
+              "State": "Error"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Focus",
+            "size": [
+              80,
+              20
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "Checked=Checked, State=Error",
+            "size": [
+              168,
+              42
+            ],
+            "props": {
+              "Checked": "Checked",
+              "State": "Error"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Botón de opción (Radio)"
+  },
+  {
+    "number": "2.6",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Switch",
+    "slug": "switch",
+    "figmaSection": "2.6 Formulario — Switch",
+    "sets": [
+      "Switch"
+    ],
+    "parts": [
+      {
+        "name": "Switch",
+        "axes": {
+          "Checked": [
+            "Off",
+            "On"
+          ],
+          "State": [
+            "Default",
+            "Hover",
+            "Disabled",
+            "Focus"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Checked=Off, State=Default",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "Off",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=Off, State=Hover",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "Off",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=Off, State=Disabled",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "Off",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=On, State=Default",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "On",
+              "State": "Default"
+            }
+          },
+          {
+            "name": "Checked=On, State=Hover",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "On",
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "Checked=On, State=Disabled",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "On",
+              "State": "Disabled"
+            }
+          },
+          {
+            "name": "Checked=Off, State=Focus",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "Off",
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "Checked=On, State=Focus",
+            "size": [
+              100,
+              22
+            ],
+            "props": {
+              "Checked": "On",
+              "State": "Focus"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Interruptor (Switch)"
+  },
+  {
+    "number": "2.7",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Select Option",
+    "slug": "select-option",
+    "figmaSection": "2.7 Formulario — Select Option",
+    "sets": [
+      "Select Option"
+    ],
+    "parts": [
+      {
+        "name": "Select Option",
+        "axes": {
+          "State": [
+            "Default",
+            "Hover",
+            "Selected",
+            "Disabled"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default",
+            "size": [
+              272,
+              40
+            ],
+            "props": {
+              "State": "Default"
+            }
+          },
+          {
+            "name": "State=Hover",
+            "size": [
+              272,
+              40
+            ],
+            "props": {
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "State=Selected",
+            "size": [
+              272,
+              40
+            ],
+            "props": {
+              "State": "Selected"
+            }
+          },
+          {
+            "name": "State=Disabled",
+            "size": [
+              272,
+              40
+            ],
+            "props": {
+              "State": "Disabled"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": "2.8",
+    "group": 2,
+    "category": "Formulario",
+    "name": "Select Menu",
+    "slug": "select-menu",
+    "figmaSection": "2.8 Formulario — Select Menu",
+    "sets": [],
+    "parts": [
+      {
+        "name": "Select Menu",
+        "axes": {},
+        "variants": [
+          {
+            "name": "Select Menu",
+            "size": [
+              280,
+              176
+            ],
+            "props": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": "3.1",
+    "group": 3,
+    "category": "Contenedor",
+    "name": "Card",
+    "slug": "card",
+    "figmaSection": "3.1 Contenedor — Card",
+    "sets": [
+      "Card"
+    ],
+    "parts": [
+      {
+        "name": "Card",
+        "axes": {
+          "State": [
+            "Default",
+            "Hover",
+            "Focus"
+          ],
+          "Shadow": [
+            "With Shadow",
+            "No Shadow"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default, Shadow=With Shadow",
+            "size": [
+              320,
+              160
+            ],
+            "props": {
+              "State": "Default",
+              "Shadow": "With Shadow"
+            }
+          },
+          {
+            "name": "State=Default, Shadow=No Shadow",
+            "size": [
+              320,
+              160
+            ],
+            "props": {
+              "State": "Default",
+              "Shadow": "No Shadow"
+            }
+          },
+          {
+            "name": "State=Hover, Shadow=With Shadow",
+            "size": [
+              320,
+              160
+            ],
+            "props": {
+              "State": "Hover",
+              "Shadow": "With Shadow"
+            }
+          },
+          {
+            "name": "State=Hover, Shadow=No Shadow",
+            "size": [
+              320,
+              160
+            ],
+            "props": {
+              "State": "Hover",
+              "Shadow": "No Shadow"
+            }
+          },
+          {
+            "name": "State=Focus, Shadow=With Shadow",
+            "size": [
+              320,
+              160
+            ],
+            "props": {
+              "State": "Focus",
+              "Shadow": "With Shadow"
+            }
+          },
+          {
+            "name": "State=Focus, Shadow=No Shadow",
+            "size": [
+              320,
+              160
+            ],
+            "props": {
+              "State": "Focus",
+              "Shadow": "No Shadow"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Tarjeta (Card)"
+  },
+  {
+    "number": "4.1",
+    "group": 4,
+    "category": "Feedback",
+    "name": "Badge",
+    "slug": "badge",
+    "figmaSection": "4.1 Feedback — Badge",
+    "sets": [
+      "Badge"
+    ],
+    "parts": [
+      {
+        "name": "Badge",
+        "axes": {
+          "Variant": [
+            "Success",
+            "Error",
+            "Warning",
+            "Info",
+            "Neutral"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Variant=Success",
+            "size": [
+              78,
+              26
+            ],
+            "props": {
+              "Variant": "Success"
+            }
+          },
+          {
+            "name": "Variant=Error",
+            "size": [
+              78,
+              26
+            ],
+            "props": {
+              "Variant": "Error"
+            }
+          },
+          {
+            "name": "Variant=Warning",
+            "size": [
+              78,
+              26
+            ],
+            "props": {
+              "Variant": "Warning"
+            }
+          },
+          {
+            "name": "Variant=Info",
+            "size": [
+              78,
+              26
+            ],
+            "props": {
+              "Variant": "Info"
+            }
+          },
+          {
+            "name": "Variant=Neutral",
+            "size": [
+              78,
+              26
+            ],
+            "props": {
+              "Variant": "Neutral"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Insignia (Badge)"
+  },
+  {
+    "number": "4.2",
+    "group": 4,
+    "category": "Feedback",
+    "name": "Alert",
+    "slug": "alert",
+    "figmaSection": "4.2 Feedback — Alert",
+    "sets": [
+      "Alert"
+    ],
+    "parts": [
+      {
+        "name": "Alert",
+        "axes": {
+          "Type": [
+            "Success",
+            "Error",
+            "Warning",
+            "Info"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Type=Success",
+            "size": [
+              480,
+              100
+            ],
+            "props": {
+              "Type": "Success"
+            }
+          },
+          {
+            "name": "Type=Error",
+            "size": [
+              480,
+              100
+            ],
+            "props": {
+              "Type": "Error"
+            }
+          },
+          {
+            "name": "Type=Warning",
+            "size": [
+              480,
+              100
+            ],
+            "props": {
+              "Type": "Warning"
+            }
+          },
+          {
+            "name": "Type=Info",
+            "size": [
+              480,
+              100
+            ],
+            "props": {
+              "Type": "Info"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Alerta (Alert)"
+  },
+  {
+    "number": "4.3",
+    "group": 4,
+    "category": "Feedback",
+    "name": "Toast",
+    "slug": "toast",
+    "figmaSection": "4.3 Feedback — Toast",
+    "sets": [
+      "Toast"
+    ],
+    "parts": [
+      {
+        "name": "Toast",
+        "axes": {
+          "Type": [
+            "Success",
+            "Error",
+            "Warning",
+            "Info"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Type=Success",
+            "size": [
+              320,
+              44
+            ],
+            "props": {
+              "Type": "Success"
+            }
+          },
+          {
+            "name": "Type=Error",
+            "size": [
+              320,
+              44
+            ],
+            "props": {
+              "Type": "Error"
+            }
+          },
+          {
+            "name": "Type=Warning",
+            "size": [
+              320,
+              44
+            ],
+            "props": {
+              "Type": "Warning"
+            }
+          },
+          {
+            "name": "Type=Info",
+            "size": [
+              320,
+              44
+            ],
+            "props": {
+              "Type": "Info"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Notificación flotante (Toast)"
+  },
+  {
+    "number": "5.1",
+    "group": 5,
+    "category": "Overlay",
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "figmaSection": "5.1 Overlay — Tooltip",
+    "sets": [],
+    "parts": [
+      {
+        "name": "Tooltip",
+        "axes": {},
+        "variants": [
+          {
+            "name": "Tooltip",
+            "size": [
+              105,
+              39
+            ],
+            "props": {}
+          }
+        ]
+      }
+    ],
+    "title": "Texto emergente (Tooltip)"
+  },
+  {
+    "number": "5.2",
+    "group": 5,
+    "category": "Overlay",
+    "name": "Modal",
+    "slug": "modal",
+    "figmaSection": "5.2 Overlay — Modal",
+    "sets": [
+      "Modal"
+    ],
+    "parts": [
+      {
+        "name": "Modal",
+        "axes": {
+          "Type": [
+            "Default",
+            "Destructive"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Type=Default",
+            "size": [
+              800,
+              500
+            ],
+            "props": {
+              "Type": "Default"
+            }
+          },
+          {
+            "name": "Type=Destructive",
+            "size": [
+              800,
+              500
+            ],
+            "props": {
+              "Type": "Destructive"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Ventana modal (Modal)"
+  },
+  {
+    "number": "6.1",
+    "group": 6,
+    "category": "Base",
+    "name": "Icon",
+    "slug": "icon",
+    "figmaSection": "6.1 Base — Icon",
+    "sets": [
+      "Icon"
+    ],
+    "parts": [
+      {
+        "name": "Icon",
+        "axes": {
+          "Name": [
+            "Check",
+            "Close",
+            "Chevron Down",
+            "Chevron Up",
+            "Minus",
+            "Circle Info",
+            "Circle Alert",
+            "Circle Check",
+            "Circle Close",
+            "More"
+          ],
+          "Size": [
+            "SM",
+            "MD"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Name=Check, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Check",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Check, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Check",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Close, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Close",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Close, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Close",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Chevron Down, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Chevron Down",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Chevron Down, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Chevron Down",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Chevron Up, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Chevron Up",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Chevron Up, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Chevron Up",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Minus, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Minus",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Minus, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Minus",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Circle Info, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Circle Info",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Circle Info, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Circle Info",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Circle Alert, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Circle Alert",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Circle Alert, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Circle Alert",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Circle Check, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Circle Check",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Circle Close, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "Circle Close",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=Circle Check, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Circle Check",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=Circle Close, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "Circle Close",
+              "Size": "MD"
+            }
+          },
+          {
+            "name": "Name=More, Size=SM",
+            "size": [
+              16,
+              16
+            ],
+            "props": {
+              "Name": "More",
+              "Size": "SM"
+            }
+          },
+          {
+            "name": "Name=More, Size=MD",
+            "size": [
+              20,
+              20
+            ],
+            "props": {
+              "Name": "More",
+              "Size": "MD"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Ícono (Icon)"
+  },
+  {
+    "number": "6.2",
+    "group": 6,
+    "category": "Base",
+    "name": "Close Button",
+    "slug": "close-button",
+    "figmaSection": "6.2 Base — Close Button",
+    "sets": [
+      "Close Button"
+    ],
+    "parts": [
+      {
+        "name": "Close Button",
+        "axes": {
+          "State": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Disabled"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Default"
+            }
+          },
+          {
+            "name": "State=Hover",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "State=Focus",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "State=Disabled",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Disabled"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Botón de cierre (CloseButton)"
+  },
+  {
+    "number": "6.3",
+    "group": 6,
+    "category": "Base",
+    "name": "Icon Button",
+    "slug": "icon-button",
+    "figmaSection": "6.3 Base — Icon Button",
+    "sets": [
+      "Icon Button"
+    ],
+    "parts": [
+      {
+        "name": "Icon Button",
+        "axes": {
+          "State": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Disabled"
+          ]
+        },
+        "variants": [
+          {
+            "name": "State=Default",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Default"
+            }
+          },
+          {
+            "name": "State=Hover",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Hover"
+            }
+          },
+          {
+            "name": "State=Focus",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Focus"
+            }
+          },
+          {
+            "name": "State=Disabled",
+            "size": [
+              32,
+              32
+            ],
+            "props": {
+              "State": "Disabled"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Botón de ícono (IconButton)"
+  },
+  {
+    "number": "7.1",
+    "group": 7,
+    "category": "Datos",
+    "name": "Tabla",
+    "slug": "tabla",
+    "figmaSection": "7.1 Datos — Tabla",
+    "sets": [
+      "Table Row",
+      "Table Column Header",
+      "Table Cell"
+    ],
+    "parts": [
+      {
+        "name": "Table Row",
+        "axes": {
+          "Estado": [
+            "Default",
+            "Hover",
+            "Seleccionada"
+          ],
+          "Casilla": [
+            "Sí",
+            "No"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Estado=Default, Casilla=Sí",
+            "size": [
+              812,
+              44
+            ],
+            "props": {
+              "Estado": "Default",
+              "Casilla": "Sí"
+            }
+          },
+          {
+            "name": "Estado=Default, Casilla=No",
+            "size": [
+              812,
+              44
+            ],
+            "props": {
+              "Estado": "Default",
+              "Casilla": "No"
+            }
+          },
+          {
+            "name": "Estado=Hover, Casilla=Sí",
+            "size": [
+              812,
+              44
+            ],
+            "props": {
+              "Estado": "Hover",
+              "Casilla": "Sí"
+            }
+          },
+          {
+            "name": "Estado=Hover, Casilla=No",
+            "size": [
+              812,
+              44
+            ],
+            "props": {
+              "Estado": "Hover",
+              "Casilla": "No"
+            }
+          },
+          {
+            "name": "Estado=Seleccionada, Casilla=Sí",
+            "size": [
+              812,
+              44
+            ],
+            "props": {
+              "Estado": "Seleccionada",
+              "Casilla": "Sí"
+            }
+          },
+          {
+            "name": "Estado=Seleccionada, Casilla=No",
+            "size": [
+              812,
+              44
+            ],
+            "props": {
+              "Estado": "Seleccionada",
+              "Casilla": "No"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Table Column Header",
+        "axes": {
+          "Orden": [
+            "Ninguno",
+            "Ascendente",
+            "Descendente"
+          ],
+          "Alineación": [
+            "Izquierda",
+            "Derecha"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Orden=Ninguno, Alineación=Izquierda",
+            "size": [
+              220,
+              40
+            ],
+            "props": {
+              "Orden": "Ninguno",
+              "Alineación": "Izquierda"
+            }
+          },
+          {
+            "name": "Orden=Ninguno, Alineación=Derecha",
+            "size": [
+              120,
+              40
+            ],
+            "props": {
+              "Orden": "Ninguno",
+              "Alineación": "Derecha"
+            }
+          },
+          {
+            "name": "Orden=Ascendente, Alineación=Izquierda",
+            "size": [
+              220,
+              40
+            ],
+            "props": {
+              "Orden": "Ascendente",
+              "Alineación": "Izquierda"
+            }
+          },
+          {
+            "name": "Orden=Ascendente, Alineación=Derecha",
+            "size": [
+              120,
+              40
+            ],
+            "props": {
+              "Orden": "Ascendente",
+              "Alineación": "Derecha"
+            }
+          },
+          {
+            "name": "Orden=Descendente, Alineación=Izquierda",
+            "size": [
+              220,
+              40
+            ],
+            "props": {
+              "Orden": "Descendente",
+              "Alineación": "Izquierda"
+            }
+          },
+          {
+            "name": "Orden=Descendente, Alineación=Derecha",
+            "size": [
+              120,
+              40
+            ],
+            "props": {
+              "Orden": "Descendente",
+              "Alineación": "Derecha"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Table Cell",
+        "axes": {
+          "Tipo": [
+            "Texto",
+            "Número",
+            "Badge",
+            "Acciones"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Tipo=Texto",
+            "size": [
+              220,
+              44
+            ],
+            "props": {
+              "Tipo": "Texto"
+            }
+          },
+          {
+            "name": "Tipo=Número",
+            "size": [
+              120,
+              44
+            ],
+            "props": {
+              "Tipo": "Número"
+            }
+          },
+          {
+            "name": "Tipo=Badge",
+            "size": [
+              140,
+              44
+            ],
+            "props": {
+              "Tipo": "Badge"
+            }
+          },
+          {
+            "name": "Tipo=Acciones",
+            "size": [
+              140,
+              44
+            ],
+            "props": {
+              "Tipo": "Acciones"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Table Empty State",
+        "axes": {},
+        "variants": [
+          {
+            "name": "Table Empty State",
+            "size": [
+              700,
+              160
+            ],
+            "props": {}
+          }
+        ]
+      },
+      {
+        "name": "Table Pagination",
+        "axes": {},
+        "variants": [
+          {
+            "name": "Table Pagination",
+            "size": [
+              700,
+              56
+            ],
+            "props": {}
+          }
+        ]
+      }
+    ],
+    "title": "Tabla"
+  },
+  {
+    "number": "7.2",
+    "group": 7,
+    "category": "Datos",
+    "name": "Gráfica",
+    "slug": "grafica",
+    "figmaSection": "7.2 Datos — Gráfica",
+    "sets": [
+      "Chart"
+    ],
+    "parts": [
+      {
+        "name": "Chart",
+        "axes": {
+          "Tipo": [
+            "Barras",
+            "Líneas",
+            "Dona"
+          ]
+        },
+        "variants": [
+          {
+            "name": "Tipo=Barras",
+            "size": [
+              320,
+              230
+            ],
+            "props": {
+              "Tipo": "Barras"
+            }
+          },
+          {
+            "name": "Tipo=Líneas",
+            "size": [
+              320,
+              230
+            ],
+            "props": {
+              "Tipo": "Líneas"
+            }
+          },
+          {
+            "name": "Tipo=Dona",
+            "size": [
+              320,
+              230
+            ],
+            "props": {
+              "Tipo": "Dona"
+            }
+          }
+        ]
+      }
+    ],
+    "title": "Gráfica"
+  }
+]
