@@ -1,0 +1,74 @@
+{
+  "color.neutral.white": {
+    "status": "provisional",
+    "note": "Name chosen when promoting a value that only existed as a raw hex in the semantic layer. Confirm against the Figma variable collection."
+  },
+  "color.neutral.gray.50": {
+    "status": "provisional",
+    "note": "Name chosen when promoting a raw hex (#f7f8fa) from the semantic layer. Confirm against Figma."
+  },
+  "color.neutral.gray.100": {
+    "status": "provisional",
+    "note": "Name chosen when promoting a raw hex (#eceef3) from the semantic layer. Confirm against Figma."
+  },
+  "color.neutral.gray.300": {
+    "status": "provisional",
+    "note": "Name chosen when promoting a raw hex (#adb4c7) from the semantic layer. Confirm against Figma."
+  },
+  "color.red.50": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex behind color.semantic.error100. Confirm against Figma."
+  },
+  "color.red.500": {
+    "status": "provisional",
+    "note": "Name chosen when promoting a raw hex used for error icons and borders. Confirm against Figma."
+  },
+  "color.red.700": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex used for error text. Confirm against Figma."
+  },
+  "color.green.50": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex behind color.semantic.success100. Confirm against Figma."
+  },
+  "color.green.400": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex used for success icons. Confirm against Figma."
+  },
+  "color.green.700": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex used for success text. Confirm against Figma."
+  },
+  "color.amber.50": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex behind color.semantic.warning100. Confirm against Figma."
+  },
+  "color.amber.500": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex used for warning icons. Confirm against Figma."
+  },
+  "color.amber.600": {
+    "status": "provisional",
+    "note": "Name chosen when promoting the raw hex used for warning text. Confirm against Figma."
+  },
+  "typography.fontSize.body14": {
+    "status": "stale-name",
+    "note": "The Figma variable is named Body/14 but currently resolves to 16px, the same value as body16. The name is kept for traceability to Figma. Confirm with design whether the duplicate is intentional."
+  },
+  "typography.fontSize.body16": {
+    "status": "review",
+    "note": "Same value (16px) as body14. Confirm with design whether both steps are needed."
+  },
+  "typography.fontSize.body18": {
+    "status": "stale-name",
+    "note": "The Figma variable is named Body/18 but currently resolves to 20px. The name is kept for traceability to Figma."
+  },
+  "typography.lineHeight.body18": {
+    "status": "review",
+    "note": "Same value (20px) as lineHeight.body20. Confirm with design whether both steps are needed."
+  },
+  "typography.lineHeight.body20": {
+    "status": "review",
+    "note": "Same value (20px) as lineHeight.body18. Confirm with design whether both steps are needed."
+  }
+}

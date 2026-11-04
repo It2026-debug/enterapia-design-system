@@ -1,0 +1,53 @@
+{
+  "color": {
+    "text": {
+      "onButton": "#ffffff",
+      "onDisabledButton": "#7a86a1",
+      "disabled": "#adb4c7",
+      "error": "#d42515",
+      "success": "#009260",
+      "warning": "#d97706",
+      "information": "#0b62a8",
+      "headers": {
+        "primary": "#00091c",
+        "secondary": "#3d4a66"
+      }
+    },
+    "icons": {
+      "onButton": "#ffffff",
+      "success": "#04d98b",
+      "error": "#f03d2e",
+      "warning": "#f59e0b",
+      "information": "#1d9bf0"
+    },
+    "borders": {
+      "primary": "#d5d9e4",
+      "secondary": "#adb4c7",
+      "error": "#f03d2e"
+    },
+    "surface": {
+      "primary": "#ffffff",
+      "secondary": "#eceef3",
+      "background": "#f7f8fa"
+    },
+    "semantic": {
+      "success100": "#d9fbf0",
+      "error100": "#fff1f0",
+      "warning100": "#fffbeb",
+      "info100": "#dbeeff"
+    }
+  },
+  "typography": {
+    "heading24": {
+      "fontFamily": "Roboto",
+      "fontWeight": "700",
+      "fontSize": "24px",
+      "lineHeight": "32px"
+    }
+  },
+  "effects": {
+    "inputFocusRing": "0px 0px 0px 4px rgba(29, 155, 240, 0.35)",
+    "cardShadowDefault": "0px 4px 16px rgba(0, 9, 28, 0.08)",
+    "cardShadowHover": "0px 12px 32px rgba(0, 9, 28, 0.12)"
+  }
+}

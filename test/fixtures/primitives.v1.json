@@ -1,0 +1,60 @@
+{
+  "color": {
+    "brand": {
+      "blue": {
+        "50": "#eff8ff",
+        "100": "#dbeeff",
+        "300": "#7cc9fc",
+        "500": "#1d9bf0",
+        "600": "#0e7dd4",
+        "700": "#0b62a8"
+      }
+    },
+    "neutral": {
+      "gray": {
+        "200": "#d5d9e4",
+        "400": "#7a86a1",
+        "600": "#3d4a66",
+        "900": "#00091c"
+      }
+    }
+  },
+  "spacing": {
+    "4": "4px",
+    "8": "8px",
+    "12": "12px",
+    "16": "16px",
+    "24": "24px",
+    "32": "32px"
+  },
+  "radius": {
+    "8": "8px",
+    "200": "200px"
+  },
+  "typography": {
+    "fontFamily": {
+      "body": "Roboto",
+      "heading": "Roboto"
+    },
+    "fontSize": {
+      "caption": "12px",
+      "body14": "16px",
+      "body16": "16px",
+      "body18": "20px",
+      "heading24": "24px"
+    },
+    "lineHeight": {
+      "caption": "18px",
+      "body18": "20px",
+      "body20": "20px",
+      "body22": "24px",
+      "heading24": "32px"
+    },
+    "fontWeight": {
+      "caption": "400",
+      "label": "500",
+      "body": "300",
+      "heading": "700"
+    }
+  }
+}

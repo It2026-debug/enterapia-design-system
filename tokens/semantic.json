@@ -1,48 +1,48 @@
 {
   "color": {
     "text": {
-      "onButton": "#ffffff",
-      "onDisabledButton": "#7a86a1",
-      "disabled": "#adb4c7",
-      "error": "#d42515",
-      "success": "#009260",
-      "warning": "#d97706",
-      "information": "#0b62a8",
+      "onButton": "{color.neutral.white}",
+      "onDisabledButton": "{color.neutral.gray.400}",
+      "disabled": "{color.neutral.gray.300}",
+      "error": "{color.red.700}",
+      "success": "{color.green.700}",
+      "warning": "{color.amber.600}",
+      "information": "{color.brand.blue.700}",
       "headers": {
-        "primary": "#00091c",
-        "secondary": "#3d4a66"
+        "primary": "{color.neutral.gray.900}",
+        "secondary": "{color.neutral.gray.600}"
       }
     },
     "icons": {
-      "onButton": "#ffffff",
-      "success": "#04d98b",
-      "error": "#f03d2e",
-      "warning": "#f59e0b",
-      "information": "#1d9bf0"
+      "onButton": "{color.neutral.white}",
+      "success": "{color.green.400}",
+      "error": "{color.red.500}",
+      "warning": "{color.amber.500}",
+      "information": "{color.brand.blue.500}"
     },
     "borders": {
-      "primary": "#d5d9e4",
-      "secondary": "#adb4c7",
-      "error": "#f03d2e"
+      "primary": "{color.neutral.gray.200}",
+      "secondary": "{color.neutral.gray.300}",
+      "error": "{color.red.500}"
     },
     "surface": {
-      "primary": "#ffffff",
-      "secondary": "#eceef3",
-      "background": "#f7f8fa"
+      "primary": "{color.neutral.white}",
+      "secondary": "{color.neutral.gray.100}",
+      "background": "{color.neutral.gray.50}"
     },
     "semantic": {
-      "success100": "#d9fbf0",
-      "error100": "#fff1f0",
-      "warning100": "#fffbeb",
-      "info100": "#dbeeff"
+      "success100": "{color.green.50}",
+      "error100": "{color.red.50}",
+      "warning100": "{color.amber.50}",
+      "info100": "{color.brand.blue.100}"
     }
   },
   "typography": {
     "heading24": {
-      "fontFamily": "Roboto",
-      "fontWeight": "700",
-      "fontSize": "24px",
-      "lineHeight": "32px"
+      "fontFamily": "{typography.fontFamily.heading}",
+      "fontWeight": "{typography.fontWeight.heading}",
+      "fontSize": "{typography.fontSize.heading24}",
+      "lineHeight": "{typography.lineHeight.heading24}"
     }
   },
   "effects": {
