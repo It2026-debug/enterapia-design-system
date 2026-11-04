@@ -13,9 +13,11 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: 
 
 const RULES = [
   "Use semantic tokens (layer: semantic) in components. Primitive tokens exist only to build the semantic layer.",
-  "Reference tokens through their CSS variables, for example var(--color-text-error). Do not copy hex values.",
+  "Reference tokens through their CSS variables, for example var(--color-text-feedback-error). Do not copy hex values.",
+  "Do not hardcode light or dark colors: semantic color variables switch with the theme (data-theme on <html>, or the system preference).",
+  "Use a text style (text.*) for any text, for example font: var(--text-body-md).",
   "If a needed token does not exist, say so instead of inventing a value.",
-  "Tokens with a status or note have naming or duplication issues awaiting confirmation from design.",
+  "Tokens with a status or note have open questions awaiting confirmation from design.",
 ];
 
 export function loadRegistry(dataDir) {
@@ -25,14 +27,23 @@ export function loadRegistry(dataDir) {
 const asText = (value) => ({ content: [{ type: "text", text: typeof value === "string" ? value : JSON.stringify(value, null, 2) }] });
 const asError = (message) => ({ isError: true, content: [{ type: "text", text: message }] });
 
-const brief = (t) => ({ name: t.name, value: t.value, reference: t.reference, cssVar: t.cssVar, layer: t.layer, category: t.category, status: t.status });
+const brief = (t) => ({
+  name: t.name,
+  value: t.value,
+  ...(t.modes ? { darkValue: t.modes.dark.value } : {}),
+  reference: t.reference,
+  cssVar: t.cssVar,
+  layer: t.layer,
+  category: t.category,
+  status: t.status,
+});
 
 export function searchTokens(registry, query, limit) {
   const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
   return registry.tokens
     .map((t) => {
       const name = t.name.toLowerCase();
-      const rest = [t.value, t.cssVar, t.reference, t.note].filter(Boolean).join(" ").toLowerCase();
+      const rest = [t.value, t.modes?.dark.value, t.cssVar, t.reference, t.note].filter(Boolean).join(" ").toLowerCase();
       if (!terms.every((term) => name.includes(term) || rest.includes(term))) return null;
       return { token: t, score: terms.reduce((sum, term) => sum + (name.includes(term) ? 2 : 1), 0) };
     })
@@ -60,6 +71,7 @@ export function buildMcpServer(registry) {
         description: registry.description,
         scope: registry.scope,
         counts: registry.counts,
+        themes: { modes: registry.modes, default: registry.defaultMode, note: "Tokens with a darkValue (or a modes field) differ in dark; the CSS variable switches automatically." },
         categories: CATEGORIES,
         layers: { primitive: "Raw values with no meaning of their own.", semantic: "Role-based aliases that components should use." },
         rules: RULES,
@@ -70,7 +82,7 @@ export function buildMcpServer(registry) {
     "list_tokens",
     {
       title: "List tokens",
-      description: "Lists tokens, optionally filtered by layer and category. Returns name, resolved value, the token it aliases, and its CSS variable.",
+      description: "Lists tokens, optionally filtered by layer and category. Returns name, resolved value (light), darkValue when it differs, the token it aliases, and its CSS variable.",
       inputSchema: {
         layer: z.enum(["primitive", "semantic"]).optional().describe("Only tokens in this layer."),
         category: z.enum(CATEGORIES).optional().describe("Only tokens in this category."),
@@ -87,8 +99,8 @@ export function buildMcpServer(registry) {
     "get_token",
     {
       title: "Get one token",
-      description: "Returns everything known about one token by its dotted name, for example color.text.error. For a primitive it also lists the tokens that alias it.",
-      inputSchema: { name: z.string().min(1).describe("Dotted token name, for example color.text.error.") },
+      description: "Returns everything known about one token by its dotted name, for example color.text.feedback.error, including its light and dark values. For a primitive it also lists the tokens that alias it.",
+      inputSchema: { name: z.string().min(1).describe("Dotted token name, for example color.text.feedback.error.") },
       annotations: READ_ONLY,
     },
     async ({ name }) => {
@@ -103,7 +115,7 @@ export function buildMcpServer(registry) {
     "search_tokens",
     {
       title: "Search tokens",
-      description: "Finds tokens whose name, value, CSS variable or note contains every word in the query, for example 'error text' or '#d42515'.",
+      description: "Finds tokens whose name, value (light or dark), CSS variable or note contains every word in the query, for example 'error text' or '#d42515'.",
       inputSchema: {
         query: z.string().min(1).describe("One or more words; all must match."),
         limit: z.number().int().min(1).max(100).default(25).describe("Maximum results."),
@@ -120,7 +132,7 @@ export function buildMcpServer(registry) {
     "get_css",
     {
       title: "Get CSS custom properties",
-      description: "Returns the tokens as a CSS :root block. Semantic variables alias primitive ones with var(), so include the primitive layer (omit `layer`) unless the page already loads it.",
+      description: "Returns the tokens as CSS custom properties: a :root block for light plus dark overrides. Semantic variables alias primitive ones with var(), so include the primitive layer (omit `layer`) unless the page already loads it.",
       inputSchema: { layer: z.enum(["primitive", "semantic"]).optional().describe("Only this layer. Omit for everything.") },
       annotations: READ_ONLY,
     },

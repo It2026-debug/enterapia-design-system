@@ -1,0 +1,12 @@
+{
+  "covers": "Design tokens from the Enterapia Figma file: primitive colors and sizes, semantic color (light and dark), spacing, border width, radius, typography (variables and text styles), elevation and focus.",
+  "doesNotCover": [
+    "Component code, variants and usage guidelines (planned for a later release).",
+    "Layout grids, opacity, icon size, breakpoints, motion and z-index (not defined in Figma yet)."
+  ],
+  "notes": [
+    "Dark theme: set data-theme=\"dark\" on <html>, or leave it unset to follow the system preference. Tokens with a dark variant list both values.",
+    "Text styles (text.*) are CSS font shorthands: weight, size/line-height and family. Letter spacing is 0 in every style and is not part of the shorthand.",
+    "Semantic tokens alias primitives, so a change to a primitive reaches every semantic token that uses it."
+  ]
+}

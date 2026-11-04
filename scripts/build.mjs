@@ -12,6 +12,7 @@ export function build({ outDir = join(root, "dist"), siteUrl = "", mcpUrl = "" }
     primitives: readJson("tokens", "primitives.json"),
     semantic: readJson("tokens", "semantic.json"),
     meta: readJson("tokens", "meta.json"),
+    about: readJson("tokens", "about.json"),
     pkg: readJson("package.json"),
   });
 
