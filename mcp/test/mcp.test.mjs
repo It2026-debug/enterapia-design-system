@@ -41,15 +41,16 @@ after(async () => {
   await new Promise((done) => app.close(done));
 });
 
-test("exposes exactly the five read-only tools", async () => {
+test("exposes exactly the seven read-only tools", async () => {
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["get_css", "get_design_system_info", "get_token", "list_tokens", "search_tokens"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["get_component", "get_css", "get_design_system_info", "get_token", "list_components", "list_tokens", "search_tokens"]);
   for (const tool of tools) assert.equal(tool.annotations?.readOnlyHint, true, `${tool.name} must be read-only`);
 });
 
 test("overview states the scope and the usage rules", async () => {
   const { json } = await call("get_design_system_info");
   assert.equal(json.counts.total, registry.counts.total);
+  assert.equal(json.counts.components, registry.components.length);
   assert.deepEqual(json.themes.modes, ["light", "dark"]);
   assert.ok(json.scope.doesNotCover.length > 0);
   assert.ok(json.rules.some((rule) => /semantic tokens/i.test(rule)));
@@ -117,6 +118,61 @@ test("get_css returns light values with dark overrides and can be limited to one
   assert.match(primitives.text, /--color-semantic-error-700: #d42515;/);
   assert.doesNotMatch(primitives.text, /--color-text-feedback-error/);
   assert.doesNotMatch(primitives.text, /data-theme="dark"/);
+});
+
+test("list_components lists every component and filters by category and by word", async () => {
+  const all = await call("list_components");
+  assert.equal(all.json.count, registry.components.length);
+  assert.ok(all.json.components.every((c) => c.implemented));
+  const forms = await call("list_components", { category: "Formulario" });
+  assert.deepEqual(forms.json.components.map((c) => c.slug), ["input", "textarea", "select", "checkbox", "radio", "switch", "select-option", "select-menu"]);
+  const byWord = await call("list_components", { query: "botón" });
+  assert.ok(byWord.json.components.some((c) => c.slug === "button"));
+});
+
+test("get_component returns documentation, the default markup and the CSS", async () => {
+  const { json } = await call("get_component", { name: "Button" });
+  assert.equal(json.slug, "button");
+  assert.match(json.documentation.summary, /acción/i);
+  assert.ok(json.documentation.do.length > 0 && json.documentation.dont.length > 0);
+  assert.match(json.example.html, /class="ds-button ds-button--primary ds-button--sm"/);
+  assert.match(json.css, /\.ds-button\b/);
+  assert.ok(json.accessibility.length > 0);
+  assert.equal(json.variantNames.length, 60);
+  assert.deepEqual(json.properties.Style.values, ["Primary", "Secondary", "Ghost", "Destructive"]);
+});
+
+test("get_component finds a specific variant and accepts names, titles and slugs", async () => {
+  const hover = await call("get_component", { name: "button", properties: { Style: "Destructive", Size: "LG", State: "Hover" } });
+  assert.equal(hover.json.example.name, "Style=Destructive, Size=LG, State=Hover");
+  assert.match(hover.json.example.html, /ds-button--destructive ds-button--lg/);
+  assert.match(hover.json.example.html, /data-state="hover"/);
+  const byTitle = await call("get_component", { name: "Campo de texto" });
+  assert.equal(byTitle.json.slug, "input");
+  const withDefaults = await call("get_component", { name: "alert", properties: { Type: "Error" } });
+  assert.match(withDefaults.json.example.html, /ds-alert--error/);
+});
+
+test("get_component can return every variant and pieces of multi-part components", async () => {
+  const all = await call("get_component", { name: "badge", includeAllExamples: true });
+  assert.equal(all.json.examples.length, 5);
+  assert.ok(all.json.examples.every((e) => e.html.includes("ds-badge")));
+  const row = await call("get_component", { name: "tabla", part: "Table Row" });
+  assert.equal(row.json.selectedPart, "Table Row");
+  assert.match(row.json.example.html, /ds-table-row/);
+  assert.deepEqual(Object.keys(row.json.properties).sort(), ["Casilla", "Estado"]);
+});
+
+test("get_component explains what went wrong for unknown names, variants and parts", async () => {
+  const unknown = await call("get_component", { name: "carousel" });
+  assert.equal(unknown.isError, true);
+  assert.match(unknown.text, /Available: .*button/);
+  const noVariant = await call("get_component", { name: "button", properties: { Style: "Nope" } });
+  assert.equal(noVariant.isError, true);
+  assert.match(noVariant.text, /No variant/);
+  const noPart = await call("get_component", { name: "tabla", part: "Nothing" });
+  assert.equal(noPart.isError, true);
+  assert.match(noPart.text, /Parts:/);
 });
 
 test("health endpoint answers and allows cross-origin reads", async () => {
