@@ -2,7 +2,7 @@
   "name": "enterapia-design-system",
   "version": "1.0.0",
   "private": true,
-  "description": "Design tokens for the Enterapia design system, exported from Figma.",
+  "description": "The Enterapia design system: tokens, components, documentation site and MCP server, built from the Figma file.",
   "files": [
     "tokens"
   ],
@@ -10,13 +10,21 @@
     "build": "node scripts/build.mjs",
     "test": "node --test \"test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\"",
     "start": "node mcp/server.mjs",
-    "import:fig": "node scripts/import-fig.mjs"
+    "import:fig": "node scripts/import-fig.mjs",
+    "lint": "eslint . && stylelint \"components/**/*.css\" \"site/*.css\""
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
     "fflate": "^0.8.3",
-    "kiwi-schema": "^0.5.0"
+    "globals": "^16.5.0",
+    "kiwi-schema": "^0.5.0",
+    "stylelint": "^16.26.1"
+  },
+  "overrides": {
+    "minimatch": "^11.0.4"
   }
 }

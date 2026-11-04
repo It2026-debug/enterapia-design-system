@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "property-no-unknown": true,
+    "declaration-property-value-no-unknown": true,
+    "declaration-block-no-duplicate-properties": [true, { "ignore": ["consecutive-duplicates-with-different-values"] }],
+    "declaration-block-no-shorthand-property-overrides": true,
+    "no-duplicate-selectors": true,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+    "function-no-unknown": true,
+    "unit-no-unknown": true,
+    "color-no-invalid-hex": true,
+    "block-no-empty": true
+  }
+}
