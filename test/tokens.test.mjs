@@ -46,7 +46,7 @@ test("CSS declares light in :root and only the differing tokens under dark", () 
     { color: { page: modes("{color.white}", "{color.black}"), same: "{color.white}" } },
   );
   const css = renderCss(registry);
-  assert.match(css, /:root \{\n  color-scheme: light;[\s\S]*--color-page: var\(--color-white\);/);
+  assert.match(css, /:root \{\n {2}color-scheme: light;[\s\S]*--color-page: var\(--color-white\);/);
   const dark = css.slice(css.indexOf(':root[data-theme="dark"]'));
   assert.match(dark, /--color-page: var\(--color-black\);/);
   assert.doesNotMatch(dark, /--color-same/);
