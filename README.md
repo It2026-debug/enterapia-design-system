@@ -1,48 +1,71 @@
 # Enterapia Design System
 
-Design tokens for Enterapia products, published three ways from a single source:
+The Enterapia design system, published three ways from a single source:
 
-- **Website**: a browsable catalog of every token, with light and dark themes (GitHub Pages).
-- **MCP server**: a read-only remote [Model Context Protocol](https://modelcontextprotocol.io) server so AI tools can look up tokens instead of guessing (Railway).
-- **Files**: `registry.json`, `tokens.css` and `llms.txt`, served next to the website.
+- **Website** (Spanish): organized like the Figma file. A sidebar with the Foundations pages and the components grouped by category, a live preview of every component variant, light and dark themes, and the design team's documentation. (GitHub Pages)
+- **MCP server**: a read-only remote [Model Context Protocol](https://modelcontextprotocol.io) server, so AI tools can look up tokens and components instead of guessing. (Railway)
+- **Files**: `registry.json`, `tokens.css`, `components.css` and `llms.txt`, served next to the website.
 
-Tokens come from the Enterapia Figma file:
+Source: the Enterapia Figma file
 https://www.figma.com/design/cUZysa9bfyJJ5340X23Yf0/Desing-System
 
-## Current scope
+## What is in it
 
-The first release covers **tokens only**: primitive colors and sizes, semantic color (light and dark), spacing, border width, radius, typography (variables and text styles), elevation and focus.
+- **Foundations** (8 pages, as in Figma): primitive color and size, semantic color, spacing/border/radius, typography, architecture and naming, elevation and focus, and WCAG contrast (recomputed from the tokens at build time).
+- **20 components**, every Figma variant implemented in code (191 variants): Button, Input, Textarea, Select, Checkbox, Radio, Switch, Select Option, Select Menu, Card, Badge, Alert, Toast, Tooltip, Modal, Icon, Close Button, Icon Button, Tabla (5 pieces) and Gráfica. Each page has an interactive preview, all variants, the documentation, the properties and the markup.
 
-Not available yet: component code, variants and usage guidelines; layout grids; opacity, icon size, breakpoints, motion and z-index (Figma lists these as pending). The scope text shown on the website and returned by the MCP server lives in `tokens/about.json`.
+Not included: layout grids, opacity, icon size, breakpoints, motion and z-index (Figma lists them as pending) and the composed Desktop / Mobile screens. The scope text shown on the site and returned by the MCP server lives in `tokens/about.json`.
 
 ## How it fits together
 
 ```
-Figma file (.fig) ─► scripts/import-fig.mjs ─► tokens/primitives.json ─┐
-                                               tokens/semantic.json   ─┼─► scripts/build.mjs ─► dist/ ─┬─► website + llms.txt (GitHub Pages)
-                                               tokens/about.json, meta.json ─┘  (validates)             └─► mcp/server.mjs    (Railway)
+Figma file (.fig) ─► scripts/import-fig.mjs ─► tokens/primitives.json, tokens/semantic.json
+                                               content/ (foundations, components, docs, icons, charts)
+
+components/<slug>/<slug>.css + index.mjs   (written in code, tokens only)
+tokens/about.json, tokens/meta.json         (written by hand)
+content/components.local.json               (components that exist only in code)
+                         │
+                         ▼
+              scripts/build.mjs  (validates, resolves aliases, renders every variant)
+                         │
+                         ▼
+        dist/ ─┬─► website + llms.txt (GitHub Pages)
+               └─► mcp/server.mjs     (Railway)
 ```
 
-Three layers, as in Figma:
+**Tokens**, in three layers as in Figma:
 
-- **`tokens/primitives.json`**: raw values (color scales, size scale, font families and weights). A primitive may alias another primitive (`color.semantic.success.500` aliases `color.brand.green.500`).
-- **`tokens/semantic.json`**: role-based tokens (`color.text.feedback.error`). Components use these. They are references to primitives such as `"{color.semantic.error.700}"`. A token that differs in dark mode is written `{ "$modes": { "light": "...", "dark": "..." } }`. Text styles (`text.body.md`) and shadows (`elevation.raised`) are composite values that embed references: `"{font.weight.body} {font.size.body.md}/{font.line-height.body.md} {font.family.body}"`.
-- **Component tokens**: not used yet, as in Figma.
+- `tokens/primitives.json`: raw values. A primitive may alias another primitive.
+- `tokens/semantic.json`: role-based tokens (`color.text.feedback.error`) written as references to primitives, for example `"{color.semantic.error.700}"`. A token that differs in dark mode is `{ "$modes": { "light": "...", "dark": "..." } }`. Text styles (`text.body.md`) and shadows (`elevation.raised`) are composite values that embed references.
+- Component tokens: not used yet, as in Figma.
 
-`tokens/primitives.json` and `tokens/semantic.json` are **generated by the importer**. Edit Figma, not these files. `tokens/about.json` (scope text) and `tokens/meta.json` (notes on individual tokens) are written by hand.
+`tokens/primitives.json`, `tokens/semantic.json` and everything in `content/` except `components.local.json` and hand-written docs are **generated by the importer**. Edit Figma, not those files.
 
-The build fails if a reference points at a token that does not exist, if references form a cycle, if a primitive references a semantic token or defines modes, or if two tokens would produce the same CSS variable.
+**Components** are hand-written, not generated: each one is `components/<slug>/<slug>.css` (only design tokens, no hex colors) and `components/<slug>/index.mjs` (the markup for each variant, plus accessibility notes). Interaction states use real pseudo-classes (`:hover`, `:focus-visible`, `:disabled`) and an equivalent `data-state` attribute so the documentation can show them side by side.
+
+The build fails if a token reference is broken, if references form a cycle, if a primitive references a semantic token or defines modes, or if two tokens would produce the same CSS variable. The tests also fail if a component CSS file uses a hex color or a variable that is not a token, if a Figma variant has no markup, or if a site link is broken.
 
 ## Dark theme
 
 `tokens.css` declares light values in `:root` and overrides only the tokens that differ in dark. Dark applies when `<html data-theme="dark">` is set, or automatically when the system prefers dark and `data-theme="light"` is not set. Do not hardcode colors: semantic variables switch with the theme.
 
+## Using the components
+
+Include the fonts (`fonts.css`, Roboto), `tokens.css` and `components.css`, then use the markup from a component page, for example:
+
+```html
+<button type="button" class="ds-button ds-button--primary ds-button--md">
+  <span class="ds-button__label">Guardar</span>
+</button>
+```
+
 ## Commands
 
 ```bash
 npm --prefix mcp ci   # once, installs the MCP server dependencies
-npm test              # token, importer, site and MCP server tests
-npm run build         # writes dist/: index.html, registry.json, tokens.css, llms.txt
+npm test              # tokens, importer, components, site and MCP server tests
+npm run build         # writes dist/
 npm start             # serves the MCP endpoint at http://localhost:3000/mcp (run build first)
 npm install           # once, only if you will run the importer (dev dependencies)
 npm run import:fig -- "path/to/Desing System.fig"
@@ -54,9 +77,11 @@ Read-only, stateless, Streamable HTTP. Endpoint: `POST /mcp`. Health check: `GET
 
 | Tool | Purpose |
 | --- | --- |
-| `get_design_system_info` | Version, scope, themes, token counts and the rules for generating UI. Start here. |
+| `get_design_system_info` | Version, scope, themes, counts and the rules for generating UI. Start here. |
+| `list_components` | The components with their properties and variant counts. Filter by category or word. |
+| `get_component` | One component: documentation, properties, accessibility notes, the markup of a variant and the CSS. |
 | `list_tokens` | List tokens, filtered by layer and category. Includes the dark value when it differs. |
-| `get_token` | One token by name, with light and dark values, what it aliases and what aliases it. |
+| `get_token` | One token with its light and dark values, what it aliases and what aliases it. |
 | `search_tokens` | Find tokens by words in the name, value, CSS variable or note. |
 | `get_css` | The tokens as CSS custom properties (light plus dark overrides). |
 
@@ -64,16 +89,34 @@ To connect a client, point it at the deployed `/mcp` URL (for example in Claude:
 
 ## Deploying
 
-- **Website**: `.github/workflows/pages.yml` builds and deploys on every merge to `main`. One-time setup in the repository settings: Pages, Source = GitHub Actions. Set the repository variable `MCP_URL` to the public MCP URL so the site links to it.
-- **MCP server**: the root `Dockerfile` builds the registry into the image and starts the server, so a deploy always serves the tokens from the commit it was built from. Create a Railway service from this repository and let it use the Dockerfile. Railway provides `PORT`.
+- **Website**: `.github/workflows/pages.yml` builds and deploys on every merge to `main`. Pages must be enabled once (Settings, Pages, Source = GitHub Actions). Set the repository variable `MCP_URL` to the public MCP URL so the site links to it.
+- **MCP server**: the root `Dockerfile` builds the registry into the image and starts the server, so a deploy always serves the tokens and components of the commit it was built from. Create a Railway service from this repository and let it use the Dockerfile. Railway provides `PORT`.
 
-## Updating tokens from Figma
+## Updating from Figma
 
-Figma is the source for **tokens only**. New components are designed and built outside Figma. This works on a free Figma plan, with no API or MCP access.
+Figma is the source for **tokens, the component list and the documentation text**. This works on a free Figma plan, with no API or MCP access.
 
 1. In Figma, save a copy of the file: File, Save local copy. This produces a `.fig` file.
 2. Put it in the repository folder. `*.fig` is ignored by git: it is the complete design file and this repository is public, so never commit it.
-3. Run `npm run import:fig -- "Desing System.fig"`. It needs Node 22.15 or newer, because Figma compresses the file with zstd. The command rewrites `tokens/primitives.json` and `tokens/semantic.json` and reports anything it skipped.
-4. Run `npm test` and `npm run build`, look at the site, and open a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md).
+3. Run `npm run import:fig -- "Desing System.fig"`. It needs Node 22.15 or newer, because Figma compresses the file with zstd. It rewrites the tokens and `content/` and reports anything it skipped.
+4. Run `npm test` and `npm run build`, look at the site in both themes, and open a pull request.
 
-The importer reads the `Primitives` and `Semantic` variable collections (Semantic must have Light and Dark modes), text styles and effect styles. It ignores collections that were deleted in Figma. Text styles must be bound to `font/*` variables, or the import stops with the style's name. Other collections and style types (such as layout grids) are reported and skipped.
+The importer reads the `Primitives` and `Semantic` variable collections (Semantic needs Light and Dark), text and effect styles, the Foundations page, the Components page (every set and its variants), the Icon vectors, the Chart data and the documentation frames. It ignores collections that were deleted in Figma.
+
+**Documentation:** the newer documentation pages in Figma (one per component) store only their size in a saved copy of the file, not their content. The site therefore uses the documentation frames kept in the `99 Archivo` page: Button has the newer format, the other twelve have the previous one. Icon, Close Button, Icon Button, Tabla, Gráfica, Select Option and Select Menu have no documentation text in the file.
+
+## Adding a component that is not in Figma
+
+New components can be designed outside Figma (for example with Claude Design) and added in code:
+
+1. Add an entry to `content/components.local.json` (`number`, `group`, `category`, `name`, and `parts` with `axes`). The variants are every combination of the axes.
+2. Create `components/<slug>/<slug>.css` and `components/<slug>/index.mjs`, and register it in `components/index.mjs`.
+3. Optionally add `content/docs/<slug>.json` in the simple format (`title`, `summary`, `sections`, `do`, `dont`).
+4. Run `npm test` and `npm run build`. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Known differences from Figma
+
+- Button has no Focus state in Figma; the code adds a `:focus-visible` ring with the `focus/ring` token so keyboard users can see where they are.
+- Table and Chart use the Inter font with loose sizes in Figma; the code uses the system's text styles (Roboto).
+- The Select Open state shows a visual menu. With a native `<select>` the browser draws its own list.
+- The contrast ratios on the site are recomputed from the tokens; three differ from the numbers in Figma by 0.02 (4.60 instead of 4.62), with the same pass result.

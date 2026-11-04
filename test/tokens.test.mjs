@@ -129,22 +129,32 @@ test("CSS variable names are kebab-cased", () => {
   assert.equal(toCssVar("font.line-height.heading.2xs"), "--font-line-height-heading-2xs");
 });
 
-test("the generated site only uses CSS variables that tokens.css defines", () => {
-  const { outDir } = built();
-  const html = readFileSync(join(outDir, "index.html"), "utf8");
+test("every CSS variable the site and components use is defined by the tokens or locally", () => {
+  const { outDir, pages } = built();
   const css = readFileSync(join(outDir, "tokens.css"), "utf8");
   const defined = new Set([...css.matchAll(/^\s+(--[a-z0-9-]+):/gm)].map((m) => m[1]));
+  const sources = [readFileSync(join(outDir, "components.css"), "utf8"), readFileSync(join(outDir, "site.css"), "utf8"), ...pages.map((p) => readFileSync(join(outDir, p), "utf8"))];
+  for (const source of sources) for (const m of source.matchAll(/(--[a-z0-9_-]+)\s*:/gi)) defined.add(m[1]);
   defined.add("--c");
-  const undefinedVars = [...new Set([...html.matchAll(/var\((--[a-z0-9-]+)\)/g)].map((m) => m[1]))].filter((v) => !defined.has(v));
-  assert.deepEqual(undefinedVars, []);
+  const used = new Set(sources.flatMap((source) => [...source.matchAll(/var\((--[a-z0-9_-]+)/gi)].map((m) => m[1])));
+  assert.deepEqual([...used].filter((v) => !defined.has(v)), []);
 });
 
-test("the generated site lists every token and is HTML-escaped", () => {
-  const { registry, outDir } = built({ mcpUrl: "https://example.com/mcp?a=1&b=2" });
+test("the sidebar mirrors Figma: every foundations page and every component is linked from every page", () => {
+  const { registry, outDir, pages } = built();
   const html = readFileSync(join(outDir, "index.html"), "utf8");
-  for (const token of registry.tokens) assert.ok(html.includes(token.cssVar), `${token.name} is not rendered`);
-  assert.ok(html.includes("a=1&amp;b=2"), "MCP URL must be escaped");
-  assert.ok(!html.includes("undefined"), "no undefined leaked into the page");
+  for (const component of registry.components) assert.ok(html.includes(`components/${component.slug}.html`), `${component.slug} is missing from the sidebar`);
+  assert.ok(html.includes("foundations/primitivas-color.html"));
+  assert.ok(pages.length >= 1 + 8 + 1 + 1 + registry.components.length);
+});
+
+test("the token catalog lists every token and is HTML-escaped", () => {
+  const { registry, outDir } = built({ mcpUrl: "https://example.com/mcp?a=1&b=2" });
+  const catalog = readFileSync(join(outDir, "tokens.html"), "utf8");
+  for (const token of registry.tokens) assert.ok(catalog.includes(token.cssVar), `${token.name} is not in the catalog`);
+  const home = readFileSync(join(outDir, "index.html"), "utf8");
+  assert.ok(home.includes("a=1&amp;b=2"), "MCP URL must be escaped");
+  for (const page of ["index.html", "tokens.html"]) assert.ok(!readFileSync(join(outDir, page), "utf8").includes("undefined"), `undefined leaked into ${page}`);
 });
 
 test("llms.txt documents the rules, the dark values and every semantic token", () => {
