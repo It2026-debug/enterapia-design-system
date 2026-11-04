@@ -1,0 +1,6 @@
+/* Icon. The glyph uses currentColor; the default color is a design token. */
+.ds-icon {
+  flex: none;
+  display: inline-block;
+  color: var(--color-icon-primary);
+}

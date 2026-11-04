@@ -1,0 +1,62 @@
+/* Select: a field that lets the person choose one option from a list. */
+.ds-select {
+  --_border: var(--color-border-input);
+  --_bg: var(--color-background-default);
+  --_label: var(--color-text-heading-secondary);
+  --_text: var(--color-text-body-primary);
+  --_chevron: var(--color-icon-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  box-sizing: border-box;
+  width: 280px;
+  max-width: 100%;
+}
+.ds-select__group { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+.ds-select__label { font: var(--text-label-sm); color: var(--_label); }
+.ds-select__control { position: relative; display: block; }
+.ds-select__field {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0 calc(var(--spacing-md) + 16px) 0 var(--spacing-md);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--_bg);
+  color: var(--_text);
+  font: var(--text-body-md);
+  text-overflow: ellipsis;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--_border);
+}
+.ds-select__field--placeholder { --_text: var(--color-text-placeholder); }
+.ds-select__chevron {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-md);
+  display: flex;
+  transform: translateY(-50%);
+  color: var(--_chevron);
+  pointer-events: none;
+}
+.ds-select__chevron .ds-icon { color: inherit; }
+.ds-select__field:focus-visible,
+.ds-select__field[data-state="focus"],
+.ds-select__field[data-state="open"] {
+  --_border: var(--color-border-focus);
+  outline: none;
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--_border), var(--focus-ring);
+}
+.ds-select__message { font: var(--text-caption-md); color: var(--color-text-feedback-error); }
+.ds-select--error { --_border: var(--color-border-feedback-error); }
+.ds-select--disabled {
+  --_bg: var(--color-background-subtle);
+  --_border: var(--color-border-strong);
+  --_label: var(--color-text-disabled);
+  --_text: var(--color-text-disabled);
+  --_chevron: var(--color-icon-disabled);
+}
+.ds-select__field:disabled { cursor: not-allowed; }

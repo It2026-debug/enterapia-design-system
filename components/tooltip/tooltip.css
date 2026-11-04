@@ -1,0 +1,22 @@
+/* Tooltip: a dark text bubble with a pointer that aims at its target. */
+.ds-tooltip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ds-tooltip__bubble {
+  box-sizing: border-box;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  background: var(--color-background-inverse);
+  color: var(--color-text-inverse);
+  font: var(--text-caption-md);
+  white-space: nowrap;
+}
+.ds-tooltip__pointer {
+  width: 12px;
+  height: 7px;
+  margin-top: -2px;
+  background: var(--color-background-inverse);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}

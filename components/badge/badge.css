@@ -1,0 +1,21 @@
+/* Badge: a small status label with a colored dot. */
+.ds-badge {
+  --_bg: var(--color-background-subtle);
+  --_fg: var(--color-text-body-secondary);
+  --_dot: var(--color-icon-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  box-sizing: border-box;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  background: var(--_bg);
+  color: var(--_fg);
+  font: var(--text-caption-md);
+  white-space: nowrap;
+}
+.ds-badge__dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--_dot); }
+.ds-badge--success { --_bg: var(--color-background-feedback-success); --_fg: var(--color-text-feedback-success); --_dot: var(--color-icon-feedback-success); }
+.ds-badge--error { --_bg: var(--color-background-feedback-error); --_fg: var(--color-text-feedback-error); --_dot: var(--color-icon-feedback-error); }
+.ds-badge--warning { --_bg: var(--color-background-feedback-warning); --_fg: var(--color-text-feedback-warning); --_dot: var(--color-icon-feedback-warning); }
+.ds-badge--info { --_bg: var(--color-background-feedback-info); --_fg: var(--color-text-feedback-info); --_dot: var(--color-icon-feedback-info); }

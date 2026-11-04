@@ -1,0 +1,86 @@
+/* Table: header, row, cell, empty state and pagination pieces. Layout uses flex with ARIA roles. */
+.ds-table-header,
+.ds-table-cell,
+.ds-table-row { box-sizing: border-box; }
+
+.ds-table-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: 220px;
+  height: 40px;
+  padding: 0 var(--spacing-lg);
+  background: var(--color-background-subtle);
+  box-shadow: inset 0 calc(var(--border-width-thin) * -1) 0 var(--color-border-default);
+  color: var(--color-text-body-secondary);
+  font: var(--font-weight-label) var(--font-size-caption-md) / var(--font-line-height-caption-md) var(--font-family-body);
+}
+.ds-table-header--right { width: 120px; justify-content: flex-end; }
+.ds-table-header .ds-icon { color: inherit; }
+
+.ds-table-cell {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 44px;
+  padding: 0 var(--spacing-lg);
+  color: var(--color-text-body-primary);
+  font: var(--text-body-sm);
+}
+.ds-table-cell--text { width: 220px; }
+.ds-table-cell--number { width: 120px; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+.ds-table-cell--badge { width: 140px; }
+.ds-table-cell--actions { width: 140px; justify-content: flex-end; }
+
+.ds-table-row {
+  --_bg: var(--color-background-default);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: none;
+  width: 812px;
+  height: 44px;
+  padding-left: var(--spacing-lg);
+  background: var(--_bg);
+  box-shadow: inset 0 calc(var(--border-width-thin) * -1) 0 var(--color-border-default);
+}
+.ds-table-row:is(:hover, [data-state="hover"]) { --_bg: var(--color-background-interactive-ghost-hover); }
+.ds-table-row[aria-selected="true"] { --_bg: var(--color-background-interactive-ghost-active); }
+.ds-table-row__check { flex: none; display: flex; }
+.ds-table-row .ds-table-cell--name { width: 268px; }
+.ds-table-row--no-check .ds-table-cell--name { width: 300px; }
+.ds-table-row .ds-table-cell--price { width: 140px; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+.ds-table-row .ds-table-cell--status { width: 180px; }
+.ds-table-row .ds-table-cell--actions { width: 140px; }
+
+.ds-table-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  box-sizing: border-box;
+  width: 700px;
+  max-width: 100%;
+  height: 160px;
+  background: var(--color-background-default);
+  color: var(--color-text-body-secondary);
+  font: var(--text-body-sm);
+}
+.ds-table-empty p { margin: 0; }
+
+.ds-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 700px;
+  max-width: 100%;
+  height: 56px;
+  padding: 0 var(--spacing-lg);
+  background: var(--color-background-default);
+  color: var(--color-text-body-secondary);
+  font: var(--text-body-sm);
+}
+.ds-table-pagination p { margin: 0; }
+.ds-table-pagination__buttons { display: flex; gap: var(--spacing-sm); }

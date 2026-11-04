@@ -1,0 +1,49 @@
+/* Checkbox: a native checkbox with a tokenized box, label and optional error message. */
+.ds-checkbox {
+  --_bg: var(--color-background-page);
+  --_border: var(--color-border-input);
+  --_mark: var(--color-icon-on-interactive-default);
+  --_label: var(--color-text-body-primary);
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.ds-checkbox__row { position: relative; display: inline-flex; align-items: center; gap: var(--spacing-sm); cursor: pointer; }
+.ds-checkbox__input { position: absolute; left: 0; top: 0; width: 20px; height: 20px; margin: 0; opacity: 0; cursor: inherit; }
+.ds-checkbox__box {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  background: var(--_bg);
+  color: var(--_mark);
+  box-shadow: inset 0 0 0 var(--border-width-medium) var(--_border);
+}
+.ds-checkbox__box .ds-icon { color: inherit; display: none; }
+.ds-checkbox__input:checked + .ds-checkbox__box .ds-icon--check { display: block; }
+.ds-checkbox__input:is(:indeterminate, [data-indeterminate]) + .ds-checkbox__box .ds-icon--minus { display: block; }
+.ds-checkbox__input:is(:indeterminate, [data-indeterminate]) + .ds-checkbox__box .ds-icon--check { display: none; }
+.ds-checkbox__label { font: var(--text-body-sm); color: var(--_label); }
+.ds-checkbox__message { font: var(--text-caption-md); color: var(--color-text-feedback-error); }
+
+.ds-checkbox:is(:hover, [data-state="hover"]) { --_border: var(--color-border-interactive-hover); }
+.ds-checkbox__input:is(:checked, :indeterminate, [data-indeterminate]) + .ds-checkbox__box { --_bg: var(--color-background-interactive-primary-default); --_border: var(--color-border-interactive-default); }
+.ds-checkbox:is(:hover, [data-state="hover"]) .ds-checkbox__input:is(:checked, :indeterminate, [data-indeterminate]) + .ds-checkbox__box { --_bg: var(--color-background-interactive-primary-hover); --_border: var(--color-border-interactive-hover); }
+.ds-checkbox--error { --_border: var(--color-border-feedback-error); }
+.ds-checkbox--error .ds-checkbox__input:is(:checked, :indeterminate, [data-indeterminate]) + .ds-checkbox__box { --_border: var(--color-border-feedback-error); }
+.ds-checkbox__input:focus-visible + .ds-checkbox__box,
+.ds-checkbox[data-state="focus"] .ds-checkbox__box {
+  box-shadow: inset 0 0 0 var(--border-width-medium) var(--color-border-focus), var(--focus-ring);
+}
+.ds-checkbox--disabled { --_label: var(--color-text-disabled); }
+.ds-checkbox--disabled .ds-checkbox__row { cursor: not-allowed; }
+.ds-checkbox--disabled .ds-checkbox__box,
+.ds-checkbox--disabled .ds-checkbox__input:is(:checked, :indeterminate, [data-indeterminate]) + .ds-checkbox__box {
+  --_bg: var(--color-background-subtle);
+  --_border: var(--color-border-strong);
+  --_mark: var(--color-icon-disabled);
+}

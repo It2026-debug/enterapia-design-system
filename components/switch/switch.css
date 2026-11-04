@@ -1,0 +1,41 @@
+/* Switch: a native checkbox presented as an on/off toggle. */
+.ds-switch {
+  --_track: var(--color-background-subtle);
+  --_border: var(--color-border-input);
+  --_label: var(--color-text-body-primary);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+}
+.ds-switch__input { position: absolute; left: 0; top: 0; width: 40px; height: 22px; margin: 0; opacity: 0; cursor: inherit; }
+.ds-switch__track {
+  flex: none;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 22px;
+  padding: var(--spacing-2xs);
+  border-radius: var(--radius-full);
+  background: var(--_track);
+  box-shadow: inset 0 0 0 var(--border-width-medium) var(--_border);
+}
+.ds-switch__thumb { flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--color-background-page); }
+.ds-switch__input:checked + .ds-switch__track { --_track: var(--color-background-interactive-primary-default); justify-content: flex-end; box-shadow: none; }
+.ds-switch__label { font: var(--text-body-sm); color: var(--_label); }
+
+.ds-switch:is(:hover, [data-state="hover"]) { --_border: var(--color-border-interactive-hover); }
+.ds-switch:is(:hover, [data-state="hover"]) .ds-switch__input:checked + .ds-switch__track { --_track: var(--color-background-interactive-primary-hover); }
+.ds-switch__input:focus-visible + .ds-switch__track,
+.ds-switch[data-state="focus"] .ds-switch__track {
+  box-shadow: inset 0 0 0 var(--border-width-medium) var(--color-border-focus), var(--focus-ring);
+}
+.ds-switch--disabled { --_label: var(--color-text-disabled); cursor: not-allowed; }
+.ds-switch--disabled .ds-switch__track,
+.ds-switch--disabled .ds-switch__input:checked + .ds-switch__track {
+  --_track: var(--color-background-subtle);
+  --_border: var(--color-border-strong);
+  box-shadow: inset 0 0 0 var(--border-width-medium) var(--_border);
+}

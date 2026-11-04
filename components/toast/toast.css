@@ -1,0 +1,22 @@
+/* Toast: a short floating notification with an icon, a message and a close button. */
+.ds-toast {
+  --_icon: var(--color-icon-feedback-info);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  box-sizing: border-box;
+  width: 320px;
+  max-width: 100%;
+  padding: var(--spacing-md) var(--spacing-3xl) var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  background: var(--color-background-default);
+  box-shadow: var(--elevation-raised);
+}
+.ds-toast--success { --_icon: var(--color-icon-feedback-success); }
+.ds-toast--error { --_icon: var(--color-icon-feedback-error); }
+.ds-toast--warning { --_icon: var(--color-icon-feedback-warning); }
+.ds-toast__icon { flex: none; display: flex; align-items: center; justify-content: center; width: 16px; height: 20px; color: var(--_icon); }
+.ds-toast__icon .ds-icon { color: inherit; }
+.ds-toast__message { flex: 1; min-width: 0; margin: 0; font: var(--text-body-sm); color: var(--color-text-body-primary); }
+.ds-toast__close { position: absolute; top: 50%; right: var(--spacing-xs); transform: translateY(-50%); }
