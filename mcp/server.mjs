@@ -56,13 +56,18 @@ export function searchTokens(registry, query, limit) {
 
 const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
+const clip = (value, max = 60) => (String(value).length > max ? `${String(value).slice(0, max)}…` : String(value));
+
+/** Returns { component } for a clear match, { ambiguous } when several match, or {} when none do. */
 export function findComponent(registry, name) {
   const wanted = normalize(name);
   const components = registry.components ?? [];
-  return (
-    components.find((c) => normalize(c.slug) === wanted || normalize(c.name) === wanted || normalize(c.title) === wanted) ??
-    components.find((c) => normalize(c.title).includes(wanted) || normalize(c.name).includes(wanted))
-  );
+  const exact = components.find((c) => normalize(c.slug) === wanted || normalize(c.name) === wanted || normalize(c.title) === wanted);
+  if (exact) return { component: exact };
+  if (wanted.length < 3) return {};
+  const partial = components.filter((c) => normalize(c.title).includes(wanted) || normalize(c.name).includes(wanted) || normalize(c.slug).includes(wanted));
+  if (partial.length === 1) return { component: partial[0] };
+  return partial.length > 1 ? { ambiguous: partial } : {};
 }
 
 const componentBrief = (c) => ({
@@ -130,8 +135,8 @@ export function buildMcpServer(registry) {
     async ({ name }) => {
       const token = byName.get(name);
       if (token) return asText(token);
-      const similar = searchTokens(registry, name.replace(/[._-]+/g, " "), 5).map((t) => t.name);
-      return asError(`No token named "${name}".${similar.length ? ` Similar tokens: ${similar.join(", ")}.` : " Use search_tokens or list_tokens to find valid names."}`);
+      const similar = searchTokens(registry, clip(name, 120).replace(/[._-]+/g, " "), 5).map((t) => t.name);
+      return asError(`No token named "${clip(name)}".${similar.length ? ` Similar tokens: ${similar.join(", ")}.` : " Use search_tokens or list_tokens to find valid names."}`);
     },
   );
 
@@ -200,13 +205,14 @@ export function buildMcpServer(registry) {
       annotations: READ_ONLY,
     },
     async ({ name, properties, part: partName, includeAllExamples }) => {
-      const component = findComponent(registry, name);
+      const { component, ambiguous } = findComponent(registry, name);
+      if (ambiguous) return asError(`"${clip(name)}" matches several components: ${ambiguous.map((c) => c.slug).join(", ")}. Use one of those names.`);
       if (!component) {
         const names = (registry.components ?? []).map((c) => c.slug).join(", ");
-        return asError(`No component named "${name}". Available: ${names}.`);
+        return asError(`No component named "${clip(name)}". Available: ${names}.`);
       }
       const part = partName ? component.parts.find((p) => normalize(p.name) === normalize(partName)) : component.parts[0];
-      if (!part) return asError(`"${component.name}" has no part named "${partName}". Parts: ${component.parts.map((p) => p.name).join(", ")}.`);
+      if (!part) return asError(`"${component.name}" has no part named "${clip(partName)}". Parts: ${component.parts.map((p) => p.name).join(", ")}.`);
 
       let example = null;
       if (component.implemented) {
@@ -238,6 +244,8 @@ export function buildMcpServer(registry) {
   return server;
 }
 
+const SECURITY = { "x-content-type-options": "nosniff", "referrer-policy": "no-referrer" };
+
 const CORS = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "POST, OPTIONS",
@@ -246,7 +254,7 @@ const CORS = {
 };
 
 const sendJson = (res, status, body, headers = {}) => {
-  res.writeHead(status, { "content-type": "application/json", ...CORS, ...headers });
+  res.writeHead(status, { "content-type": "application/json", ...CORS, ...SECURITY, ...headers });
   res.end(JSON.stringify(body));
 };
 
@@ -274,14 +282,15 @@ export function createApp({ dataDir }) {
     const path = new URL(req.url ?? "/", "http://localhost").pathname;
     try {
       if (req.method === "OPTIONS") {
-        res.writeHead(204, CORS);
+        res.writeHead(204, { ...CORS, ...SECURITY });
         return res.end();
       }
-      if (path === "/health" && req.method === "GET") {
-        return sendJson(res, 200, { status: "ok", name: registry.name, version: registry.version, tokens: registry.counts.total });
+      const readOnly = req.method === "GET" || req.method === "HEAD";
+      if (path === "/health" && readOnly) {
+        return sendJson(res, 200, { status: "ok", name: registry.name, version: registry.version, tokens: registry.counts.total, components: (registry.components ?? []).length }, { "cache-control": "no-store" });
       }
-      if (path === "/" && req.method === "GET") {
-        res.writeHead(200, { "content-type": "text/plain; charset=utf-8", ...CORS });
+      if (path === "/" && readOnly) {
+        res.writeHead(200, { "content-type": "text/plain; charset=utf-8", ...CORS, ...SECURITY });
         return res.end(`${registry.name} v${registry.version}\nRead-only MCP server (Streamable HTTP). Endpoint: POST /mcp\nHealth: GET /health\n`);
       }
       if (path === "/mcp") {
