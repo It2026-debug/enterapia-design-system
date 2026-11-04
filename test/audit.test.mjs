@@ -244,7 +244,7 @@ test("every workflow job installs the dependencies before it runs npm scripts", 
   for (const file of ["ci.yml", "pages.yml"]) {
     const text = readFileSync(join(root, ".github", "workflows", file), "utf8");
     const jobsBlock = text.slice(text.indexOf("\njobs:"));
-    const jobs = jobsBlock.split(/\n  (?=[a-z][a-z-]*:\n)/).slice(1);
+    const jobs = jobsBlock.split(/\n {2}(?=[a-z][a-z-]*:\n)/).slice(1);
     assert.ok(jobs.length > 0, `${file} has no jobs`);
     for (const job of jobs) {
       const name = job.split(":")[0];
