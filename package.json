@@ -5,5 +5,13 @@
   "description": "Design tokens for the Enterapia design system, exported from Figma.",
   "files": [
     "tokens"
-  ]
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test \"test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\"",
+    "start": "node mcp/server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }
