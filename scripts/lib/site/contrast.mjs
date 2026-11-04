@@ -14,6 +14,14 @@ export function luminance({ r, g, b }) {
   return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
 }
 
+/** Composites a color with transparency over an opaque backdrop. */
+export function over(color, backdrop) {
+  const a = color.a ?? 1;
+  if (a >= 1) return color;
+  const mix = (front, back) => Math.round(front * a + back * (1 - a));
+  return { r: mix(color.r, backdrop.r), g: mix(color.g, backdrop.g), b: mix(color.b, backdrop.b), a: 1 };
+}
+
 export function contrastRatio(foreground, background) {
   const a = luminance(foreground);
   const b = luminance(background);
@@ -62,8 +70,11 @@ export function computeContrast(pairs, tokenByName) {
     const result = { ...pair, missing: !fg || !bg };
     if (result.missing) return result;
     for (const mode of ["light", "dark"]) {
-      const front = parseHex((fg.modes ?? { [mode]: fg })[mode].value);
-      const back = parseHex((bg.modes ?? { [mode]: bg })[mode].value);
+      const frontRaw = parseHex((fg.modes ?? { [mode]: fg })[mode].value);
+      const backRaw = parseHex((bg.modes ?? { [mode]: bg })[mode].value);
+      // A translucent background is measured over white; a translucent foreground over the background.
+      const back = backRaw && over(backRaw, { r: 255, g: 255, b: 255, a: 1 });
+      const front = frontRaw && back && over(frontRaw, back);
       const ratio = front && back ? contrastRatio(front, back) : null;
       result[mode] = { ratio, pass: ratio !== null && ratio >= pair.minimum, fg: (fg.modes ?? { [mode]: fg })[mode].value, bg: (bg.modes ?? { [mode]: bg })[mode].value };
     }

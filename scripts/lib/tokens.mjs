@@ -161,7 +161,13 @@ export function buildRegistry({ primitives, semantic, meta = {}, about, pkg }) {
 
   const list = [...tokens.values()].map((token) => {
     const light = view(token, DEFAULT_MODE);
-    const differs = MODES.some((mode) => token.definitions[mode] !== token.definitions[DEFAULT_MODE]);
+    // A token can read the same in every mode and still resolve differently, for example an alias
+    // of a token that has a dark variant. Compare what each mode resolves to, not only how it is written.
+    const differs = MODES.some(
+      (mode) =>
+        token.definitions[mode] !== token.definitions[DEFAULT_MODE] ||
+        resolved.get(`${mode}:${token.name}`) !== resolved.get(`${DEFAULT_MODE}:${token.name}`),
+    );
     return {
       name: token.name,
       cssVar: toCssVar(token.name),
@@ -169,7 +175,7 @@ export function buildRegistry({ primitives, semantic, meta = {}, about, pkg }) {
       category: token.category,
       type: token.type,
       ...light,
-      modes: token.modal && differs ? Object.fromEntries(MODES.map((mode) => [mode, view(token, mode)])) : null,
+      modes: differs ? Object.fromEntries(MODES.map((mode) => [mode, view(token, mode)])) : null,
       usedBy: usedBy.get(token.name) ?? [],
       status: meta[token.name]?.status ?? null,
       note: meta[token.name]?.note ?? null,
