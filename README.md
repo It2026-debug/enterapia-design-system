@@ -64,10 +64,11 @@ Include the fonts (`fonts.css`, Roboto), `tokens.css` and `components.css`, then
 
 ```bash
 npm --prefix mcp ci   # once, installs the MCP server dependencies
+npm run lint          # ESLint and Stylelint
 npm test              # tokens, importer, components, site and MCP server tests
 npm run build         # writes dist/
 npm start             # serves the MCP endpoint at http://localhost:3000/mcp (run build first)
-npm install           # once, only if you will run the importer (dev dependencies)
+npm install           # once: dev dependencies (importer, lint)
 npm run import:fig -- "path/to/Desing System.fig"
 ```
 
@@ -114,9 +115,14 @@ New components can be designed outside Figma (for example with Claude Design) an
 3. Optionally add `content/docs/<slug>.json` in the simple format (`title`, `summary`, `sections`, `do`, `dont`).
 4. Run `npm test` and `npm run build`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Quality
+
+The last full audit (accessibility with axe-core in light, dark and phone width, HTML validation, security, MCP, CI and Docker) is in [docs/auditoria-2026-11-04.md](docs/auditoria-2026-11-04.md), with every finding, its evidence and its fix.
+
 ## Known differences from Figma
 
 - Button has no Focus state in Figma; the code adds a `:focus-visible` ring with the `focus/ring` token so keyboard users can see where they are.
 - Table and Chart use the Inter font with loose sizes in Figma; the code uses the system's text styles (Roboto).
+- The documentation previews differ from the code shown in three places, on purpose: card and modal titles are not headings, the modal has no `aria-modal`, and radios have no shared `name`. The previews sit on a page with many copies of each component; the code section shows the real markup.
 - The Select Open state shows a visual menu. With a native `<select>` the browser draws its own list.
 - The contrast ratios on the site are recomputed from the tokens; three differ from the numbers in Figma by 0.02 (4.60 instead of 4.62), with the same pass result.

@@ -207,3 +207,46 @@ test("unknown paths return 404", async () => {
   const response = await fetch(`${base}/nope`);
   assert.equal(response.status, 404);
 });
+
+test("a name that is too short or matches several components is reported, never guessed", async () => {
+  const short = await call("get_component", { name: "a" });
+  assert.equal(short.isError, true);
+  assert.match(short.text, /No component named "a"/);
+  const ambiguous = await call("get_component", { name: "selec" });
+  assert.equal(ambiguous.isError, true);
+  assert.match(ambiguous.text, /matches several components: .*select.*select-menu.*select-option|matches several components: .*select/);
+  const exact = await call("get_component", { name: "select" });
+  assert.equal(exact.json.slug, "select", "an exact name wins over longer names that contain it");
+  const partial = await call("get_component", { name: "tabl" });
+  assert.equal(partial.json.slug, "tabla");
+});
+
+test("long inputs are not echoed back in full", async () => {
+  const long = "x".repeat(100000);
+  const component = await call("get_component", { name: long });
+  assert.equal(component.isError, true);
+  assert.ok(component.text.length < 1200, `error was ${component.text.length} characters`);
+  const token = await call("get_token", { name: long });
+  assert.equal(token.isError, true);
+  assert.ok(token.text.length < 600, `error was ${token.text.length} characters`);
+});
+
+test("monitors can use HEAD, and responses carry basic security headers", async () => {
+  const head = await fetch(`${base}/health`, { method: "HEAD" });
+  assert.equal(head.status, 200);
+  assert.equal((await head.text()).length, 0);
+  const get = await fetch(`${base}/health`);
+  assert.equal(get.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(get.headers.get("cache-control"), "no-store");
+  assert.equal((await get.json()).components, registry.components.length);
+  const root = await fetch(`${base}/`, { method: "HEAD" });
+  assert.equal(root.status, 200);
+  const missing = await fetch(`${base}/nope`);
+  assert.equal(missing.headers.get("x-content-type-options"), "nosniff");
+});
+
+test("get_component says it has several parts when asked for a missing one, with a short error", async () => {
+  const result = await call("get_component", { name: "tabla", part: "z".repeat(5000) });
+  assert.equal(result.isError, true);
+  assert.ok(result.text.length < 600);
+});

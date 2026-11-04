@@ -42,6 +42,7 @@ export default {
     "Los colores de las series son tokens color/chart/*, con valores distintos para claro y oscuro.",
     "Estas variantes son ilustraciones con datos de ejemplo. En Figma usan la fuente Inter; en código usan los estilos de texto del sistema (Roboto).",
   ],
+  differences: ["En Figma esta gráfica usa la fuente Inter con tamaños sueltos; el código usa los estilos de texto del sistema (Roboto). Los datos son ilustraciones de ejemplo."],
   render({ Tipo }, texts = {}) {
     const chart = charts[Tipo];
     if (!chart) throw new Error(`Gráfica: tipo desconocido "${Tipo}".`);

@@ -1,0 +1,47 @@
+/* Windows High Contrast / forced colors: shadows are removed and colors are replaced by the
+   system palette, so borders and focus rings drawn with box-shadow would disappear.
+   An outline stays visible. Data colors (badges, charts) must keep their own colors. */
+@media (forced-colors: active) {
+  .ds-button,
+  .ds-input__field,
+  .ds-textarea__field,
+  .ds-select__field,
+  .ds-checkbox__box,
+  .ds-radio__ring,
+  .ds-switch__track,
+  .ds-card,
+  .ds-alert,
+  .ds-toast,
+  .ds-modal__dialog,
+  .ds-select-menu,
+  .ds-chart,
+  .ds-badge,
+  .ds-table-row,
+  .ds-table-header {
+    outline: 1px solid ButtonText;
+    outline-offset: -1px;
+  }
+  .ds-button:focus-visible,
+  .ds-close-button:focus-visible,
+  .ds-icon-button:focus-visible,
+  .ds-input__field:focus-visible,
+  .ds-textarea__field:focus-visible,
+  .ds-select__field:focus-visible,
+  .ds-checkbox__input:focus-visible + .ds-checkbox__box,
+  .ds-radio__input:focus-visible + .ds-radio__ring,
+  .ds-switch__input:focus-visible + .ds-switch__track,
+  .ds-card:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+  .ds-checkbox__input:is(:checked, :indeterminate, [data-indeterminate]) + .ds-checkbox__box {
+    background: Highlight;
+    color: HighlightText;
+  }
+  .ds-radio__ring::after,
+  .ds-switch__thumb { background: ButtonText; }
+  .ds-badge__dot,
+  .ds-chart__dot,
+  .ds-chart__bar,
+  .ds-chart__area svg { forced-color-adjust: none; }
+}

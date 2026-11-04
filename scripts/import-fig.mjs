@@ -1,9 +1,10 @@
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { readFigDocument } from "./lib/fig.mjs";
 import { extractDocs } from "./lib/figdocs.mjs";
 import { extractCharts } from "./lib/figcharts.mjs";
+import { assertLooksLikeEnterapia } from "./lib/import-checks.mjs";
 import { extractIcons } from "./lib/figicons.mjs";
 import { extractTokens } from "./lib/figtokens.mjs";
 
@@ -17,22 +18,24 @@ if (!file) {
 
 try {
   const figma = readFigDocument(file);
+  // Extract everything first: nothing is written unless the whole file reads correctly.
   const { primitives, semantic, skipped, stats } = extractTokens(figma);
-  writeFileSync(join(root, "tokens", "primitives.json"), JSON.stringify(primitives, null, 2) + "\n");
-  writeFileSync(join(root, "tokens", "semantic.json"), JSON.stringify(semantic, null, 2) + "\n");
-
-  const { foundations, components, docs, cover, indexNote } = extractDocs(figma);
-  const write = (path, data) => writeFileSync(join(root, "content", path), JSON.stringify(data, null, 2) + "\n");
-  mkdirSync(join(root, "content", "docs"), { recursive: true });
-  for (const component of components) rmSync(join(root, "content", "docs", `${component.slug}.json`), { force: true });
-  write("foundations.json", foundations);
+  const { foundations, components, docs, cover, indexNote, warnings } = extractDocs(figma);
   const icons = extractIcons(figma);
-  write("icons.json", icons);
   const charts = extractCharts(figma);
-  write("charts.json", charts);
-  write("cover.json", { ...cover, indexNote });
-  write("components.json", components);
-  for (const [slug, doc] of Object.entries(docs)) write(join("docs", `${slug}.json`), doc);
+  assertLooksLikeEnterapia({ stats, foundations, components });
+
+  const write = (path, data) => writeFileSync(join(root, path), JSON.stringify(data, null, 2) + "\n");
+  mkdirSync(join(root, "content", "docs"), { recursive: true });
+  write("tokens/primitives.json", primitives);
+  write("tokens/semantic.json", semantic);
+  for (const component of components) rmSync(join(root, "content", "docs", `${component.slug}.json`), { force: true });
+  write("content/foundations.json", foundations);
+  write("content/cover.json", { ...cover, indexNote });
+  write("content/icons.json", icons);
+  write("content/charts.json", charts);
+  write("content/components.json", components);
+  for (const [slug, doc] of Object.entries(docs)) write(`content/docs/${slug}.json`, doc);
 
   console.log(`Primitives:        ${stats.primitives}`);
   console.log(`Semantic variables: ${stats.semantic} (${stats.withDarkVariant} with a different dark value)`);
@@ -45,6 +48,7 @@ try {
   if (undocumented.length) console.log(`  without documentation in the file: ${undocumented.join(", ")}`);
   for (const { name, variables } of skipped.collections) console.log(`Skipped collection "${name}" (${variables} variables): not part of the documented token architecture.`);
   for (const style of skipped.styles) console.log(`Skipped style: ${style}`);
+  for (const warning of warnings) console.log(`Warning: ${warning}`);
   console.log("Wrote tokens/ and content/. Run npm test and npm run build next.");
 } catch (error) {
   console.error(error.message);

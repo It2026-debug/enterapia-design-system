@@ -2,6 +2,10 @@ import { esc } from "../../scripts/lib/site/util.mjs";
 
 export default {
   slug: "button",
+  differences: [
+    "Figma no define un estado Focus para Button; el código añade un anillo de foco con :focus-visible y el token focus/ring.",
+    "La sección \"Foco visible\" de la documentación de abajo describe el diseño de Figma, que no incluye ese indicador.",
+  ],
   a11y: [
     "Es un elemento <button>: recibe foco con Tab y se activa con Enter o Espacio.",
     "Disabled usa el atributo disabled: no recibe foco ni responde.",

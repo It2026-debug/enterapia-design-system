@@ -20,12 +20,19 @@
     paintTheme();
   }
 
-  // Sidebar (mobile)
+  // Sidebar (mobile): closes with Escape and gives the focus back to the menu button
   var menu = document.getElementById('menu');
+  function closeMenu() {
+    document.body.classList.remove('nav-open');
+    if (menu) menu.setAttribute('aria-expanded', 'false');
+  }
   if (menu) {
     menu.addEventListener('click', function () {
       var open = document.body.classList.toggle('nav-open');
       menu.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && document.body.classList.contains('nav-open')) { closeMenu(); menu.focus(); }
     });
   }
   var current = document.querySelector('.sidebar a[aria-current="page"]');
@@ -44,7 +51,7 @@
         el.hidden = !ok;
         if (ok) shown++;
       });
-      document.querySelectorAll('main section.category, main section.group').forEach(function (s) {
+      document.querySelectorAll('main .category, main .group').forEach(function (s) {
         s.hidden = !s.querySelector('[data-search]:not([hidden])');
       });
       if (status) status.textContent = terms.length ? shown + ' de ' + items.length + ' tokens' : '';
@@ -65,6 +72,10 @@
     } catch (e) { if (out) out.textContent = 'Copia manual: ' + text; }
   });
 
+  function applyIndeterminate(scope) {
+    scope.querySelectorAll('input[data-indeterminate]').forEach(function (input) { input.indeterminate = true; });
+  }
+
   // Component playground: pick a variant by its axis values
   document.querySelectorAll('[data-playground]').forEach(function (box) {
     var stage = box.querySelector('[data-stage]');
@@ -80,6 +91,7 @@
       if (!stage) return;
       if (found) {
         stage.innerHTML = found.innerHTML;
+        applyIndeterminate(stage);
         if (code) code.textContent = found.getAttribute('data-html');
         stage.removeAttribute('data-missing');
       } else {
@@ -90,4 +102,20 @@
     selects.forEach(function (s) { s.addEventListener('change', update); });
     update();
   });
+
+  // Regions that scroll sideways must be reachable with the keyboard, but only when they really scroll.
+  var scrollers = Array.prototype.slice.call(document.querySelectorAll('.table-wrap, .matrix, .stage'));
+  function markScrollers() {
+    scrollers.forEach(function (el) {
+      var scrolls = el.scrollWidth > el.clientWidth + 1;
+      if (scrolls) { el.setAttribute('tabindex', '0'); el.setAttribute('data-scroll', ''); }
+      else { el.removeAttribute('tabindex'); el.removeAttribute('data-scroll'); }
+    });
+  }
+  markScrollers();
+  window.addEventListener('resize', markScrollers);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(markScrollers);
+
+  // Indeterminate checkboxes cannot be declared in HTML: the documentation marks them with an attribute.
+  applyIndeterminate(document);
 })();

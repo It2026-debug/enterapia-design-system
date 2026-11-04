@@ -59,7 +59,7 @@ function group(g, ctx, level) {
     const previews = previewsIn(g.items);
     const captions = g.items.filter((i) => i.type === "text" && !/^\d+$/.test(i.text));
     return `<div class="stage subtle">${previews
-      .map((p, i) => `<span class="figure">${ctx.preview(p)}<span class="cap">${esc(captions[i]?.text ?? "")}</span></span>`)
+      .map((p, i) => `<div class="figure">${ctx.preview(p)}<span class="cap">${esc(captions[i]?.text ?? "")}</span></div>`)
       .join("")}</div>`;
   }
 
@@ -81,11 +81,11 @@ function single(b, ctx, level, next) {
       if (level === 0 && looksLikeHeading(b) && next?.type === "text" && next.text.length > 60) return `<h3>${esc(b.text)}</h3>`;
       return `<p>${esc(b.text)}</p>`;
     case "preview":
-      return `<span class="figure">${ctx.preview(b)}</span>`;
+      return `<div class="figure">${ctx.preview(b)}</div>`;
     case "table":
       return table(b);
     case "usage":
-      return `<div class="usage ${b.kind}"><h4>${b.kind === "do" ? "✓ Hacer" : "✗ Evitar"}</h4>${
+      return `<div class="usage ${b.kind}"><h3>${b.kind === "do" ? "✓ Hacer" : "✗ Evitar"}</h3>${
         b.previews.length ? `<div class="stage subtle">${b.previews.map((p) => ctx.preview(p)).join("")}</div>` : ""
       }<p>${esc(b.text)}</p></div>`;
     case "pair":

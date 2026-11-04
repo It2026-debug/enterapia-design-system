@@ -23,15 +23,18 @@ export function makeRenderer(metaList, defs) {
   const existing = new Map(metaList.map((m) => [m.slug, new Map(m.parts.map((p) => [p.name, new Set(p.variants.map((v) => v.name))]))]));
 
   const partOf = (meta, name) => meta.parts.find((p) => normalize(p.name) === normalize(name ?? "")) ?? meta.parts[0];
-  const render = (meta, props, texts = {}, partName) => {
+  // `preview` renders for the documentation page: no headings or modal semantics that would leak into
+  // the page outline, and a parent role when a piece only makes sense inside another (a row in a table).
+  const render = (meta, props, texts = {}, partName, { preview = false } = {}) => {
     const def = defs.get(meta.slug);
     if (!def) return null;
     const part = partOf(meta, partName);
-    return def.render({ ...defaultsOf(part), ...props, __part: part.name }, texts);
+    const html = def.render({ ...defaultsOf(part), ...props, __part: part.name, __preview: preview }, texts);
+    return preview && def.wrapPreview ? def.wrapPreview(part.name, html) : html;
   };
   const preview = (block) => {
     const meta = lookup.get(normalize(block.component));
-    const html = meta ? render(meta, block.props, block.texts, block.component) : null;
+    const html = meta ? render(meta, block.props, block.texts, block.component, { preview: true }) : null;
     return html ?? `<span class="cap">(${esc(block.component)}: vista previa no disponible)</span>`;
   };
   return { render, preview, exists: (meta, part, props) => existing.get(meta.slug)?.get(part.name)?.has(variantKey(part, props)) ?? false };
@@ -44,38 +47,40 @@ function playground(meta, part, r, heading) {
     .map((variant) => {
       const html = r.render(meta, variant.props, {}, part.name);
       if (html === null) return "";
+      const shown = r.render(meta, variant.props, {}, part.name, { preview: true });
       const key = JSON.stringify(Object.fromEntries(axes.map(([axis]) => [axis, variant.props[axis]])));
-      return `<template data-variant="${esc(key)}" data-size="${(variant.size ?? []).join("x")}" data-html="${esc(pretty(html))}">${html}</template>`;
+      return `<template data-variant="${esc(key)}" data-size="${(variant.size ?? []).join("x")}" data-html="${esc(pretty(html))}">${shown}</template>`;
     })
     .join("");
   const defaultHtml = r.render(meta, defaults, {}, part.name) ?? "";
+  const defaultShown = r.render(meta, defaults, {}, part.name, { preview: true }) ?? "";
   const controls = axes
     .map(
       ([axis, values]) =>
         `<label>${esc(axis)}<select data-axis="${esc(axis)}">${values.map((v) => `<option${v === defaults[axis] ? " selected" : ""}>${esc(v)}</option>`).join("")}</select></label>`,
     )
     .join("");
-  return `<section data-playground aria-label="${esc(heading)}">
+  return `<div data-playground>
 ${heading ? `<h3>${esc(heading)}</h3>` : ""}
 ${axes.length ? `<div class="controls">${controls}</div>` : ""}
-<div class="stage playground" data-stage>${defaultHtml}</div>
+<div class="stage playground" data-stage>${defaultShown}</div>
 <pre class="code" data-code tabindex="0">${esc(pretty(defaultHtml))}</pre>
 ${templates}
-</section>`;
+</div>`;
 }
 
-function matrix(meta, part, r) {
+function matrix(meta, part, r, level = 3) {
   const axes = Object.entries(part.axes);
   const cellFor = (props) => {
     const ok = r.exists(meta, part, props);
     const variant = part.variants.find((v) => variantKey(part, props) === v.name || variantKey(part, props) === variantName(part.axes, v.props));
-    const html = ok ? r.render(meta, props, {}, part.name) : null;
+    const html = ok ? r.render(meta, props, {}, part.name, { preview: true }) : null;
     return html ? `<div data-variant-cell data-figma-size="${(variant?.size ?? []).join("x")}">${html}</div>` : `<div class="na">No existe</div>`;
   };
   if (axes.length === 0) return `<div class="stage">${cellFor({})}</div>`;
   if (axes.length === 1) {
     const [axis, values] = axes[0];
-    return `<div class="stage">${values.map((v) => `<span class="figure">${cellFor({ [axis]: v })}<span class="cap">${esc(axis)}: ${esc(v)}</span></span>`).join("")}</div>`;
+    return `<div class="stage">${values.map((v) => `<div class="figure">${cellFor({ [axis]: v })}<span class="cap">${esc(axis)}: ${esc(v)}</span></div>`).join("")}</div>`;
   }
   const grid = (fixed, rowAxis, colAxes) => {
     const [rowName, rowValues] = rowAxis;
@@ -89,7 +94,7 @@ function matrix(meta, part, r) {
   };
   if (axes.length === 2) return grid({}, axes[0], [axes[1]]);
   const [firstName, firstValues] = axes[0];
-  return firstValues.map((value) => `<h4>${esc(firstName)}: ${esc(value)}</h4>${grid({ [firstName]: value }, axes[1], axes.slice(2))}`).join("");
+  return firstValues.map((value) => `<h${level + 1} class="gh">${esc(firstName)}: ${esc(value)}</h${level + 1}>${grid({ [firstName]: value }, axes[1], axes.slice(2))}`).join("");
 }
 
 function propertiesTable(part) {
@@ -120,8 +125,8 @@ function usageLists(doc) {
   if (!doc.do?.length && !doc.dont?.length) return "";
   const list = (items) => `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
   return `<section aria-labelledby="uso"><h2 id="uso">Uso: hacer y evitar</h2><div class="blocks-row">
-<div class="usage do"><h4>✓ Hacer</h4>${list(doc.do)}</div>
-<div class="usage dont"><h4>✗ Evitar</h4>${list(doc.dont)}</div></div></section>`;
+<div class="usage do"><h3>✓ Hacer</h3>${list(doc.do)}</div>
+<div class="usage dont"><h3>✗ Evitar</h3>${list(doc.dont)}</div></div></section>`;
 }
 
 export function componentBody(meta, def, doc, r, extras = {}) {
@@ -141,22 +146,26 @@ ${summary ? `<p class="lead">${esc(summary)}</p>` : ""}`;
   const ctx = { preview: r.preview, pageHeading: title };
   const previews = def ? `<section aria-labelledby="preview"><h2 id="preview">Vista previa</h2>${meta.parts.map((part) => playground(meta, part, r, multi ? part.name : "")).join("")}</section>` : "";
 
-  let body = header + missing + (extras.notice ?? "");
+  const differences = (def?.differences ?? []).length
+    ? `<div class="notice"><p><strong>Diferencias con Figma.</strong></p><ul>${def.differences.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></div>`
+    : "";
+  let body = header + missing + differences + (extras.notice ?? "");
   if (structured) {
     body += renderBlocks(intro.slice(3), ctx);
     body += previews;
     body += doc.sections
       .slice(1)
-      .map((s) => `<section aria-labelledby="${esc(s.id)}"><h2 id="${esc(s.id)}">${esc(s.number)} · ${esc(s.title)}</h2>${s.intro.map((t) => `<p class="lead">${esc(t)}</p>`).join("")}${renderBlocks(s.blocks, ctx)}</section>`)
+      .map((s) => `<section aria-labelledby="s-${esc(s.id)}"><h2 id="s-${esc(s.id)}">${esc(s.number)} · ${esc(s.title)}</h2>${s.intro.map((t) => `<p class="lead">${esc(t)}</p>`).join("")}${renderBlocks(s.blocks, ctx)}</section>`)
       .join("");
   } else {
     const [when, ...others] = doc?.sections ?? [];
     if (when) body += `<div class="callout"><p>${esc(when.title)}</p><p>${esc(when.text)}</p></div>`;
     body += previews;
     body += others.map((s) => `<section><h2>${esc(s.title)}</h2><p>${esc(s.text)}</p></section>`).join("");
-    if (def) {
-      body += `<section aria-labelledby="matriz"><h2 id="matriz">Todas las variantes</h2><p class="hint">Cada combinación de propiedades que existe en Figma (${variantCount(meta)}).</p>${meta.parts
-        .map((part) => `${multi ? `<h3>${esc(part.name)}</h3>` : ""}${matrix(meta, part, r)}`)
+    const varied = meta.parts.filter((part) => part.variants.length > 1);
+    if (def && varied.length > 0) {
+      body += `<section aria-labelledby="matriz"><h2 id="matriz">Todas las variantes</h2><p class="hint">Cada combinación de propiedades que existe en Figma (${variantCount(meta)}).</p>${varied
+        .map((part) => `${multi ? `<h3>${esc(part.name)}</h3>` : ""}${matrix(meta, part, r, multi ? 4 : 3)}`)
         .join("")}</section>`;
     }
     if (doc) body += usageLists(doc);

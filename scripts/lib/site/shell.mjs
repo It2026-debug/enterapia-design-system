@@ -50,6 +50,7 @@ export function shell({ path, title, description, body, nav, options }) {
 <title>${esc(pageTitle)}</title>
 <meta name="description" content="${esc(description)}">
 ${options.siteUrl ? `<link rel="canonical" href="${esc(options.siteUrl.replace(/\/$/, "") + "/" + (path === "index.html" ? "" : path))}">` : ""}
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="${root}fonts.css">
 <link rel="stylesheet" href="${root}tokens.css">
 <link rel="stylesheet" href="${root}components.css">
@@ -62,11 +63,11 @@ ${options.siteUrl ? `<link rel="canonical" href="${esc(options.siteUrl.replace(/
   <button type="button" class="btn-plain" id="menu" aria-controls="sidebar" aria-expanded="false">Menú</button>
   <a class="brand" href="${root}index.html">Enterapia <small>Sistema de Diseño</small></a>
   <span class="grow"></span>
-  <button type="button" class="btn-plain" id="theme"></button>
+  <button type="button" class="btn-plain" id="theme">Tema: sistema</button>
 </header>
 <div class="layout">
 ${sidebar(nav, path, root, options)}
-<main id="main"><div class="content">
+<main id="main" tabindex="-1"><div class="content">
 ${body}
 </div>
 <footer class="site">Versión ${esc(options.version)}. Generado a partir de <code>tokens/</code> y <code>content/</code>; no lo edites a mano. <span id="toast-copy" role="status" aria-live="polite"></span></footer>
