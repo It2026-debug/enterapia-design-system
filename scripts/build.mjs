@@ -1,5 +1,6 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { homedir } from "node:os";
+import { dirname, join, parse, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import defaultDefinitions from "../components/index.mjs";
 import { componentsForRegistry } from "./lib/components-data.mjs";
@@ -26,7 +27,35 @@ function loadContent() {
   };
 }
 
+const OUTPUT_MARKER = ".ds-build";
+
+/** The build empties its output folder, so refuse anything that is not clearly a build folder. */
+export function assertSafeOutDir(outDir) {
+  const target = resolve(outDir);
+  const dangerous = target === parse(target).root || target === homedir() || target === root || root.startsWith(target + sep);
+  if (dangerous) throw new Error(`Refusing to use "${target}" as the build output: it contains or is this repository.`);
+  const isDefault = target === join(root, "dist");
+  if (!isDefault && existsSync(target) && readdirSync(target).length > 0 && !existsSync(join(target, OUTPUT_MARKER))) {
+    throw new Error(`Refusing to empty "${target}": it is not empty and was not created by this build.`);
+  }
+  return target;
+}
+
+export function assertHttpUrl(name, value) {
+  if (value === "" || value === undefined) return;
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error(`${name} is not a valid URL: "${value}".`);
+  }
+  if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error(`${name} must be an http or https URL, got "${url.protocol}".`);
+}
+
 export function build({ outDir = join(root, "dist"), siteUrl = "", mcpUrl = "", definitions = defaultDefinitions } = {}) {
+  const output = assertSafeOutDir(outDir);
+  assertHttpUrl("siteUrl", siteUrl);
+  assertHttpUrl("mcpUrl", mcpUrl);
   const registry = buildRegistry({
     primitives: readJson("tokens", "primitives.json"),
     semantic: readJson("tokens", "semantic.json"),
@@ -41,10 +70,12 @@ export function build({ outDir = join(root, "dist"), siteUrl = "", mcpUrl = "", 
     .map((meta) => join(root, "components", meta.slug, `${meta.slug}.css`))
     .filter((path) => existsSync(path))
     .map((path) => readFileSync(path, "utf8").trim())
+    .concat(existsSync(join(root, "components", "forced-colors.css")) ? [readFileSync(join(root, "components", "forced-colors.css"), "utf8").trim()] : [])
     .join("\n\n");
 
-  rmSync(outDir, { recursive: true, force: true });
-  mkdirSync(outDir, { recursive: true });
+  rmSync(output, { recursive: true, force: true });
+  mkdirSync(output, { recursive: true });
+  writeFileSync(join(output, OUTPUT_MARKER), "Created by scripts/build.mjs. This folder is emptied on every build.\n");
   writeFileSync(join(outDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
   writeFileSync(join(outDir, "tokens.css"), renderCss(registry));
   writeFileSync(join(outDir, "components.css"), `/* Generated from the CSS files under components/. Uses only the tokens in tokens.css. */\n${componentCss}\n`);

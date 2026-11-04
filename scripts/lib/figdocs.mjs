@@ -63,6 +63,7 @@ function componentRef(instance, { by, children }) {
 
 export function extractDocs(doc) {
   const ctx = index(doc);
+  const warnings = [];
   const { by, children, page } = ctx;
 
   const textBlock = (n) => {
@@ -85,8 +86,6 @@ export function extractDocs(doc) {
     walk(n);
     return out;
   };
-
-  const hasInstance = (n) => n.type === "INSTANCE" || children(n).some(hasInstance);
 
   function blocksOf(n) {
     if (n.visible === false) return [];
@@ -155,6 +154,9 @@ export function extractDocs(doc) {
     }
     const texts = top.filter((c) => c.type === "TEXT").map(text);
     const usage = (name) => top.find((c) => c.type === "FRAME" && c.name.includes(name));
+    if (texts.length !== 6 || !usage("Hacer") || !usage("Evitar")) {
+      warnings.push(`"${frame.name}" does not match the known documentation layouts (${texts.length} text blocks, expected 6, plus Hacer and Evitar frames). Its text may be misplaced.`);
+    }
     return {
       source: frame.name,
       format: "simple",
@@ -280,5 +282,5 @@ export function extractDocs(doc) {
   };
   for (let i = 3; i + 1 < coverTexts.length; i += 2) cover.items.push({ title: coverTexts[i], text: coverTexts[i + 1] });
 
-  return { foundations, components, docs, cover, indexNote };
+  return { foundations, components, docs, cover, indexNote, warnings };
 }
