@@ -161,3 +161,14 @@ La sección "Foco visible" de Button dice que no hay indicador de foco, y el có
 **AUD-41 · Informativo · Los fragmentos de código incrustan los íconos SVG completos**, lo que los hace largos y poco legibles. Son copiables y correctos; una versión resumida con un marcador sería una mejora de legibilidad, no un error.
 
 **AUD-42 · Informativo · Cómo consumen las apps el sistema sigue sin resolverse.** `package.json` solo publica `tokens/`; los componentes y el CSS no se distribuyen como paquete. Está en el plan de trabajo.
+
+---
+
+## Adenda (4 de noviembre, después del merge): axe en la integración continua
+
+Al incorporar la revisión de accesibilidad a la integración continua (`npm run a11y`, axe-core 4.14 en Chrome sobre las 31 páginas en cuatro configuraciones), su primera ejecución encontró un hallazgo que la auditoría manual no vio, porque aquella usó axe 4.10:
+
+**AUD-43 · Alto · Los botones de los tokens no incluían su texto visible en el nombre accesible (1.896 botones en 7 páginas).**
+Los botones del catálogo llevaban `aria-label="Copiar var(…) de …"`, que reemplaza el contenido: el texto visible (valores claro y oscuro y alias) no formaba parte del nombre. Incumple WCAG 2.5.3 (Etiqueta en el nombre) y afecta a quien usa control por voz. *Corrección:* se eliminó el `aria-label`; el nombre accesible es el texto visible más una instrucción oculta visualmente (`. Copiar var(--…)`). *Pruebas:* `audit.test.mjs` y la propia verificación `a11y`.
+
+Con esto son **43 hallazgos, 36 corregidos**. La verificación queda como una puerta permanente: cualquier página nueva o cambio que introduzca una violación hace fallar la integración continua.

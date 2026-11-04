@@ -229,3 +229,13 @@ test("the Dockerfile installs dependencies before copying the source and has a h
   assert.match(docker, /HEALTHCHECK/);
   assert.match(docker, /USER node/);
 });
+
+test("token buttons keep their visible text in their accessible name (WCAG 2.5.3)", () => {
+  const { outDir } = generated();
+  const catalog = read(outDir, "tokens.html");
+  const buttons = [...catalog.matchAll(/<button type="button" class="token[^>]*>/g)].map((m) => m[0]);
+  assert.ok(buttons.length > 200);
+  assert.ok(buttons.every((b) => !b.includes("aria-label=")), "an aria-label would replace the visible text in the name");
+  assert.match(catalog, /<span class="sr-only">\. Copiar var\(--color-background-page\)<\/span>/);
+  assert.match(readFileSync(join(root, "site", "site.css"), "utf8"), /\.sr-only \{ position: absolute;/);
+});

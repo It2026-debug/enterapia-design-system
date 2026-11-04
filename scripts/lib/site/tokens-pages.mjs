@@ -10,8 +10,10 @@ const searchText = (t) =>
 const badge = (t) =>
   t.status ? `<span class="badge-note" title="${esc(t.note)}">${esc(t.status)}</span>` : "";
 
+// The accessible name is the visible text plus the instruction. Replacing it with an aria-label that
+// leaves out part of the visible text breaks voice control (WCAG 2.5.3, Label in Name).
 const button = (t, cls, body) =>
-  `<button type="button" class="token ${cls}" data-copy="var(${esc(t.cssVar)})" data-search="${esc(searchText(t))}" aria-label="Copiar var(${esc(t.cssVar)}) de ${esc(t.name)}">${body}</button>`;
+  `<button type="button" class="token ${cls}" data-copy="var(${esc(t.cssVar)})" data-search="${esc(searchText(t))}">${body}<span class="sr-only">. Copiar var(${esc(t.cssVar)})</span></button>`;
 
 const valueLine = (label, view) =>
   `<span class="tvalue">${label ? `<b>${label}</b> ` : ""}${esc(view.value)}${view.reference ? ` &larr; ${esc(view.reference)}` : ""}</span>`;
