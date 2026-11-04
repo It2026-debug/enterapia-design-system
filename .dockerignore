@@ -1,0 +1,7 @@
+.git
+.github
+node_modules
+mcp/node_modules
+dist
+test
+mcp/test
