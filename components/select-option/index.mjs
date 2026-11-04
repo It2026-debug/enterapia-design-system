@@ -14,6 +14,7 @@ export default {
     "La opción elegida usa aria-selected=\"true\" y muestra un ícono de check, no solo color.",
     "Una opción deshabilitada usa aria-disabled=\"true\".",
   ],
+  wrapPreview: (_part, html) => `<div class="ds-preview-wrap" role="listbox" aria-label="Opciones">${html}</div>`,
   render({ State }, texts = {}) {
     return option({ State }, texts.Label ?? "Opción");
   },

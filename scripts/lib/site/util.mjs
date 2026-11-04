@@ -44,6 +44,14 @@ export function pretty(html) {
       continue;
     }
     if (closing) {
+      const last = out.at(-1)?.trim() ?? "";
+      const onlyText = line.trim() !== "" && !line.includes("<");
+      if (onlyText && last.startsWith(`<${name}`) && !last.includes(`</${name}>`) && !last.endsWith("/>")) {
+        out[out.length - 1] = `${out.at(-1)}${line.trim()}${token}`;
+        line = "";
+        depth -= 1;
+        continue;
+      }
       flush();
       depth -= 1;
       line = token;

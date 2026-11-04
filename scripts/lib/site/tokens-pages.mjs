@@ -21,8 +21,8 @@ const meta = (t) =>
     t.modes ? valueLine("Claro", t.modes.light) + valueLine("Oscuro", t.modes.dark) : valueLine("", t)
   }${badge(t)}</span>`;
 
-const group = (title, tokens, render, id) =>
-  `<section class="group" aria-labelledby="${id}"><h3 id="${id}">${esc(title)}</h3><div class="grid">${tokens.map(render).join("")}</div></section>`;
+const group = (title, tokens, render, id, level = 3) =>
+  `<div class="group"><h${level} class="gh" id="${id}">${esc(title)}</h${level}><div class="grid">${tokens.map(render).join("")}</div></div>`;
 
 const numeric = (t) => parseFloat(t.value);
 const byValue = (a, b) => numeric(a) - numeric(b);
@@ -33,15 +33,15 @@ const swatch = (t) => {
   return button(t, "swatch", chips + meta(t));
 };
 
-const colorGroups = (tokens, layer, prefix) => {
+const colorGroups = (tokens, layer, prefix, level) => {
   const colors = tokens.filter((t) => t.category === "color" && t.layer === layer);
   const grouped = groupBy(colors, (t) => (layer === "semantic" ? t.name.split(".")[1] : t.name.split(".").slice(1, -1).join(".") || "otros"));
-  return [...grouped].map(([title, list]) => group(titleCase(title), list, swatch, `${prefix}-${slug(title)}`)).join("");
+  return [...grouped].map(([title, list]) => group(titleCase(title), list, swatch, `${prefix}-${slug(title)}`, level)).join("");
 };
 
 const row = (sample) => (t) => button(t, "row", sample(t) + meta(t));
 
-const dimension = (tokens) => {
+const dimension = (tokens, level) => {
   const sample = {
     spacing: (t) => `<span class="bar" style="width:var(${esc(t.cssVar)})"></span>`,
     radius: (t) => `<span class="box" style="border-radius:var(${esc(t.cssVar)})"></span>`,
@@ -52,12 +52,12 @@ const dimension = (tokens) => {
   return Object.keys(sample)
     .map((category) => {
       const list = tokens.filter((t) => t.category === category).sort(byValue);
-      return list.length ? group(titles[category], list, row(sample[category]), `dim-${category}`) : "";
+      return list.length ? group(titles[category], list, row(sample[category]), `dim-${category}`, level) : "";
     })
     .join("");
 };
 
-function typography(tokens) {
+function typography(tokens, level) {
   const familyVar = (t) => {
     const ref = /\{(font\.family\.[^}]+)\}/.exec(t.definition)?.[1];
     return ref ? `--${ref.replace(/\./g, "-")}` : null;
@@ -84,14 +84,14 @@ function typography(tokens) {
   const grouped = groupBy(tokens.filter((t) => ["text", "font", "type"].includes(t.category)), kindOf);
   return Object.keys(titles)
     .filter((kind) => grouped.has(kind))
-    .map((kind) => group(titles[kind], grouped.get(kind), row(sample), `typo-${kind}`))
+    .map((kind) => group(titles[kind], grouped.get(kind), row(sample), `typo-${kind}`, level))
     .join("");
 }
 
-const elevation = (tokens) => {
+const elevation = (tokens, level) => {
   const list = tokens.filter((t) => t.category === "elevation" || t.category === "focus");
   const sample = (t) => `<span class="shadow" style="box-shadow:var(${esc(t.cssVar)})"></span>`;
-  return group("Efectos", list, row(sample), "fx");
+  return group("Efectos", list, row(sample), "fx", level);
 };
 
 const toolbar = () =>
@@ -102,10 +102,14 @@ function contrastTable(foundation, tokens) {
   if (!table) return "<p>No hay datos de contraste en el archivo.</p>";
   const byName = new Map(tokens.map((t) => [t.name, t]));
   const results = computeContrast(pairsFromFigma(table.rows), byName);
-  const cell = (r) => {
+  const cell = (r, minimum) => {
     if (!r) return "<td>—</td>";
     const ok = r.pass;
-    return `<td class="${ok ? "pass" : "fail"}"><span style="display:inline-block;padding:0 var(--spacing-sm);border-radius:var(--radius-sm);border:1px solid var(--color-border-default);color:${esc(r.fg)};background:${esc(r.bg)}">Aa</span> ${r.ratio.toFixed(2)}:1 ${ok ? "✓" : "✗"}</td>`;
+    const sample =
+      minimum >= 4.5
+        ? `<span aria-hidden="true" style="display:inline-block;padding:0 var(--spacing-sm);border-radius:var(--radius-sm);border:1px solid var(--color-border-default);color:${esc(r.fg)};background:${esc(r.bg)}">Aa</span>`
+        : `<span aria-hidden="true" style="display:inline-block;width:28px;height:14px;vertical-align:middle;border-radius:var(--radius-sm);border:1px solid var(--color-border-default);background:${esc(r.bg)};box-shadow:inset 0 0 0 4px ${esc(r.bg)}, inset 0 0 0 9px ${esc(r.fg)}"></span>`;
+    return `<td class="${ok ? "pass" : "fail"}">${sample} ${r.ratio.toFixed(2)}:1 ${ok ? "✓" : "✗"}</td>`;
   };
   const failing = results.filter((r) => r.missing || !r.light.pass || !r.dark.pass);
   const total = results.length;
@@ -113,31 +117,31 @@ function contrastTable(foundation, tokens) {
     .map((r) =>
       r.missing
         ? `<tr><td>${esc(r.label)}</td><td colspan="4" class="fail">Falta un token: ${esc(r.foreground)} o ${esc(r.background)}</td></tr>`
-        : `<tr><td><code>${esc(r.label)}</code></td><td>${esc(r.use)}</td><td>${r.minimum}:1</td>${cell(r.light)}${cell(r.dark)}</tr>`,
+        : `<tr><td><code>${esc(r.label)}</code></td><td>${esc(r.use)}</td><td>${r.minimum}:1</td>${cell(r.light, r.minimum)}${cell(r.dark, r.minimum)}</tr>`,
     )
     .join("");
   return `<p class="hint">${total - failing.length} de ${total} combinaciones cumplen WCAG 2.1 AA con los valores actuales de los tokens. Las razones se calculan al generar el sitio.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">Par (texto / fondo)</th><th scope="col">Uso</th><th scope="col">Mínimo</th><th scope="col">Claro</th><th scope="col">Oscuro</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-export function foundationBody(entry, { registry, content, tokens }) {
+export function foundationBody(entry, { registry, tokens }) {
   const only = (layer, ...categories) => tokens.filter((t) => t.layer === layer && categories.includes(t.category));
   switch (entry.slug) {
     case "primitivas-color":
-      return toolbar() + `<section class="category">${colorGroups(tokens, "primitive", "prim")}</section>`;
+      return toolbar() + `<section class="category">${colorGroups(tokens, "primitive", "prim", 2)}</section>`;
     case "primitivas-tamano":
       return (
         toolbar() +
-        `<section class="category">${group("Escala de tamaño", only("primitive", "size").sort(byValue), row(() => ""), "prim-size")}${typography(only("primitive", "type"))}</section>`
+        `<section class="category">${group("Escala de tamaño", only("primitive", "size").sort(byValue), row(() => ""), "prim-size", 2)}${typography(only("primitive", "type"), 2)}</section>`
       );
     case "semantica-color":
-      return toolbar() + `<section class="category">${colorGroups(tokens, "semantic", "sem")}</section>`;
+      return toolbar() + `<section class="category">${colorGroups(tokens, "semantic", "sem", 2)}</section>`;
     case "semantica-espaciado-borde-y-radio":
-      return toolbar() + `<section class="category">${dimension(only("semantic", "spacing", "border-width", "radius", "size"))}</section>`;
+      return toolbar() + `<section class="category">${dimension(only("semantic", "spacing", "border-width", "radius", "size"), 2)}</section>`;
     case "semantica-tipografia":
-      return toolbar() + `<section class="category">${typography(only("semantic", "text", "font"))}</section>`;
+      return toolbar() + `<section class="category">${typography(only("semantic", "text", "font"), 2)}</section>`;
     case "elevacion-y-foco":
-      return toolbar() + `<section class="category">${elevation(tokens)}</section>`;
+      return toolbar() + `<section class="category">${elevation(tokens, 2)}</section>`;
     case "contraste-wcag":
       return contrastTable(entry, tokens);
     case "arquitectura-y-nomenclatura": {

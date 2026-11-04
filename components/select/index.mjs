@@ -4,6 +4,9 @@ import { menu } from "../select-menu/index.mjs";
 
 export default {
   slug: "select",
+  differences: [
+    "El estado Open muestra el menú visual de Select Menu. Con un <select> nativo, el navegador dibuja su propia lista.",
+  ],
   a11y: [
     "El campo es un <select> nativo dentro de un <label>: teclado, lectores de pantalla y móvil funcionan sin código extra.",
     "En Error usa aria-invalid=\"true\"; el mensaje va dentro del mismo <label>.",

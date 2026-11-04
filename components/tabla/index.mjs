@@ -44,6 +44,15 @@ export default {
     "La casilla de cada fila necesita un nombre accesible (aria-label o el nombre de la fila).",
     "En Figma este componente usa la fuente Inter con tamaños sueltos; en código usa los estilos de texto del sistema (Roboto).",
   ],
+  differences: [
+    "En Figma este componente usa la fuente Inter con tamaños sueltos; el código usa los estilos de texto del sistema (Roboto).",
+    "Las piezas se muestran dentro de un contenedor role=\"table\" solo en la documentación, para que los roles ARIA tengan su padre.",
+  ],
+  wrapPreview(part, html) {
+    if (part === "Table Row") return `<div class="ds-preview-wrap" role="table" aria-label="Ejemplo de tabla">${html}</div>`;
+    if (part === "Table Column Header" || part === "Table Cell") return `<div class="ds-preview-wrap" role="table" aria-label="Ejemplo de tabla"><div role="row">${html}</div></div>`;
+    return html;
+  },
   render(props, texts = {}) {
     switch (props.__part) {
       case "Table Row":
