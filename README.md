@@ -65,6 +65,7 @@ Include the fonts (`fonts.css`, Roboto), `tokens.css` and `components.css`, then
 ```bash
 npm --prefix mcp ci   # once, installs the MCP server dependencies
 npm run lint          # ESLint and Stylelint
+npm run a11y          # axe-core in Chrome on every page: light, dark, system dark and a phone
 npm test              # tokens, importer, components, site and MCP server tests
 npm run build         # writes dist/
 npm start             # serves the MCP endpoint at http://localhost:3000/mcp (run build first)
@@ -116,6 +117,8 @@ New components can be designed outside Figma (for example with Claude Design) an
 4. Run `npm test` and `npm run build`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Quality
+
+Accessibility is checked automatically: `npm run a11y` builds the site and runs axe-core (WCAG 2.0 to 2.2 A and AA, plus best practices) in Google Chrome on all 31 pages, in light, dark, system-dark and phone width, and fails on any violation or sideways overflow. It runs in CI as its own job. It needs Google Chrome installed (GitHub's runners have it; set `CHROME_PATH` for another binary).
 
 The last full audit (accessibility with axe-core in light, dark and phone width, HTML validation, security, MCP, CI and Docker) is in [docs/auditoria-2026-11-04.md](docs/auditoria-2026-11-04.md), with every finding, its evidence and its fix.
 

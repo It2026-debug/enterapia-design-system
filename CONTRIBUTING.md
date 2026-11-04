@@ -6,8 +6,8 @@ These come from Figma. `tokens/primitives.json`, `tokens/semantic.json` and the 
 
 1. Change the variables, styles, components or documentation in Figma.
 2. Save a local copy of the file (File, Save local copy) and run `npm run import:fig -- "<file>.fig"`. See the README for details. Never commit the `.fig` file.
-3. Run `npm install` and `npm --prefix mcp ci` (first time only), then `npm run lint`, `npm test` and `npm run build`.
-4. Open the built site (`dist/index.html`), switch between the light and dark themes, and check your change visually.
+3. Run `npm install` and `npm --prefix mcp ci` (first time only), then `npm run lint`, `npm test`, `npm run a11y` and `npm run build`.
+4. Open the built site (`dist/index.html`), switch between the light and dark themes, and check your change visually. `npm run a11y` must pass: it fails on any accessibility violation in any page or theme.
 5. Open a pull request. CI runs the tests and the build. A merge to `main` publishes the website.
 
 If a token needs a note for design or for the people using the system, add it to `tokens/meta.json` with an optional `status` (`provisional`, `stale-name` or `review`) and a `note`. Scope text and general notes go in `tokens/about.json`.
