@@ -239,3 +239,19 @@ test("token buttons keep their visible text in their accessible name (WCAG 2.5.3
   assert.match(catalog, /<span class="sr-only">\. Copiar var\(--color-background-page\)<\/span>/);
   assert.match(readFileSync(join(root, "site", "site.css"), "utf8"), /\.sr-only \{ position: absolute;/);
 });
+
+test("every workflow job installs the dependencies before it runs npm scripts", () => {
+  for (const file of ["ci.yml", "pages.yml"]) {
+    const text = readFileSync(join(root, ".github", "workflows", file), "utf8");
+    const jobsBlock = text.slice(text.indexOf("\njobs:"));
+    const jobs = jobsBlock.split(/\n {2}(?=[a-z][a-z-]*:\n)/).slice(1);
+    assert.ok(jobs.length > 0, `${file} has no jobs`);
+    for (const job of jobs) {
+      const name = job.split(":")[0];
+      const steps = [...job.matchAll(/- run: (.+)/g)].map((m) => m[1].trim());
+      const firstScript = steps.findIndex((s) => /^npm (test|run )/.test(s));
+      if (firstScript === -1) continue;
+      assert.ok(steps.slice(0, firstScript).includes("npm ci"), `${file} job "${name}" runs "${steps[firstScript]}" without a root "npm ci" first`);
+    }
+  }
+});

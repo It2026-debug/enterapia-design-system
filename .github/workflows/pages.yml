@@ -27,7 +27,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: mcp/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            mcp/package-lock.json
+      - run: npm ci
       - run: npm --prefix mcp ci
       - run: npm test
       - uses: actions/configure-pages@v6
